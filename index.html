@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kaushik Gupta's Portfolio - Full Stack Developer">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Kaushik Gupta | Full Stack Developer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <div class="logo">Kaushik Gupta</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <!-- Add this div just inside the hero section, before hero-content -->
+        <!-- Replace the existing animated-background div with this -->
+<div class="animated-background">
+    <div class="animated-gradient"></div>
+    <div class="particles">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
+
+
+        <div class="hero-content">
+            <h1>Hi, I'm <span class="highlight">Kaushik Gupta</span></h1>
+            <p>Full Stack Developer | UX Enthusiast | Tech Blogger</p>
+            <p class="hero-sub">Building digital experiences that matter</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="cta-button">Get in Touch</a>
+                <a href="resume.pdf" class="cta-button secondary">Download CV</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <img src="profile.jpg" alt="Kaushik Gupta - Full Stack Developer" loading="lazy">
+            <div class="about-text">
+                <p>Hi there! I'm a Full Stack Developer with 5 years of experience in building scalable web applications. Based in San Francisco, I specialize in creating user-centric solutions that combine clean code with beautiful design.</p>
+                <p>After graduating from UC Berkeley with a Computer Science degree, I've worked with startups and Fortune 500 companies, helping them build robust web applications and improve user experiences.</p>
+                <div class="skills">
+                    <div class="skill-category">
+                        <h4>Frontend</h4>
+                        <span class="skill-tag">React.js</span>
+                        <span class="skill-tag">Vue.js</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">Tailwind CSS</span>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Backend</h4>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2>Featured Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <img src="healthtrack.jpg" alt="HealthTrack App" loading="lazy">
+                <h3>HealthTrack App</h3>
+                <p>A full-stack health monitoring application built with React Native and Node.js.</p>
+                <div class="tech-stack">
+                    <span>React Native</span>
+                    <span>Node.js</span>
+                    <span>MongoDB</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" target="_blank" rel="noopener">Live Demo</a>
+                    <a href="#" target="_blank" rel="noopener">GitHub</a>
+                </div>
+            </div>
+            <!-- More project cards... -->
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Let's Connect</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Get in Touch</h3>
+                <p>I'm always open to discussing new projects and opportunities.</p>
+                <div class="contact-details">
+                    <div>
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:hello@sarahchen.dev">hello@sarahchen.dev</a>
+                    </div>
+                    <div>
+                        <i class="fas fa-location-dot"></i>
+                        <span>San Francisco, CA</span>
+                    </div>
+                </div>
+            </div>
+            <form id="contact-form">
+                <input type="text" placeholder="Name" required aria-label="Name">
+                <input type="email" placeholder="Email" required aria-label="Email">
+                <textarea placeholder="Message" required aria-label="Message"></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="#" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="#" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy; 2025 Kaushik Gupta. All rights reserved.</p>
+    </footer>
+
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+        <span class="tooltip">Toggle Theme</span>
+    </div>
+
+    <div class="background-animation">
+        <div class="cube"></div>
+        <div class="cube"></div>
+        <div class="cube"></div>
+        <div class="cube"></div>
+        <div class="cube"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+<div class="splash-screen">
+    <div class="splash-content">
+        <h1>Kaushik Gupta</h1>
+        <div class="loading-bar"></div>
+    </div>
+</div>
+
+</html>
