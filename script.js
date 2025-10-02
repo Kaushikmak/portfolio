@@ -1,12 +1,9 @@
-// Get references to the button and the body
+// --- Theme Toggle Logic ---
 const themeToggleButton = document.getElementById('theme-toggle');
 const body = document.body;
-
-// Get the moon and sun icons
 const moonIcon = document.querySelector('.moon-icon');
 const sunIcon = document.querySelector('.sun-icon');
 
-// Function to apply the saved theme on page load
 function applySavedTheme() {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
@@ -20,12 +17,8 @@ function applySavedTheme() {
     }
 }
 
-// Event listener for the toggle button
 themeToggleButton.addEventListener('click', () => {
-    // Toggle the .dark-mode class on the body
     body.classList.toggle('dark-mode');
-
-    // Check if dark mode is now active and save the preference
     if (body.classList.contains('dark-mode')) {
         localStorage.setItem('theme', 'dark');
         sunIcon.style.display = 'block';
@@ -36,6 +29,14 @@ themeToggleButton.addEventListener('click', () => {
         moonIcon.style.display = 'block';
     }
 });
+
+// --- NEW: Flip Card Logic ---
+const flipCard = document.querySelector('.flip-card');
+
+flipCard.addEventListener('click', function() {
+  flipCard.classList.toggle('is-flipped');
+});
+
 
 // Apply the theme when the page loads
 document.addEventListener('DOMContentLoaded', applySavedTheme);

@@ -9,9 +9,9 @@
     --hover-bg-color: #F5F5F5;
     --skill-bg-color: #1a1a1a;
     --skill-text-color: #FFFFFF;
-    --tag-border-color: #EAEAEA; /* New variable for tag borders */
-    --education-tag-bg: #F0F0F0; /* New variable for education tag background */
-    --education-tag-text: #666666; /* New variable for education tag text */
+    --tag-border-color: #EAEAEA; 
+    --education-tag-bg: #F0F0F0; 
+    --education-tag-text: #666666; 
 }
 
 body.dark-mode {
@@ -24,9 +24,9 @@ body.dark-mode {
     --hover-bg-color: #1a1a1a; 
     --skill-bg-color: #2a2a2a; 
     --skill-text-color: #E5E7EB;
-    --tag-border-color: #374151; /* Dark mode border for tags */
-    --education-tag-bg: #374151; /* Dark mode background for education tag */
-    --education-tag-text: #E5E7EB; /* Dark mode text for education tag */
+    --tag-border-color: #374151; 
+    --education-tag-bg: #374151; 
+    --education-tag-text: #E5E7EB; 
 }
 
 /* General Body Styles */
@@ -93,6 +93,7 @@ h1 {
     height: 150px;
     perspective: 1000px;
     flex-shrink: 0; 
+    cursor: pointer; /* Add pointer cursor to indicate it's clickable */
 }
 
 .flip-card-inner {
@@ -103,7 +104,8 @@ h1 {
     transform-style: preserve-3d;
 }
 
-.flip-card:hover .flip-card-inner {
+/* CHANGED: This now triggers on a class instead of :hover */
+.flip-card.is-flipped .flip-card-inner {
     transform: rotateY(180deg);
 }
 
@@ -211,17 +213,16 @@ h1 {
     color: var(--text-color);
 }
 
-/* NEW: Style for the education year tag */
 .education-year-tag {
     margin-left: auto;
     background-color: var(--education-tag-bg);
     color: var(--education-tag-text);
     padding: 0.4rem 0.8rem;
     border: 1px solid var(--tag-border-color);
-    border-radius: 10px;
+    border-radius: 6px;
     font-size: 0.9rem;
     font-weight: 700;
-    display: inline-flex; /* Ensures it acts like a block with padding but inline flow */
+    display: inline-flex; 
     align-items: center;
     justify-content: center;
 }
@@ -257,22 +258,21 @@ h1 {
     gap: 0.75rem;
 }
 
-/* NEW: Style for LeetCode/CodeForces links */
 .profile-links a {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.5rem; /* Adjusted padding */
-    border: 1px solid var(--tag-border-color); /* Uses new tag border color */
+    padding: 0.5rem; 
+    border: 1px solid var(--tag-border-color); 
     border-radius: 6px;
-    color: var(--text-color); /* Icon color */
+    color: var(--text-color); 
     transition: background-color 0.2s, border-color 0.2s;
-    text-decoration: none; /* No underline */
+    text-decoration: none; 
 }
 
 .profile-links a:hover {
     background-color: var(--hover-bg-color);
-    border-color: var(--link-color); /* Highlight border on hover */
+    border-color: var(--link-color); 
 }
 
 
@@ -398,12 +398,12 @@ body.dark-mode .theme-toggle-button .sun-icon {
         gap: 0.5rem;
     }
 
-    .education-year-tag { /* Ensure this centers on mobile too */
+    .education-year-tag { 
         margin-left: 0; 
         margin-top: 0.5rem;
     }
 
     .education-details {
-        text-align: center; /* Center education text on mobile */
+        text-align: center; 
     }
 }
