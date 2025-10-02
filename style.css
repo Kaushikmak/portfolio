@@ -1,0 +1,294 @@
+/* General Body Styles */
+body {
+    display: flex;
+    flex-direction: column; /* Stacks children vertically */
+    align-items: center;    /* Keeps content centered horizontally */
+    min-height: 100vh;
+    margin: 0;
+    background-color: #FFFFFF;
+    font-family: 'Space Mono', monospace;
+    color: #4A4A4A;
+}
+
+/* Main Card Container */
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the sections inside the card */
+    max-width: 900px;
+    padding: 2rem;
+    width: 100%;
+    flex-grow: 1; /* This is the key change to make the card fill space */
+}
+
+/* Main Content (Image + Bio) */
+.main-content {
+    display: flex;
+    align-items: center; /* Aligns items to the top */
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+}
+
+/* NEW: Wrapper for all text content */
+.text-content {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+/* Header Section */
+.header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.subtitle {
+    margin: 0 0 1.5rem 0; /* Adjusted margin */
+    font-size: 1rem;
+}
+
+/* --- Flip Card Styles --- */
+.flip-card {
+    background-color: transparent;
+    width: 150px;
+    height: 150px;
+    perspective: 1000px;
+    flex-shrink: 0; /* Prevents the image from shrinking */
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.7s;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    overflow: hidden; 
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+}
+
+.flip-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+/* --- Bio and Social Links --- */
+.bio {
+    text-align: left;
+    max-width: 450px; /* Adjusted max-width */
+}
+
+.bio-text {
+    margin: 0;
+    line-height: 1.6;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #888888;
+    margin-top: 1rem;
+}
+
+.location svg {
+    stroke: #d9534f;
+}
+
+.social-links {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.social-links a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    border: 1px solid #EAEAEA;
+    border-radius: 6px;
+    color: #4A4A4A;
+    transition: background-color 0.2s;
+}
+
+.social-links a:hover {
+    background-color: #F5F5F5;
+}
+
+/* --- Sections: Education & Skills --- */
+.section {
+    width: 100%;
+    margin-top: 3rem;
+    padding: 0 1rem;
+}
+
+.section h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.education-entry {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.education-logo {
+    width: 40px;
+    height: 40px;
+}
+
+.education-details {
+    text-align: left;
+}
+
+.education-details strong {
+    display: block;
+    color: #1a1a1a;
+    font-weight: 700;
+}
+
+.education-details p {
+    margin: 0;
+    color: #4A4A4A;
+}
+
+.education-dates {
+    margin-left: auto;
+    color: #888888;
+    font-size: 0.9rem;
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.skill-tag {
+    background-color: #1a1a1a;
+    color: #FFFFFF;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+/* --- CP Profiles in Skills Section --- */
+.cp-profiles {
+    margin-top: 1.5rem;
+    text-align: left;
+}
+
+.cp-title {
+    color: #888888;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+}
+
+.profile-links {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.profile-links a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    border: 1px solid #EAEAEA;
+    border-radius: 6px;
+    color: #4A4A4A;
+    transition: background-color 0.2s;
+    text-decoration: none;
+}
+
+.profile-links a:hover {
+    background-color: #F5F5F5;
+}
+
+/* --- Bottom Action Links --- */
+.action-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 3rem; /* Adjusted margin */
+    width: 100%;
+    padding: 0 1rem;
+}
+
+.action-links a {
+    border: 1px solid #EAEAEA;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #4A4A4A;
+    font-size: 0.9rem;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.action-links a:hover {
+    background-color: #F5F5F5;
+    border-color: #DDDDDD;
+}
+
+/* --- New Footer Section --- */
+
+.get-in-touch {
+    width: 100%;
+    text-align: center;
+    margin-top: 4rem;
+    padding: 2rem 0;
+}
+
+.get-in-touch h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 1rem;
+}
+
+.get-in-touch p {
+    color: #888888;
+    margin: 0;
+}
+
+.get-in-touch a {
+    color: #1D4ED8; /* A nice blue for the link */
+    text-decoration: underline;
+    font-weight: 700;
+}
+
+.get-in-touch a:hover {
+    text-decoration: none; /* Removes underline on hover */
+}
