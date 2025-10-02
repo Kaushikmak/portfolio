@@ -1,24 +1,26 @@
 /* General Body Styles */
 body {
     display: flex;
-    flex-direction: column; /* Stacks children vertically */
-    align-items: center;    /* Keeps content centered horizontally */
+    flex-direction: column; 
+    align-items: center;    
     min-height: 100vh;
     margin: 0;
     background-color: #FFFFFF;
     font-family: 'Space Mono', monospace;
     color: #4A4A4A;
+    padding: 0 1rem; /* ADDED: This creates the margin on the sides */
+    box-sizing: border-box; /* ADDED: Ensures padding is included in the element's total width */
 }
 
 /* Main Card Container */
 .card {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centers the sections inside the card */
+    align-items: center; 
     max-width: 900px;
-    padding: 2rem;
+    padding: 2rem 0; /* Adjusted padding to work with body padding */
     width: 100%;
-    flex-grow: 1; /* This is the key change to make the card fill space */
+    flex-grow: 1; 
 }
 
 /* Main Content (Image + Bio) */
@@ -293,42 +295,46 @@ h1 {
 }
 
 
-/* --- NEW: Mobile Responsive Styles --- */
+/* --- Mobile Responsive Styles --- */
 @media (max-width: 768px) {
     .card {
-        padding: 1rem; /* Reduce padding on smaller screens */
+        padding: 1rem 0; /* Adjust padding for mobile */
     }
 
     .main-content {
-        flex-direction: column; /* Stack image on top of bio */
-        text-align: center; /* Center-align the text */
+        flex-direction: column; 
+        text-align: center; 
     }
 
     .text-content, .bio, .header, .section h2, .cp-profiles {
-        text-align: center; /* Ensure all text inside is centered */
-        align-items: center; /* Center flex items like social links */
+        text-align: center; 
+        align-items: center; 
+    }
+    
+    .location {
+        justify-content: center; /* ADDED: This centers the location icon and text */
     }
 
     .social-links, .profile-links {
-        justify-content: center; /* Center the social icons */
+        justify-content: center; 
     }
 
     h1 {
-        font-size: 2rem; /* Reduce heading size */
+        font-size: 2rem; 
     }
 
     .education-entry {
-        flex-direction: column; /* Stack education details vertically */
+        flex-direction: column; 
         text-align: center;
         gap: 0.5rem;
     }
 
     .education-dates {
-        margin-left: 0; /* Remove the left margin to allow centering */
+        margin-left: 0; 
         margin-top: 0.5rem;
     }
 
     .skills-list, .action-links {
-        justify-content: center; /* Center skill tags and action links */
+        justify-content: center; 
     }
 }
