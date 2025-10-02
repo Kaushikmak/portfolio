@@ -24,13 +24,13 @@ body {
 /* Main Content (Image + Bio) */
 .main-content {
     display: flex;
-    align-items: center; /* Aligns items to the top */
+    align-items: center; 
     justify-content: center;
     gap: 2rem;
     width: 100%;
 }
 
-/* NEW: Wrapper for all text content */
+/* Wrapper for all text content */
 .text-content {
     display: flex;
     flex-direction: column;
@@ -53,7 +53,7 @@ h1 {
 }
 
 .subtitle {
-    margin: 0 0 1.5rem 0; /* Adjusted margin */
+    margin: 0 0 1.5rem 0; 
     font-size: 1rem;
 }
 
@@ -63,7 +63,7 @@ h1 {
     width: 150px;
     height: 150px;
     perspective: 1000px;
-    flex-shrink: 0; /* Prevents the image from shrinking */
+    flex-shrink: 0; 
 }
 
 .flip-card-inner {
@@ -102,7 +102,7 @@ h1 {
 /* --- Bio and Social Links --- */
 .bio {
     text-align: left;
-    max-width: 450px; /* Adjusted max-width */
+    max-width: 450px; 
 }
 
 .bio-text {
@@ -242,7 +242,7 @@ h1 {
 .action-links {
     display: flex;
     gap: 1rem;
-    margin-top: 3rem; /* Adjusted margin */
+    margin-top: 3rem; 
     width: 100%;
     padding: 0 1rem;
 }
@@ -262,8 +262,7 @@ h1 {
     border-color: #DDDDDD;
 }
 
-/* --- New Footer Section --- */
-
+/* --- Footer Section --- */
 .get-in-touch {
     width: 100%;
     text-align: center;
@@ -284,11 +283,52 @@ h1 {
 }
 
 .get-in-touch a {
-    color: #1D4ED8; /* A nice blue for the link */
+    color: #1D4ED8; 
     text-decoration: underline;
     font-weight: 700;
 }
 
 .get-in-touch a:hover {
-    text-decoration: none; /* Removes underline on hover */
+    text-decoration: none; 
+}
+
+
+/* --- NEW: Mobile Responsive Styles --- */
+@media (max-width: 768px) {
+    .card {
+        padding: 1rem; /* Reduce padding on smaller screens */
+    }
+
+    .main-content {
+        flex-direction: column; /* Stack image on top of bio */
+        text-align: center; /* Center-align the text */
+    }
+
+    .text-content, .bio, .header, .section h2, .cp-profiles {
+        text-align: center; /* Ensure all text inside is centered */
+        align-items: center; /* Center flex items like social links */
+    }
+
+    .social-links, .profile-links {
+        justify-content: center; /* Center the social icons */
+    }
+
+    h1 {
+        font-size: 2rem; /* Reduce heading size */
+    }
+
+    .education-entry {
+        flex-direction: column; /* Stack education details vertically */
+        text-align: center;
+        gap: 0.5rem;
+    }
+
+    .education-dates {
+        margin-left: 0; /* Remove the left margin to allow centering */
+        margin-top: 0.5rem;
+    }
+
+    .skills-list, .action-links {
+        justify-content: center; /* Center skill tags and action links */
+    }
 }
