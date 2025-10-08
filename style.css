@@ -378,6 +378,138 @@ body.dark-mode .theme-toggle-button .sun-icon {
     display: block;
 }
 
+/* --- Learning Log Section --- */
+.learning-log {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: left;
+}
+
+.log-entry {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    background-color: transparent;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* On index.html, the card is a link */
+#latest-learning-log .log-entry {
+    cursor: pointer;
+}
+
+#latest-learning-log .log-entry:hover {
+    background-color: var(--hover-bg-color);
+    border-color: var(--link-color);
+}
+
+
+.log-date {
+    font-size: 0.85rem;
+    color: var(--subtle-text-color);
+    margin: 0 0 0.75rem 0;
+}
+
+.log-content h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+    color: var(--heading-color);
+}
+
+.log-content p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+.read-more {
+    color: var(--link-color);
+    font-weight: 700;
+    text-decoration: none;
+}
+.read-more:hover {
+    text-decoration: underline;
+}
+
+.view-more-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.view-more-button {
+    border: 1px solid var(--border-color);
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.view-more-button:hover {
+    background-color: var(--hover-bg-color);
+    border-color: var(--link-color);
+}
+
+/* --- Learning Log Page Specific --- */
+.page-header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+}
+
+.page-header h1 {
+    margin-bottom: 0.5rem;
+}
+
+.back-link {
+    display: inline-block;
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* NEW: Styles for expandable cards */
+.log-entry .log-full {
+    display: none;
+}
+
+.log-entry.is-expanded .log-short {
+    display: none;
+}
+
+.log-entry.is-expanded .log-full {
+    display: block;
+}
+
+.expand-button {
+    margin-top: 1rem;
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.expand-button:hover {
+    background-color: var(--hover-bg-color);
+    border-color: var(--link-color);
+}
+
 
 @media (max-width: 768px) {
     .card {
