@@ -275,6 +275,16 @@ h1 {
     border-color: var(--link-color); 
 }
 
+.github-heatmap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.github-heatmap img {
+    max-width: 100%;
+}
+
 
 .action-links {
     display: flex;
