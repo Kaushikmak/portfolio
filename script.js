@@ -1,12 +1,12 @@
 // --- Learning Log Data ---
 // ADD YOUR NEW ENTRIES AT THE TOP OF THIS ARRAY
 const learningEntries = [
-    // {
-    //     date: "October 08, 2025",
-    //     title: "Diving into Operating Systems",
-    //     content: `This week, I've started exploring the fundamentals of operating systems. I'm focusing on process management and memory allocation. It's challenging but incredibly rewarding to understand what's happening under the hood. My goal is to eventually contribute to a small open-source kernel project. I've been reading "Operating System Concepts" by Silberschatz, Galvin, and Gagne, and it's been an invaluable resource.`,
-    //     id: "os" // A unique ID for linking
-    // },
+    {
+        date: "October 30, 2025",
+        title: "Getting rejected by CITI bank in HR interview",
+        content: `Before Diwali I gave CITI bank's OA on campus. I was not sure about whether I'll be shortlisted or not, as I was only able to solve only 2.5 qns out of 3. Although qns were easy. On wednesday october 29 I got list and I was shortlisted.started my preperation for interview on thursday october 30. First one was technical interview they mostly asked me about my projects and whole interview went in that direction, and after the interview I was sure that I'll be shortlisted for HR. Then after 2-3 hours list came as expected I was selected for HR round. Everyone was saying it's just formality as it was only 10 mins. interview. I went in again it was super smooth but then list came, and still I don't know what's the reason they rejected me. I guess I'll never know about that. But what else can I do except grinding even harder making projects and learn about fun technologies.`,
+        id: "interview-experience"
+    },
     {
         date: "October 05, 2025",
         title: "Learning about Graphs",
