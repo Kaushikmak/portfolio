@@ -1,4 +1,4 @@
-/* --- NEW: CSS Variables for Theming --- */
+/* --- CSS Variables for Theming --- */
 :root {
     --bg-color: #FFFFFF;
     --text-color: #4A4A4A;
@@ -93,7 +93,7 @@ h1 {
     height: 150px;
     perspective: 1000px;
     flex-shrink: 0; 
-    cursor: pointer; /* Add pointer cursor to indicate it's clickable */
+    cursor: pointer;
 }
 
 .flip-card-inner {
@@ -104,7 +104,6 @@ h1 {
     transform-style: preserve-3d;
 }
 
-/* CHANGED: This now triggers on a class instead of :hover */
 .flip-card.is-flipped .flip-card-inner {
     transform: rotateY(180deg);
 }
@@ -227,21 +226,7 @@ h1 {
     justify-content: center;
 }
 
-.skills-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-}
-
-.skill-tag {
-    background-color: var(--skill-bg-color);
-    color: var(--skill-text-color);
-    padding: 0.4rem 0.8rem;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    font-weight: 700;
-}
-
+/* CP Profiles */
 .cp-profiles {
     margin-top: 1.5rem;
     text-align: left;
@@ -285,30 +270,6 @@ h1 {
     max-width: 100%;
 }
 
-
-.action-links {
-    display: flex;
-    gap: 1rem;
-    margin-top: 3rem; 
-    width: 100%;
-    padding: 0 1rem;
-}
-
-.action-links a {
-    border: 1px solid var(--border-color);
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    text-decoration: none;
-    color: var(--text-color);
-    font-size: 0.9rem;
-    transition: background-color 0.2s, border-color 0.2s;
-}
-
-.action-links a:hover {
-    background-color: var(--hover-bg-color);
-    border-color: var(--link-color);
-}
-
 .get-in-touch {
     width: 100%;
     text-align: center;
@@ -337,7 +298,6 @@ h1 {
 .get-in-touch a:hover {
     text-decoration: none; 
 }
-
 
 .theme-toggle-button {
     position: fixed;
@@ -394,7 +354,6 @@ body.dark-mode .theme-toggle-button .sun-icon {
     transition: background-color 0.2s, border-color 0.2s;
 }
 
-/* On index.html, the card is a link */
 #latest-learning-log .log-entry {
     cursor: pointer;
 }
@@ -403,7 +362,6 @@ body.dark-mode .theme-toggle-button .sun-icon {
     background-color: var(--hover-bg-color);
     border-color: var(--link-color);
 }
-
 
 .log-date {
     font-size: 0.85rem;
@@ -479,7 +437,6 @@ body.dark-mode .theme-toggle-button .sun-icon {
     text-decoration: underline;
 }
 
-/* NEW: Styles for expandable cards */
 .log-entry .log-full {
     display: none;
 }
@@ -510,7 +467,546 @@ body.dark-mode .theme-toggle-button .sun-icon {
     border-color: var(--link-color);
 }
 
+/* --- Project Section Styles --- */
+.carousel-wrapper {
+    position: relative;
+    width: 100%;
+}
 
+/* Carousel Container */
+.project-carousel {
+    display: flex;
+    overflow-x: auto;
+    gap: 2rem;
+    padding: 1.5rem 0.5rem 2.5rem 0.5rem;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+}
+
+.project-carousel::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+/* Project Card Styles */
+.project-card {
+    min-width: 300px;
+    max-width: 300px;
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    flex-shrink: 0; 
+}
+
+/* Micro-interaction: Hover Effect */
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border-color: var(--link-color);
+}
+
+.project-image-container {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    background-color: var(--hover-bg-color);
+}
+
+.project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Image Zoom on Hover */
+.project-card:hover .project-image {
+    transform: scale(1.05);
+}
+
+/* Overlay for Links */
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.project-link-icon {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.7rem;
+    border-radius: 50%;
+    transition: background 0.2s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.project-link-icon:hover {
+    background: var(--link-color);
+    transform: scale(1.1);
+    border-color: var(--link-color);
+}
+
+.project-content {
+    padding: 1.25rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.project-content h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: var(--heading-color);
+}
+
+.project-content p {
+    font-size: 0.85rem;
+    color: var(--subtle-text-color);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.project-tag {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    background-color: var(--education-tag-bg);
+    color: var(--education-tag-text);
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+/* Grid Layout for Projects Page */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    width: 100%;
+}
+
+.project-grid .project-card {
+    min-width: auto;
+    max-width: none;
+}
+
+/* Navigation Buttons (Arrows) */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4px);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    color: var(--heading-color);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.2s ease, background-color 0.2s;
+    pointer-events: none;
+}
+
+.carousel-wrapper:hover .carousel-btn {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.left-btn {
+    left: -20px;
+}
+
+.right-btn {
+    right: -20px;
+}
+
+.carousel-btn:hover {
+    background: var(--heading-color);
+    color: var(--bg-color);
+    transform: translateY(-50%) scale(1.1);
+}
+
+
+/* --- Skills Section Styles --- */
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: flex-start; /* Default left align for desktop */
+}
+
+/* Skill Card - Default White Style */
+.skill-card {
+    position: relative;
+    background-color: var(--education-tag-bg);
+    color: var(--text-color);
+    border: 1px solid var(--tag-border-color);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+    z-index: 1; 
+}
+
+.skill-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: var(--hover-bg-color);
+    border-color: var(--link-color);
+    z-index: 1000; 
+}
+
+/* --- New Animation: Pop, Zoom, Rotate, Trail --- */
+@keyframes skill-jump-trail {
+    0% {
+        transform: translateY(0) scale(1) rotate(0deg);
+        filter: none;
+    }
+    30% {
+        transform: translateY(-8px) scale(1.15) rotate(8deg);
+        /* The "Trail" effect using overlapping shadows */
+        filter: drop-shadow(-3px 3px 0px rgba(var(--link-color), 0.3))
+                drop-shadow(-6px 6px 0px rgba(var(--link-color), 0.15));
+    }
+    60% {
+        transform: translateY(-4px) scale(1.05) rotate(-4deg);
+        filter: drop-shadow(-2px 2px 0px rgba(var(--link-color), 0.3));
+    }
+    100% {
+        transform: translateY(0) scale(1) rotate(0deg);
+        filter: none;
+    }
+}
+
+/* Apply animation to the ICON on hover */
+.skill-card:hover .skill-icon {
+    animation: skill-jump-trail 0.7s ease-in-out;
+}
+
+
+.skill-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.skill-card svg.skill-icon {
+    stroke: var(--text-color);
+}
+
+/* --- Code Tooltip (Hover/Click) --- */
+.skill-tooltip {
+    position: absolute;
+    bottom: 130%; 
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 1rem;
+    width: max-content;
+    min-width: 200px;
+    max-width: 320px;
+    z-index: 9999;
+    
+    /* Animation */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    pointer-events: none;
+    text-align: left;
+}
+
+/* Arrow */
+.skill-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -6px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: #1e1e1e transparent transparent transparent;
+}
+
+/* Show Tooltip */
+.skill-card:hover .skill-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Code Styles */
+.skill-tooltip pre {
+    margin: 0;
+}
+
+.skill-tooltip code {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+/* Syntax Highlighting */
+.kwd { color: #569cd6; font-weight: bold; }
+.str { color: #ce9178; }
+.num { color: #b5cea8; }
+.type { color: #4ec9b0; }
+.func { color: #dcdcaa; }
+.cmt { color: #6a9955; font-style: italic; }
+
+
+/* --- Competitive Programming Links & Tooltips --- */
+
+.cp-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    object-fit: contain;
+    vertical-align: middle;
+}
+
+/* Ensure the link acts as a container for the absolute tooltip */
+.profile-links a.cp-card {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 1rem; 
+    border: 1px solid var(--tag-border-color); 
+    border-radius: 6px;
+    color: var(--text-color); 
+    transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+    text-decoration: none; 
+    font-weight: 700;
+}
+
+.profile-links a.cp-card:hover {
+    background-color: var(--hover-bg-color);
+    border-color: var(--link-color);
+    transform: translateY(-2px);
+    z-index: 10; /* Bring to front on hover */
+}
+
+/* --- The New Tooltip (For CP) --- */
+.cp-tooltip {
+    position: absolute;
+    bottom: 135%; /* Sits above the button */
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background-color: #1e1e1e; /* Dark background like skill popups */
+    color: #fff;
+    padding: 0.6rem 0.9rem;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-family: 'Space Mono', monospace;
+    white-space: nowrap;
+    
+    /* Flexbox for text + icon alignment */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    
+    /* Animation states */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    pointer-events: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Tooltip Arrow */
+.cp-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%; /* Bottom of tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #1e1e1e transparent transparent transparent;
+}
+
+/* Show Tooltip on Hover */
+.profile-links a.cp-card:hover .cp-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Mini Icon inside Tooltip */
+.cp-tooltip-icon {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+    /* Invert color to make icons white on the dark tooltip background */
+    filter: grayscale(100%) brightness(200%); 
+}
+
+
+/* --- Mail Popup & Copy Interaction --- */
+
+/* Wrapper for the mail icon to handle relative positioning */
+.mail-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* The Popup Card */
+.mail-popup {
+    position: absolute;
+    bottom: 140%; /* Sits above the icon */
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background-color: #1e1e1e;
+    color: #fff;
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #333;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    white-space: nowrap;
+    
+    /* Animation states */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    pointer-events: none; /* Prevent blocking clicks when hidden */
+    z-index: 2000; /* High Z-index */
+}
+
+/* FIX: The invisible bridge to prevent closing when crossing gap */
+.mail-popup::before {
+    content: "";
+    position: absolute;
+    top: 100%; /* Directly below the popup */
+    left: 0;
+    width: 100%;
+    height: 20px; /* Covers the distance to the icon */
+    background: transparent;
+}
+
+/* Tooltip Arrow */
+.mail-popup::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #1e1e1e transparent transparent transparent;
+}
+
+/* Show Popup on Hover */
+.mail-wrapper:hover .mail-popup {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto; /* Enable interaction */
+}
+
+/* Email Text */
+.mail-address {
+    font-size: 0.8rem;
+    font-family: 'Space Mono', monospace;
+    color: #d4d4d4;
+    user-select: all; /* Makes it easy to select manually too */
+}
+
+/* Copy Button */
+.copy-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background 0.2s;
+    color: #fff;
+}
+
+.copy-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.copy-btn:active {
+    transform: scale(0.95);
+}
+
+
+/* Dark Mode Adjustments */
+body.dark-mode .project-card:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+body.dark-mode .carousel-btn {
+    background: rgba(30, 30, 30, 0.8);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+body.dark-mode .carousel-btn:hover {
+    background: var(--text-color);
+    color: var(--bg-color);
+}
+
+
+/* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
     .card {
         padding: 1rem 0;
@@ -526,7 +1022,7 @@ body.dark-mode .theme-toggle-button .sun-icon {
         align-items: center; 
     }
     
-    .location, .social-links, .profile-links, .skills-list, .action-links {
+    .location, .social-links, .profile-links, .action-links {
         justify-content: center; 
     }
 
@@ -547,5 +1043,104 @@ body.dark-mode .theme-toggle-button .sun-icon {
 
     .education-details {
         text-align: center; 
+    }
+
+    /* Hide arrows on mobile */
+    .carousel-btn {
+        display: none;
+    }
+    .left-btn { left: 0; }
+    .right-btn { right: 0; }
+
+    /* --- Mobile Fixes for Skills --- */
+    
+    /* 1. Center the Skills Title and List */
+    .cp-title {
+        text-align: center;
+        width: 100%;
+    }
+
+    .skills-list {
+        justify-content: center;
+    }
+
+    /* 2. Fix Tooltip Overflow (Make it a Centered Modal) */
+    .skill-tooltip {
+        position: fixed; /* Fixed relative to screen */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        bottom: auto; /* Override default bottom positioning */
+        width: 85vw; /* 85% of screen width */
+        max-width: 350px;
+        white-space: normal; /* Allow text wrapping */
+        z-index: 9999;
+        
+        /* Deep Shadow + Backdrop to dim background */
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5), 0 0 0 100vh rgba(0,0,0,0.6);
+    }
+    
+    /* FIX: Disable card movement on mobile to prevent positioning bugs */
+    .skill-card:hover {
+        transform: none; /* Keep card in place so fixed tooltip calculates correctly */
+        /* Z-index 1000 is still inherited from above to stay on top */
+    }
+    
+    /* Disable the jump animation on mobile (distracting/broken with modal) */
+    .skill-card:hover .skill-icon {
+        animation: none;
+    }
+    
+    /* Override hover visibility transform for mobile modal */
+    .skill-card:hover .skill-tooltip {
+        transform: translate(-50%, -50%); /* Keep it centered */
+    }
+
+    /* Hide the little arrow on mobile since it's a floating modal */
+    .skill-tooltip::after {
+        display: none;
+    }
+}
+
+/* --- Toast Notification (Bottom Corner Popup) --- */
+.toast-notification {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--heading-color); /* Dark/Light contrast based on theme */
+    color: var(--bg-color); /* Inverted text color */
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 9999;
+    
+    /* Hidden State */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), visibility 0.3s;
+}
+
+/* Visible State (Toggled via JS) */
+.toast-notification.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Mobile Adjustment */
+@media (max-width: 768px) {
+    .toast-notification {
+        bottom: 20px;
+        right: 50%;
+        transform: translateX(50%) translateY(20px); /* Center horizontally on mobile */
+        width: max-content;
+    }
+    
+    .toast-notification.show {
+        transform: translateX(50%) translateY(0);
     }
 }
