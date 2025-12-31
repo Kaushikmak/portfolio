@@ -35,7 +35,7 @@ const projectEntries = [
         image: "https://placehold.co/600x400/1a1a1a/FFF?text=TaskTracker",
         github: "https://github.com/Kaushikmak/GOPROJECTS/tree/main/TaskTracker",
         live: "https://www.task-cli.in/", 
-        tags: ["Go", "CLI", "Productivity"]
+        tags: ["Go", "CLI", "JSON"]
     },
     {
         id: "room-chat",
