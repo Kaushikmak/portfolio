@@ -632,7 +632,7 @@ body.dark-mode .theme-toggle-button .sun-icon {
     transform: scale(1.1);
 }
 
-/* Typing / Terminal Animations */
+/* Typing / Terminal Animations (Default: Hover Only) */
 .cursor-line {
     opacity: 1;
 }
@@ -656,6 +656,26 @@ body.dark-mode .theme-toggle-button .sun-icon {
 
 @keyframes draw-check {
     to { stroke-dashoffset: 0; }
+}
+
+/* --- AUTO-LOOP LOGIC FOR ALL PROJECTS PAGE --- */
+/* This block forces the animation to run infinitely on the Project Grid page only */
+
+.project-grid .cursor-line {
+    animation: blink-cursor 0.8s steps(2, start) infinite !important;
+}
+
+.project-grid .checkmark-path {
+    /* Draws checkmark, waits, then resets - 3s cycle */
+    animation: draw-check-loop 3s ease-in-out infinite !important;
+}
+
+@keyframes draw-check-loop {
+    0% { stroke-dashoffset: 10; opacity: 1; }
+    30% { stroke-dashoffset: 0; opacity: 1; } /* Drawn */
+    80% { stroke-dashoffset: 0; opacity: 1; } /* Stay Visible */
+    90% { stroke-dashoffset: 0; opacity: 0; } /* Fade out */
+    100% { stroke-dashoffset: 10; opacity: 0; } /* Reset position hidden */
 }
 
 
