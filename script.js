@@ -34,7 +34,7 @@ const projectEntries = [
         description: "A robust task management tool built with Go. Efficiently tracks daily activities, manages to-do lists, and helps maintain productivity with a clean CLI interface.",
         image: "https://placehold.co/600x400/1a1a1a/FFF?text=TaskTracker",
         github: "https://github.com/Kaushikmak/GOPROJECTS/tree/main/TaskTracker",
-        live: "#", 
+        live: "https://www.task-cli.in/", 
         tags: ["Go", "CLI", "Productivity"]
     },
     {
