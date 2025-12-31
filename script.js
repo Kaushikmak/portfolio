@@ -32,7 +32,12 @@ const projectEntries = [
         id: "task-tracker",
         title: "TaskTracker",
         description: "A robust task management tool built with Go. Efficiently tracks daily activities, manages to-do lists, and helps maintain productivity with a clean CLI interface.",
-        image: "https://placehold.co/600x400/1a1a1a/FFF?text=TaskTracker",
+        // Using custom SVG Icon instead of image
+        customIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#238636" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="task-tracker-icon">
+            <polyline points="4 17 10 11 4 5"></polyline>
+            <line x1="12" y1="19" x2="20" y2="19" class="cursor-line"></line>
+            <path d="M15 11l2 2 4-4" stroke="#238636" stroke-width="2.5" class="checkmark-path"/>
+        </svg>`,
         github: "https://github.com/Kaushikmak/GOPROJECTS/tree/main/TaskTracker",
         live: "https://www.task-cli.in/", 
         tags: ["Go", "CLI", "JSON"]
@@ -123,10 +128,15 @@ function createExpandableLogEntryHTML(entry) {
 }
 
 function createProjectCardHTML(project) {
+    // Logic to choose between custom SVG icon or standard Image
+    const visualContent = project.customIcon 
+        ? `<div class="custom-icon-wrapper">${project.customIcon}</div>`
+        : `<img src="${project.image}" alt="${project.title}" class="project-image">`;
+
     return `
         <div class="project-card">
             <div class="project-image-container">
-                <img src="${project.image}" alt="${project.title}" class="project-image">
+                ${visualContent}
                 <div class="project-overlay">
                     <div class="project-links">
                         <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="project-link-icon" title="View Code">
