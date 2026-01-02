@@ -1426,3 +1426,56 @@ body.dark-mode .carousel-btn:hover {
 .ft-letter:nth-child(6) { animation-delay: 0.25s; }
 .ft-letter:nth-child(7) { animation-delay: 0.30s; }
 .ft-letter:nth-child(8) { animation-delay: 0.35s; }
+
+
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    
+    /* ... (Your existing mobile styles if any) ... */
+
+
+    /* --- MOBILE ANIMATIONS: Force Loops (Auto-play) --- */
+    /* Since mobile has no hover, we trigger the 'Loop' animations defined earlier */
+
+    /* 1. ROOM CHAT: Continuous Bounce Loop */
+    .rc-letter {
+        animation-name: rc-bounce-loop !important;
+        animation-duration: 4s !important;
+        animation-iteration-count: infinite !important;
+        animation-timing-function: ease-in-out !important;
+        animation-fill-mode: both !important;
+    }
+    
+    /* Maintain the container scale/rotation */
+    .rc-container {
+        transform: scale(1.05); 
+    }
+
+    /* 2. FINTRACK: Continuous Graph & Money Loop */
+    .ft-letter {
+        animation-name: ft-loop-sequence !important;
+        animation-duration: 4s !important;
+        animation-iteration-count: infinite !important;
+        animation-timing-function: ease-in-out !important;
+        animation-fill-mode: both !important;
+    }
+
+    .ft-graph-line {
+        animation: ft-draw-graph 2s ease-in-out infinite alternate !important;
+        stroke-dashoffset: 0; /* Ensure visible */
+    }
+
+    .ft-money-bg {
+        animation: ft-float-money 3s ease-in-out infinite !important;
+    }
+
+    /* 3. TASK TRACKER: Continuous Cursor & Checkmark (Consistency) */
+    .cursor-line {
+        animation: blink-cursor 0.8s steps(2, start) infinite !important;
+    }
+
+    .checkmark-path {
+        animation: draw-check-loop 3s ease-in-out infinite !important;
+    }
+}
