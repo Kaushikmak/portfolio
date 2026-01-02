@@ -46,16 +46,71 @@ const projectEntries = [
         id: "room-chat",
         title: "Room Chat",
         description: "A real-time chat application inspired by Discord. Features multiple chat rooms, live messaging updates, and a custom UI built with Django and CSS.",
-        image: "https://placehold.co/600x400/2a2a2a/FFF?text=Room+Chat",
+        // Updated SVG structure for controllable animation
+        customIcon: `<svg width="240" height="100" viewBox="0 0 240 100" xmlns="http://www.w3.org/2000/svg" class="room-chat-icon">
+  <g class="rc-container" transform="rotate(-2, 120, 50)" transform-origin="center">
+    <rect x="18" y="18" width="200" height="60" fill="#8B5CF6" stroke="black" stroke-width="3"/>
+    <rect x="10" y="10" width="200" height="60" fill="#000000" stroke="#ffffff" stroke-width="4"/>
+    <text x="15" y="52" class="rc-logo-text">
+        <tspan class="rc-letter" dx="0">R</tspan>
+        <tspan class="rc-letter" dx="0">O</tspan>
+        <tspan class="rc-letter" dx="0">O</tspan>
+        <tspan class="rc-letter" dx="0">M</tspan>
+        <tspan class="rc-letter" dx="0">C</tspan>
+        <tspan class="rc-letter" dx="0">H</tspan>
+        <tspan class="rc-letter" dx="0">A</tspan>
+        <tspan class="rc-letter" dx="0">T</tspan>
+    </text>
+  </g>
+</svg>`,
         github: "https://github.com/Kaushikmak/Room-chat",
-        live: "#", 
+        live: "https://www.room-chat.com/", 
         tags: ["Django", "Python", "WebSockets"]
     },
     {
         id: "fintrack",
         title: "FinTrack",
         description: "A comprehensive personal finance tracker. Helps users log income, track expenses, and visualize spending habits to achieve better financial health.",
-        image: "https://placehold.co/600x400/333333/FFF?text=FinTrack",
+        // Next.js Style: Minimalist Dark, Graphs, Sleek Typography
+        customIcon: `<svg width="240" height="100" viewBox="0 0 240 100" xmlns="http://www.w3.org/2000/svg" class="fintrack-icon">
+  <defs>
+    <linearGradient id="ft-dark-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1c1c1c;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="ft-graph-mask" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:white;stop-opacity:0" />
+      <stop offset="20%" style="stop-color:white;stop-opacity:1" />
+      <stop offset="80%" style="stop-color:white;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:white;stop-opacity:0" />
+    </linearGradient>
+  </defs>
+
+  <g class="ft-container" transform-origin="center">
+    <rect x="5" y="5" width="230" height="90" rx="12" fill="url(#ft-dark-grad)" stroke="#333" stroke-width="1"/>
+
+    <g class="ft-bg-elements" mask="url(#ft-graph-mask)">
+        <text x="30" y="70" class="ft-money-bg" font-size="14" fill="#333" opacity="0.5">$</text>
+        <text x="200" y="30" class="ft-money-bg" font-size="18" fill="#333" opacity="0.5">$</text>
+        <text x="180" y="80" class="ft-money-bg" font-size="12" fill="#333" opacity="0.5">$</text>
+
+        <path class="ft-graph-line" d="M20 70 Q 50 70, 70 50 T 120 50 T 170 30 T 220 20" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" />
+        
+        <path class="ft-graph-area" d="M20 70 Q 50 70, 70 50 T 120 50 T 170 30 T 220 20 V 90 H 20 Z" fill="#4ade80" opacity="0.1" />
+    </g>
+
+    <text x="120" y="55" class="ft-title" text-anchor="middle" dominant-baseline="middle">
+        <tspan class="ft-letter" dx="0">F</tspan>
+        <tspan class="ft-letter" dx="0">i</tspan>
+        <tspan class="ft-letter" dx="0">n</tspan>
+        <tspan class="ft-letter" dx="0">T</tspan>
+        <tspan class="ft-letter" dx="0">r</tspan>
+        <tspan class="ft-letter" dx="0">a</tspan>
+        <tspan class="ft-letter" dx="0">c</tspan>
+        <tspan class="ft-letter" dx="0">k</tspan>
+    </text>
+  </g>
+</svg>`,
         github: "https://github.com/Kaushikmak/FinTrack",
         live: "#",
         tags: ["Web", "Finance", "Full Stack"]

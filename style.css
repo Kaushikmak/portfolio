@@ -1212,3 +1212,217 @@ body.dark-mode .carousel-btn:hover {
         transform: translateX(50%) translateY(0);
     }
 }
+
+
+/* --- CUSTOM PROJECT ICON: ROOM CHAT --- */
+
+.room-chat-icon {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+}
+
+.rc-logo-text {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 900;
+    font-size: 25px;
+    fill: #ffffff;
+}
+
+.rc-container {
+    transition: transform 0.3s ease;
+}
+
+/* DEFAULT STATE: Visible (Solves the black screen issue) */
+.rc-letter {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
+/* Animation 1: Bounce In (Hover - Plays Once) */
+@keyframes rc-bounceIn {
+    0% { opacity: 0; transform: scale(0.3) translateY(20px); }
+    50% { opacity: 1; transform: scale(1.2) translateY(-10px); }
+    70% { transform: scale(0.9) translateY(5px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Animation 2: Bounce Loop (Grid - Infinite Cycle) */
+@keyframes rc-bounce-loop {
+    0%, 20% { opacity: 0; transform: scale(0.3) translateY(20px); } /* Wait invisible */
+    30% { opacity: 1; transform: scale(1.2) translateY(-10px); } /* Pop up */
+    40% { transform: scale(0.9) translateY(5px); }
+    50%, 90% { opacity: 1; transform: scale(1) translateY(0); } /* Stay visible */
+    100% { opacity: 0; transform: scale(0.3) translateY(20px); } /* Reset */
+}
+
+/* INTERACTION 1: HOVER (Main Page) */
+.project-card:hover .rc-container {
+    transform: rotate(0deg) scale(1.05);
+}
+
+/* FIX: Use longhand properties here. 
+   Using the 'animation' shorthand would reset 'animation-delay' to 0s, 
+   breaking the staggered effect.
+*/
+.project-card:hover .rc-letter {
+    animation-name: rc-bounceIn;
+    animation-duration: 0.6s;
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation-fill-mode: both; /* Ensures they hide instantly at start of hover */
+}
+
+/* INTERACTION 2: LOOP (Projects Page Grid) */
+.project-grid .rc-container {
+    transform: rotate(0deg) scale(1.05);
+}
+
+.project-grid .rc-letter {
+    animation-name: rc-bounce-loop;
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+}
+
+/* Stagger Delays (R to T) - These will now work correctly */
+.rc-letter:nth-child(1) { animation-delay: 0.0s; } /* R */
+.rc-letter:nth-child(2) { animation-delay: 0.1s; } /* O */
+.rc-letter:nth-child(3) { animation-delay: 0.2s; } /* O */
+.rc-letter:nth-child(4) { animation-delay: 0.3s; } /* M */
+.rc-letter:nth-child(5) { animation-delay: 0.4s; } /* C */
+.rc-letter:nth-child(6) { animation-delay: 0.5s; } /* H */
+.rc-letter:nth-child(7) { animation-delay: 0.6s; } /* A */
+.rc-letter:nth-child(8) { animation-delay: 0.7s; } /* T */
+
+
+
+
+
+/*============================================================================*/
+
+/* --- CUSTOM PROJECT ICON: FINTRACK (Next.js Minimalist) --- */
+
+.fintrack-icon {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+}
+
+.ft-container {
+    transition: transform 0.3s ease;
+}
+
+.ft-title {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 800; /* Bold/Black font weight for sleek look */
+    font-size: 28px;
+    fill: #ffffff;
+    letter-spacing: -1px; /* Tight tracking like Next.js headers */
+}
+
+/* Background Graph Line Setup */
+.ft-graph-line {
+    stroke-dasharray: 250;
+    stroke-dashoffset: 250; /* Hidden by default */
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+/* Background Money Symbols Setup */
+.ft-money-bg {
+    opacity: 0;
+    transform: translateY(10px);
+    font-family: 'Space Mono', monospace;
+}
+
+/* Letters Setup */
+.ft-letter {
+    opacity: 1;
+    transform: translateY(0);
+    display: inline-block;
+}
+
+/* --- ANIMATIONS --- */
+
+/* 1. Graph Drawing */
+@keyframes ft-draw-graph {
+    to { stroke-dashoffset: 0; }
+}
+
+/* 2. Money Floating */
+@keyframes ft-float-money {
+    0% { opacity: 0; transform: translateY(10px); }
+    50% { opacity: 0.3; transform: translateY(0px); }
+    100% { opacity: 0; transform: translateY(-10px); }
+}
+
+/* 3. Text Reveal (Sleek Slide Up) */
+@keyframes ft-slide-up {
+    0% { opacity: 0; transform: translateY(15px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Loop Animation for Grid (Cycle: 4s) */
+@keyframes ft-loop-sequence {
+    0%, 20% { opacity: 0; transform: translateY(15px); }
+    30%, 80% { opacity: 1; transform: translateY(0); } /* Stay visible */
+    90%, 100% { opacity: 0; transform: translateY(-10px); } /* Fade out up */
+}
+
+/* --- INTERACTION 1: HOVER (Main Page) --- */
+
+.project-card:hover .ft-container {
+    transform: scale(1.02); /* Subtle zoom */
+}
+
+/* Animate Graph */
+.project-card:hover .ft-graph-line {
+    animation: ft-draw-graph 1.5s ease forwards;
+}
+
+/* Animate Money Background */
+.project-card:hover .ft-money-bg {
+    animation: ft-float-money 2s ease-in-out infinite;
+}
+.project-card:hover .ft-money-bg:nth-child(1) { animation-delay: 0.1s; }
+.project-card:hover .ft-money-bg:nth-child(2) { animation-delay: 0.5s; }
+.project-card:hover .ft-money-bg:nth-child(3) { animation-delay: 0.3s; }
+
+/* Animate Text Letters (Staggered Slide) */
+.project-card:hover .ft-letter {
+    animation-name: ft-slide-up;
+    animation-duration: 0.4s;
+    animation-timing-function: cubic-bezier(0.2, 0.65, 0.3, 0.9);
+    animation-fill-mode: both;
+}
+
+
+/* --- INTERACTION 2: LOOP (Projects Page Grid) --- */
+
+.project-grid .ft-graph-line {
+    animation: ft-draw-graph 2s ease-in-out infinite alternate;
+}
+
+.project-grid .ft-money-bg {
+    animation: ft-float-money 3s ease-in-out infinite;
+}
+
+.project-grid .ft-letter {
+    animation-name: ft-loop-sequence;
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+}
+
+/* Stagger Delays for FinTrack Letters */
+.ft-letter:nth-child(1) { animation-delay: 0.00s; }
+.ft-letter:nth-child(2) { animation-delay: 0.05s; }
+.ft-letter:nth-child(3) { animation-delay: 0.10s; }
+.ft-letter:nth-child(4) { animation-delay: 0.15s; }
+.ft-letter:nth-child(5) { animation-delay: 0.20s; }
+.ft-letter:nth-child(6) { animation-delay: 0.25s; }
+.ft-letter:nth-child(7) { animation-delay: 0.30s; }
+.ft-letter:nth-child(8) { animation-delay: 0.35s; }
