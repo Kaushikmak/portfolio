@@ -5,6 +5,42 @@
 // --- Learning Log Data ---
 const learningEntries = [
     {
+        id: "week-1-2026",
+        date: "January 5, 2026",
+        title: "Week 1, 2026: Checksums & Campus Life",
+        summary: "Started 2026 by exploring error-detection algorithm and returning to the competitive programming grind.Went back to hostel life and had fun with friends.",
+        
+        content: `
+            <p>Happy new year anon! The first 4 days have been a mix of regaining coding momentum and settling back into hostel life.</p>
+
+            <h4>What I Learned/Code</h4>
+            <ul>
+                <li><strong>Portfolio:</strong> Added rich text editor in my blog website.</li>
+                <li><strong>Competitive Programming:</strong> Again started codeforces and leetcode. Need to revisit old concepts
+                </li>
+                <li><strong>System Design:</strong> Explored the <strong><a href="https://www.c-sharpcorner.com/article/what-is-verhoeff-algorithm/" target="_blank">Verhoeff Algorithm</a></strong>—a specialized checksum formula used by Aadhaar for error detection.</li>
+            </ul>
+
+
+            <hr class="section-divider">
+
+            <h4>Side Quests</h4>
+            <ul>
+                <li><strong>Gear Upgrade:</strong> Got new headphones.</li>
+                <li><strong>Social:</strong> Family dinner before leaving.
+                Went out for lunch with friend after a while.
+                Had get fun late night talks with friends in hostel.
+                Had great fun!
+                </li>
+            </ul>
+            
+            <figure>
+                <img src="assets/week1/great_lunch.jpg" width="25%" alt="Fun with friends" class="log-img">
+                <figcaption class="img-caption">Lunch with friend</figcaption>
+            </figure>
+        `
+    },
+    {
         date: "December 20, 2025",
         title: "Learning new programming lanugage, Go!",
         content: `Golang is a statically typed, compiled language used heavily in backend and systems development, famous for its concurrency (haven't touched yet, but will soon learn about concurrency) model and fast compile times—which means less time waiting and more time questioning life choices in code (also I find gopher very cute :) ). While trying to get into backend systems, I cam to know about it. The syntax is refreshingly short and coming from C/C++, it feels like someone took systems programming and removed just enough pain to make it enjoyable. Also the projects I genuinely admire—like Docker and Kubernetes—are built using Go.
@@ -143,16 +179,37 @@ function truncateText(text, wordLimit) {
 // --- HTML Generators ---
 function createLogEntryHTML(entry, isFull) {
     const wordLimit = 25;
-    const content = isFull ? entry.content : truncateText(entry.content, wordLimit);
-    const readMoreLink = !isFull && entry.content.split(' ').length > wordLimit ?
+    
+    // BACKWARD COMPATIBILITY LOGIC:
+    // 1. If isFull is true, always use entry.content.
+    // 2. If entry.summary exists, use it for the preview.
+    // 3. If no summary, fall back to truncating entry.content.
+    
+    let contentToShow;
+    if (isFull) {
+        contentToShow = entry.content;
+    } else if (entry.summary) {
+        contentToShow = entry.summary;
+    } else {
+        contentToShow = truncateText(entry.content, wordLimit);
+    }
+
+    // Only show "Read More" link if we are NOT in full view AND (we used a summary OR the content was long enough to be truncated)
+    const showReadMore = !isFull && (entry.summary || entry.content.split(' ').length > wordLimit);
+    const readMoreLink = showReadMore ?
         `<a href="learning.html#${entry.id}" class="read-more"> Read More</a>` : '';
 
+    // IMPORTANT: Changed <p class="log-text"> to <div class="log-text">
+    // This allows the 'content' to contain block elements like <h3>, <ul>, <img> without breaking HTML validity.
     return `
-        <article class="log-entry" id="${entry.id}" data-full-content="${entry.content}">
+        <article class="log-entry" id="${entry.id}" data-full-content="${isFull ? 'true' : 'false'}">
             <p class="log-date">${entry.date}</p>
             <div class="log-content">
                 <h3>${entry.title}</h3>
-                <p class="log-text">${content}${readMoreLink}</p>
+                <div class="log-text">
+                    ${contentToShow}
+                    ${readMoreLink}
+                </div>
             </div>
         </article>
     `;
@@ -160,23 +217,31 @@ function createLogEntryHTML(entry, isFull) {
 
 function createExpandableLogEntryHTML(entry) {
     const wordLimit = 30;
-    const shortContent = truncateText(entry.content, wordLimit);
-    const isExpandable = entry.content.split(' ').length > wordLimit;
+    
+    // BACKWARD COMPATIBILITY LOGIC:
+    // Use summary if available, else truncate content
+    const shortContent = entry.summary ? entry.summary : truncateText(entry.content, wordLimit);
+    
+    // Always expandable if summary exists OR content is long
+    const isExpandable = !!entry.summary || entry.content.split(' ').length > wordLimit;
 
+    // REMOVED <p> wrapper around {entry.content} in the .log-full div. 
+    // This allows raw HTML (images, lists) to render correctly.
     return `
         <article class="log-entry ${isExpandable ? 'expandable' : ''}" id="${entry.id}">
             <p class="log-date">${entry.date}</p>
             <div class="log-content">
                 <h3>${entry.title}</h3>
+                
                 <div class="log-short">
                     <p>${shortContent}</p>
                 </div>
-                ${isExpandable ? `
+                
                 <div class="log-full">
-                    <p>${entry.content}</p>
+                    ${entry.content}
                 </div>
-                <button class="expand-button">Read More</button>
-                ` : `<div class="log-full"><p>${entry.content}</p></div>`}
+                
+                ${isExpandable ? `<button class="expand-button">Read More</button>` : ''}
             </div>
         </article>
     `;

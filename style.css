@@ -1479,3 +1479,58 @@ body.dark-mode .carousel-btn:hover {
         animation: draw-check-loop 3s ease-in-out infinite !important;
     }
 }
+
+
+/* --- Rich Media Log Styles --- */
+
+/* Ensure the log text container handles spacing for mixed HTML */
+.log-text {
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+/* Headings inside logs */
+.log-full h4, .log-text h4 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--heading-color);
+    border-bottom: 1px solid var(--border-color);
+    display: inline-block;
+    padding-bottom: 4px;
+}
+
+/* Images inside logs */
+.log-img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin: 1rem 0;
+    border: 1px solid var(--border-color);
+    display: block;
+}
+
+.img-caption {
+    display: block;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--subtle-text-color);
+    margin-top: -0.5rem;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}
+
+/* Bullet Points & Lists */
+.log-full ul, .log-full ol, 
+.log-text ul, .log-text ol {
+    margin: 0.5rem 0 1rem 1.2rem;
+    padding-left: 1rem;
+}
+
+.log-full li, .log-text li {
+    margin-bottom: 0.5rem;
+}
+
+/* Audio Player Wrapper */
+.audio-wrapper {
+    width: 100%;
+    margin: 1rem 0;
+}
