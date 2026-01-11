@@ -1534,3 +1534,122 @@ body.dark-mode .carousel-btn:hover {
     width: 100%;
     margin: 1rem 0;
 }
+
+/* --- CUSTOM PROJECT ICON: GOSHRT (Updated) --- */
+
+.goshrt-icon {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+}
+
+.gs-container {
+    transition: transform 0.3s ease;
+}
+
+/* 1. Packet Animation (Background) */
+.gs-packet {
+    opacity: 0;
+}
+
+/* Packets loop infinitely on Grid/Hover */
+.project-card:hover .gs-packet,
+.project-grid .gs-packet {
+    animation: gs-transmit 2s linear infinite;
+}
+
+/* Stagger the packets */
+.p1 { animation-delay: 0s; }
+.p2 { animation-delay: 1s; }
+
+@keyframes gs-transmit {
+    0% { transform: translateX(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateX(240px); opacity: 0; }
+}
+
+/* 2. Bar Shrinking Animation */
+.gs-bar {
+    width: 200px; /* Start Long */
+    fill: url(#gs-grad);
+    transition: width 0.3s ease, fill 0.3s ease, x 0.3s ease;
+}
+
+/* 3. Text Swapping Animation */
+.gs-text {
+    pointer-events: none;
+}
+.gs-text-long { opacity: 1; }
+.gs-text-short { opacity: 0; }
+
+
+/* --- ANIMATION SEQUENCES --- */
+
+/* Keyframes: Shrink Bar & Change Color */
+@keyframes gs-shrink-bar {
+    0%, 20% { width: 200px; x: -100px; fill: url(#gs-grad); }
+    40%, 80% { width: 80px; x: -40px; fill: #ef4444; } /* Red for Redis/Short */
+    100% { width: 200px; x: -100px; fill: url(#gs-grad); }
+}
+
+/* Keyframes: Hide Long Text */
+@keyframes gs-hide-long {
+    0%, 20% { opacity: 1; transform: scale(1); }
+    30%, 100% { opacity: 0; transform: scale(0.8); }
+}
+
+/* Keyframes: Show Short Text */
+@keyframes gs-show-short {
+    0%, 30% { opacity: 0; transform: scale(0.8); }
+    40%, 80% { opacity: 1; transform: scale(1); }
+    90%, 100% { opacity: 0; transform: scale(0.8); }
+}
+
+
+/* --- TRIGGERS --- */
+
+/* Interaction 1: Hover (Main Page) */
+.project-card:hover .gs-container {
+    transform: scale(1.02);
+}
+
+.project-card:hover .gs-bar {
+    animation: gs-shrink-bar 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.project-card:hover .gs-text-long {
+    animation: gs-hide-long 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.project-card:hover .gs-text-short {
+    animation: gs-show-short 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+
+/* Interaction 2: Loop (Projects Page Grid) */
+/* Force animations to run on the grid view */
+.project-grid .gs-bar {
+    animation: gs-shrink-bar 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.project-grid .gs-text-long {
+    animation: gs-hide-long 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.project-grid .gs-text-short {
+    animation: gs-show-short 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Mobile: Force Loop */
+@media (max-width: 768px) {
+    .gs-bar, .gs-text-long, .gs-text-short, .gs-packet {
+        animation-play-state: running !important;
+    }
+    
+    /* Apply animations directly if not triggered by hover on mobile */
+    .gs-bar { animation: gs-shrink-bar 3s cubic-bezier(0.4, 0, 0.2, 1) infinite !important; }
+    .gs-text-long { animation: gs-hide-long 3s cubic-bezier(0.4, 0, 0.2, 1) infinite !important; }
+    .gs-text-short { animation: gs-show-short 3s cubic-bezier(0.4, 0, 0.2, 1) infinite !important; }
+    .gs-packet { animation: gs-transmit 2s linear infinite !important; }
+}

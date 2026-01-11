@@ -104,6 +104,50 @@ const projectEntries = [
         tags: ["Django", "Python", "WebSockets"]
     },
     {
+        id: "goshrt",
+        title: "GoShrt",
+        description: "A high-performance URL shortener service designed to demonstrate low-latency request routing using Go and Redis. Features IP-based rate limiting, custom aliases, and TTL support.",
+        // Custom SVG: Fixed text length to prevent overflow
+        customIcon: `<svg width="240" height="100" viewBox="0 0 240 100" xmlns="http://www.w3.org/2000/svg" class="goshrt-icon">
+  <defs>
+    <linearGradient id="gs-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00ADD8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#007d9c;stop-opacity:1" />
+    </linearGradient>
+    <clipPath id="gs-clip">
+        <rect x="5" y="5" width="230" height="90" rx="12" />
+    </clipPath>
+  </defs>
+  
+  <g class="gs-container" transform-origin="center" clip-path="url(#gs-clip)">
+    <rect x="5" y="5" width="230" height="90" rx="12" fill="#0d1117" stroke="#333" stroke-width="1"/>
+    
+    <g class="gs-network">
+        <line x1="0" y1="25" x2="240" y2="25" stroke="#222" stroke-width="2" />
+        <rect x="0" y="23" width="8" height="4" fill="#333" class="gs-packet p1"/>
+        
+        <line x1="0" y1="75" x2="240" y2="75" stroke="#222" stroke-width="2" />
+        <rect x="0" y="73" width="8" height="4" fill="#333" class="gs-packet p2"/>
+    </g>
+
+    <g class="gs-bar-group" transform="translate(120, 50)">
+        <rect x="-100" y="-12" width="200" height="24" rx="6" fill="url(#gs-grad)" class="gs-bar" />
+        
+        <text x="0" y="5" class="gs-text gs-text-long" text-anchor="middle" font-family="'Space Mono', monospace" font-size="11" fill="white" font-weight="bold">
+            https://long-link.com/...
+        </text>
+        
+        <text x="0" y="5" class="gs-text gs-text-short" text-anchor="middle" font-family="'Space Mono', monospace" font-size="12" fill="white" font-weight="bold">
+            go.sh/xyz
+        </text>
+    </g>
+  </g>
+</svg>`,
+        github: "https://github.com/Kaushikmak/GOPROJECTS",
+        live: "https://goshrt.vercel.app/", 
+        tags: ["Go", "Redis", "Fiber", "Docker"]
+    },
+    {
         id: "fintrack",
         title: "FinTrack",
         description: "A comprehensive personal finance tracker. Helps users log income, track expenses, and visualize spending habits to achieve better financial health.",
