@@ -5,6 +5,36 @@
 // --- Learning Log Data ---
 const learningEntries = [
     {
+        id: "week-2-2026",
+        date: "January 11, 2026",
+        title: "Week 2, 2026: Rate Limiting & Social Fun",
+        summary: "Continued my coding streak with Go projects, classes started again. Started gym.",
+        
+        content: `
+            <p>This week I continued my coding streak with Go projects, classes started again, and I started the gym.<br>
+            Went out with friends to a new place called SALT.
+            </p>
+
+            <h4>What I Learned/Code</h4>
+            <ul>
+                <li><strong>Goshrt:</strong> A tiny url like service written in golang. Learned about redis, docker and rate limiting. Also learned about EC2 instances and how to host there.<br>Here is link:
+                <a href="https://goshrt.vercel.app/" target="_blank">Goshrt</a></li>
+                <li><strong>Competitive Programming:</strong> Solved few 800-1000 rated problems on codeforces.</li>
+                <li>I'm having problems with room chat application, render instance goes down due to inactivity and it takes too much time to start. Next keep I'll try to fix it.</li>
+            </ul>
+
+
+            <hr class="section-divider">
+
+            <h4>Side Quests</h4>
+            <ul>
+                <li><strong>GYM:</strong> Yes I, finally started gym.</li>
+                <li><strong>Social:</strong> Sunday went out with friends to a new place called SALT. It was fun there.
+                </li>
+            </ul>
+        `
+    },
+    {
         id: "week-1-2026",
         date: "January 5, 2026",
         title: "Week 1, 2026: Checksums & Campus Life",
