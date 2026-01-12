@@ -7,7 +7,7 @@ const learningEntries = [
     {
         id: "week-2-2026",
         date: "January 11, 2026",
-        title: "Week 2, 2026: Rate Limiting & Social Fun",
+        title: "Week 2, 2026: Rate Limiting & College Resumes",
         summary: "Continued my coding streak with Go projects, classes started again. Started gym.",
         
         content: `
@@ -20,7 +20,7 @@ const learningEntries = [
                 <li><strong>Goshrt:</strong> A tiny url like service written in golang. Learned about redis, docker and rate limiting. Also learned about EC2 instances and how to host there.<br>Here is link:
                 <a href="https://goshrt.vercel.app/" target="_blank">Goshrt</a></li>
                 <li><strong>Competitive Programming:</strong> Solved few 800-1000 rated problems on codeforces.</li>
-                <li>I'm having problems with room chat application, render instance goes down due to inactivity and it takes too much time to start. Next keep I'll try to fix it.</li>
+                <li>I'm having problems with room chat application, render instance goes down due to inactivity and it takes too much time to start. Next week I'll try to fix it.</li>
             </ul>
 
 
