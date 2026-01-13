@@ -130,7 +130,7 @@ const projectEntries = [
   </g>
 </svg>`,
         github: "https://github.com/Kaushikmak/Room-chat",
-        live: "https://www.room-chat.com/", 
+        live: "https://room-chat-frontend-alpha.vercel.app/", 
         tags: ["Django", "Python", "WebSockets"]
     },
     {
@@ -227,9 +227,58 @@ const projectEntries = [
     }
 ];
 
+const blogEntries = [
+    {
+        title: "Implementing Aadhaar's Verhoeff Algorithm",
+        date: "Jan 05, 2026",
+        description: "Why standard checksums fail for ID systems and how Dihedral groups (D5) solve the problem. A deep dive into the math and Go implementation.",
+        link: "blogs/verhoeff-algorithm.html",
+        tags: ["System Design", "Go"]
+    },
+    {
+        title: "Optimizing Go Garbage Collector",
+        date: "Dec 28, 2025",
+        description: "Investigating GOGC parameters to reduce tail latency in high-throughput microservices. Real-world benchmarks included.",
+        link: "blogs/optimizing-go-gc.html", // You'll need to create this file
+        tags: ["Go", "Performance"]
+    },
+    {
+        title: "Understanding Docker Networking",
+        date: "Nov 15, 2025",
+        description: "Bridge vs Host vs Overlay? Breaking down how containers actually talk to each other under the hood.",
+        link: "blogs/docker-networking.html", // You'll need to create this file
+        tags: ["Docker", "DevOps"]
+    },
+    {
+        title: "My First Kernel Panic",
+        date: "Oct 10, 2025",
+        description: "Writing a basic OS kernel in C and Rust. The story of how I accidentally overwrote my bootloader.",
+        link: "blogs/kernel-panic.html",
+        tags: ["OS", "C"]
+    }
+];
+
 // ==========================================
 // 2. HELPER FUNCTIONS
 // ==========================================
+
+function createBlogCardHTML(blog) {
+    return `
+        <a href="${blog.link}" class="blog-card">
+            <div class="blog-card-content">
+                <div class="blog-header-row">
+                    <span class="blog-date">${blog.date}</span>
+                    <div class="blog-tags">
+                        ${blog.tags.slice(0, 2).map(tag => `<span class="blog-tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+                <h3>${blog.title}</h3>
+                <p>${blog.description}</p>
+                <span class="read-link">Read Article &rarr;</span>
+            </div>
+        </a>
+    `;
+}
 
 // --- Theme Logic ---
 function applySavedTheme() {
@@ -444,6 +493,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 6. Render Learning Log ---
     const mainLogContainer = document.querySelector('#latest-learning-log');
     const fullLogContainer = document.querySelector('#full-learning-log');
+
+    // --- Render Latest Blogs (Limit 3) ---
+    const latestBlogsContainer = document.getElementById('latest-blogs');
+    if (latestBlogsContainer && blogEntries.length > 0) {
+        // Take only the first 3
+        const topBlogs = blogEntries.slice(0, 3);
+        latestBlogsContainer.innerHTML = topBlogs.map(blog => createBlogCardHTML(blog)).join('');
+    }
 
     // Home Page: Show Latest Entry
     if (mainLogContainer && learningEntries.length > 0) {

@@ -393,7 +393,7 @@ body.dark-mode .theme-toggle-button .sun-icon {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 1.5rem;
+    margin-top: 10%;
 }
 
 .view-more-button {
@@ -1652,4 +1652,84 @@ body.dark-mode .carousel-btn:hover {
     .gs-text-long { animation: gs-hide-long 3s cubic-bezier(0.4, 0, 0.2, 1) infinite !important; }
     .gs-text-short { animation: gs-show-short 3s cubic-bezier(0.4, 0, 0.2, 1) infinite !important; }
     .gs-packet { animation: gs-transmit 2s linear infinite !important; }
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+}
+
+/* Blog Card: Matches .log-entry style */
+.blog-card {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s, background-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    height: 100%; /* Ensures all cards in a row are same height */
+}
+
+.blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    border-color: var(--link-color);
+    background-color: var(--hover-bg-color);
+}
+
+.blog-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+
+.blog-date {
+    font-size: 0.8rem;
+    color: var(--subtle-text-color);
+    font-family: 'Space Mono', monospace;
+}
+
+/* Tiny tags for the card */
+.blog-tags {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.blog-tag {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+    background-color: var(--education-tag-bg);
+    color: var(--education-tag-text);
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.blog-card h3 {
+    margin: 0 0 0.8rem 0;
+    font-size: 1.1rem;
+    color: var(--heading-color);
+    line-height: 1.4;
+}
+
+.blog-card p {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+    flex-grow: 1; /* Pushes the 'Read Article' link to the bottom */
+}
+
+.read-link {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--link-color);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
 }

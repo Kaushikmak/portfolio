@@ -1,0 +1,416 @@
+/* Import Main Theme Variables */
+/* Assumes variables like --bg-color, --text-color are inherited */
+
+/* --- Layout Architecture --- */
+body {
+    overflow-x: hidden;
+}
+
+.blog-wrapper {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    gap: 3rem;
+    position: relative;
+}
+
+/* --- 1. Reading Progress Bar --- */
+.progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: transparent;
+    z-index: 9999;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--link-color);
+    width: 0%;
+    transition: width 0.1s ease-out;
+    box-shadow: 0 0 10px var(--link-color);
+}
+
+/* --- 2. Sidebar (Navigation) --- */
+.blog-sidebar {
+    width: 250px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 2rem;
+    height: max-content;
+    border-right: 1px solid var(--border-color);
+    padding-right: 1.5rem;
+}
+
+.sidebar-title {
+    font-size: 0.9rem;
+    color: var(--subtle-text-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.blog-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.blog-nav-link {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    transition: color 0.2s, padding-left 0.2s;
+    display: block;
+    border-left: 2px solid transparent;
+    padding-left: 0.5rem;
+}
+
+.blog-nav-link:hover {
+    color: var(--link-color);
+    padding-left: 1rem;
+    border-left-color: var(--link-color);
+}
+
+.blog-nav-link.active {
+    color: var(--heading-color);
+    font-weight: 700;
+    border-left-color: var(--heading-color);
+}
+
+/* Unified Back Link Style */
+.back-link, .back-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    color: var(--subtle-text-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.back-link:hover, .back-home:hover {
+    color: var(--link-color);
+}
+
+/* --- 3. Main Content --- */
+.blog-content {
+    flex-grow: 1;
+    max-width: 750px;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Typography Overrides for Article */
+.blog-header {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 2rem;
+}
+
+.blog-meta {
+    font-family: 'Space Mono', monospace;
+    color: var(--link-color);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.blog-title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin: 0 0 1rem 0;
+    color: var(--heading-color);
+}
+
+.article-body {
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.article-body h2 {
+    font-size: 1.8rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--heading-color);
+}
+
+.article-body p {
+    margin-bottom: 1.5rem;
+}
+
+.article-body code {
+    background-color: var(--hover-bg-color);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9em;
+    color: #ef4444;
+}
+
+.article-body pre {
+    background-color: #1e1e1e;
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+.article-body pre code {
+    background-color: transparent;
+    color: #e5e7eb;
+    padding: 0;
+}
+
+/* --- 4. Pagination (Prev/Next) --- */
+.blog-pagination {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.page-nav {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    max-width: 45%;
+}
+
+.page-nav span {
+    font-size: 0.8rem;
+    color: var(--subtle-text-color);
+    margin-bottom: 0.3rem;
+}
+
+.page-nav strong {
+    color: var(--heading-color);
+    transition: color 0.2s;
+}
+
+.page-nav:hover strong {
+    color: var(--link-color);
+}
+
+.nav-next {
+    text-align: right;
+    margin-left: auto;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 900px) {
+    .blog-wrapper {
+        flex-direction: column;
+    }
+    
+    .blog-sidebar {
+        width: 100%;
+        position: relative;
+        top: 0;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .blog-nav-list {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+    }
+
+    .blog-nav-link {
+        white-space: nowrap;
+        border-left: none;
+        border-bottom: 2px solid transparent;
+        padding: 0.5rem;
+    }
+
+    .blog-nav-link:hover, .blog-nav-link.active {
+        border-left: none;
+        border-bottom-color: var(--link-color);
+    }
+}
+
+/* --- Horizontal Blog Cards (List View) --- */
+.blog-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.blog-card {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2rem;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 100%;
+}
+
+.blog-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-color: var(--link-color);
+    background-color: var(--hover-bg-color);
+}
+
+.blog-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.blog-date {
+    font-size: 0.85rem;
+    color: var(--subtle-text-color);
+    font-family: 'Space Mono', monospace;
+}
+
+.blog-tags {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.blog-tag {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    background-color: var(--education-tag-bg);
+    color: var(--education-tag-text);
+    border-radius: 4px;
+}
+
+.blog-card h3 {
+    margin: 0 0 0.8rem 0;
+    font-size: 1.4rem;
+    color: var(--heading-color);
+    line-height: 1.3;
+}
+
+.blog-card p {
+    font-size: 1rem;
+    color: var(--text-color);
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+}
+
+.read-link {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--link-color);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+/* --- Theme Toggle Button --- */
+.theme-toggle-button {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--bg-color, #ffffff);
+    border: 1px solid var(--border-color, #e5e7eb);
+    color: var(--text-color, #333333);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 1000;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.theme-toggle-button:hover {
+    transform: scale(1.1);
+}
+
+.theme-toggle-button svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+}
+
+/* --- UPDATED Icon Logic: Show Current State (Sun for Light, Moon for Dark) --- */
+
+/* Light Mode (Default): Show Sun */
+.theme-toggle-button .sun-icon {
+    display: block;
+}
+.theme-toggle-button .moon-icon {
+    display: none;
+}
+
+/* Dark Mode: Show Moon */
+body.dark-mode .theme-toggle-button .sun-icon {
+    display: none;
+}
+body.dark-mode .theme-toggle-button .moon-icon {
+    display: block;
+}
+
+/* --- Footer --- */
+.blog-footer {
+    width: 100%;
+    padding: 2rem 4%; /* 4% padding ensures links aren't stuck to the screen edges */
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between; /* Pushes links to sides and text to center */
+    align-items: center;
+    background-color: var(--bg-color);
+    box-sizing: border-box;
+    margin-top: 5rem;
+}
+
+.footer-back-link {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--subtle-text-color);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-back-link:hover {
+    color: var(--link-color);
+}
+
+.footer-credit {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--heading-color); /* Slightly darker/bolder than links */
+    font-weight: 700;
+    text-align: center;
+}
+
+/* Optional: Stack vertically on small mobile screens */
+@media (max-width: 600px) {
+    .blog-footer {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}

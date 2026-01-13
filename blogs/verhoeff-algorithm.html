@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verhoeff Algorithm - Kaushik Gupta</title>
+    
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="read-progress"></div>
+    </div>
+
+    <div class="blog-wrapper">
+        
+        <aside class="blog-sidebar">
+            <a href="index.html" class="back-link">&larr; Back to Blogs</a>
+            <div class="sidebar-title">All Posts</div>
+            <ul class="blog-nav-list" id="blog-nav-list">
+                </ul>
+        </aside>
+
+        <main class="blog-content">
+            <header class="blog-header">
+                <span class="blog-meta">Jan 05, 2026 • System Design</span>
+                <h1 class="blog-title">Implementing Aadhaar's Verhoeff Algorithm</h1>
+                <p style="color: var(--subtle-text-color);">Why standard checksums fail and how Dihedral groups save the day.</p>
+            </header>
+
+            <article class="article-body">
+                <p>
+                    When dealing with millions of user IDs, data entry errors are inevitable. A simple typo can result in a valid but incorrect ID. This is where <strong>checksums</strong> come in. While most of us know the Luhn algorithm (used in Credit Cards), Aadhaar uses something more robust: the <strong>Verhoeff Algorithm</strong>.
+                </p>
+
+                <h2>Why not Luhn?</h2>
+                <p>
+                    The Luhn algorithm detects single-digit errors and most transpositions (swapping 12 to 21). However, it fails to detect transpositions involving <code>0</code> and <code>9</code> (e.g., 09 becoming 90). In a system like Aadhaar with 1.3 billion users, "most" isn't good enough.
+                </p>
+
+                <h2>The Math: Dihedral Groups</h2>
+                <p>
+                    Verhoeff is based on the properties of the Dihedral Group <code>D5</code>. Unlike modular arithmetic (used in Luhn), <code>D5</code> is non-commutative. This means the order of operations matters—perfect for detecting position-based errors.
+                </p>
+
+                <pre><code>// Pseudocode for D5 Multiplication
+int d5[10][10] = {
+    {0, 1, 2, 3, 4, 5, 6, 7, 8, 9},
+    {1, 2, 3, 4, 0, 6, 7, 8, 9, 5},
+    // ... complete multiplication table
+};</code></pre>
+
+                <h2>Implementation in Go</h2>
+                <p>
+                    I implemented this algorithm to validate IDs in my recent project. The complexity is slightly higher due to the lookup tables, but the collision rate is significantly lower.
+                </p>
+                
+                <p>
+                   You can check the full implementation in my <a href="https://github.com/Kaushikmak" target="_blank">GitHub repository</a>.
+                </p>
+            </article>
+
+            <div id="blog-pagination" class="blog-pagination"></div>
+        </main>
+
+    </div>
+
+    <button id="theme-toggle" class="theme-toggle-button">
+        <svg class="sun-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="moon-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+<footer class="blog-footer">
+    <a href="../index.html" class="footer-back-link">Back to Portfolio</a>
+    <span class="footer-credit">Made by TastyTaco</span>
+    <a href="index.html" class="footer-back-link">Back to Blogs</a>
+</footer>
+</html>
