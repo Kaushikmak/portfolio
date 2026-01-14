@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Stats - Kaushik Gupta</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="gym.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="card">
+        <header class="page-header">
+            <a href="index.html" class="back-link">&larr; Back to Offline Mode</a>
+            <h1>Iron Temple</h1>
+            <p class="subtitle">Lifting heavy circles.</p>
+        </header>
+
+        <div class="section">
+            <h2>Current Stats</h2>
+            <div id="stats-grid" class="stats-grid">
+                </div>
+        </div>
+
+        <div class="section">
+            <h2>Consistency Tracker</h2>
+            <p style="color: var(--subtle-text-color); margin-bottom: 1rem;">
+                <span id="total-workouts" style="color: var(--link-color); font-weight: bold;">0</span> workouts in the last year.
+            </p>
+            
+            <div class="heatmap-wrapper">
+                <div class="heatmap-scroll">
+                    <div id="gym-heatmap" class="heatmap-grid">
+                        </div>
+                </div>
+                <div class="heatmap-legend">
+                    <span>Less</span>
+                    <div class="legend-box level-0"></div>
+                    <div class="legend-box level-1"></div>
+                    <div class="legend-box level-2"></div>
+                    <div class="legend-box level-3"></div>
+                    <div class="legend-box level-4"></div>
+                    <span>More</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="theme-toggle" class="theme-toggle-button">
+        <svg class="sun-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="moon-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </button>
+
+    <div id="toast" class="toast-notification">I prefer dark mode here...</div>
+
+    <script src="gym.js"></script>
+
+</body>
+</html>

@@ -1,6 +1,271 @@
-/* --- Hobbies Specific Styles --- */
+/* --- Global & Card Resets --- */
+.media-card, .text-card {
+    transition: none !important;
+    transform: none !important;
+}
 
-/* Steam Profile Card (Unchanged) */
+.media-card:hover, .text-card:hover {
+    transform: none !important;
+    box-shadow: none !important;
+    border-color: var(--border-color) !important;
+    z-index: 0 !important;
+}
+
+.media-card:hover .media-poster {
+    transform: none !important;
+}
+
+.media-card:hover .media-overlay {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* --- Currently On Rotation --- */
+.current-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.current-card {
+    display: flex;
+    gap: 1rem;
+    background: var(--hover-bg-color);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    align-items: center;
+}
+
+.current-thumb {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.current-info h3 {
+    margin: 0 0 0.3rem 0;
+    font-size: 1rem;
+    color: var(--heading-color);
+}
+
+.current-info p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--link-color);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* --- Tier Lists --- */
+.tier-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.tier-row {
+    display: flex;
+    background-color: #0d0d0d;
+    border-radius: 6px;
+    overflow: hidden; /* Ensures the rounded corners stick */
+    border: 1px solid #222;
+    min-height: 140px; /* Allows it to grow if content wraps */
+}
+
+.tier-label {
+    width: 60px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #000;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+}
+
+.tier-s { background-color: #ff7f7f; }
+.tier-a { background-color: #ffbf7f; }
+.tier-b { background-color: #ffdf7f; }
+.tier-c { background-color: #ffff7f; }
+
+.tier-content {
+    flex-grow: 1;
+    display: flex;
+    
+    /* FIX: Enable Wrapping */
+    flex-wrap: wrap; 
+    align-content: flex-start; /* Rows stack from top */
+    
+    gap: 0.8rem; 
+    padding: 0.8rem; 
+    background-color: rgba(255,255,255,0.02);
+}
+
+/* Tier Card Sizing */
+.tier-content .media-card {
+    width: 60px;       
+    min-width: 60px;   
+    height: 90px;      
+    border-radius: 4px;
+    flex-shrink: 0;    
+    margin-bottom: 4px; /* Slight spacing for wrapped rows */
+}
+
+.tier-content .media-card .media-poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- Backlog (3 Columns) --- */
+.backlog-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    width: 100%;
+}
+
+.backlog-column {
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.backlog-header {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--heading-color);
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.backlog-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.backlog-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.6rem 0.8rem;
+    background-color: var(--hover-bg-color);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.backlog-item:hover {
+    transform: translateX(4px);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.backlog-check {
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--subtle-text-color);
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+.backlog-item:hover .backlog-check { border-color: var(--link-color); }
+
+/* --- Explorations (Cards) --- */
+.explorations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.explore-card {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.explore-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--link-color);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.explore-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.explore-icon-box {
+    width: 50px;
+    height: 50px;
+    background-color: var(--hover-bg-color);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: background-color 0.3s;
+}
+
+.explore-card:hover .explore-icon-box {
+    background-color: var(--link-color);
+    color: #fff;
+}
+
+.explore-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--heading-color);
+    margin: 0;
+}
+
+.explore-desc {
+    font-size: 0.9rem;
+    color: var(--subtle-text-color);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.explore-link {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--link-color);
+    margin-top: auto;
+    padding-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+}
+
+.explore-card:hover .explore-link {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* --- Steam Profile --- */
 .steam-profile-card {
     display: flex;
     align-items: center;
@@ -58,157 +323,15 @@
     filter: brightness(1.2);
 }
 
-/* --- Games Grid (With Images) --- */
-.media-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 1.5rem;
-    width: 100%;
-}
-
-.media-card {
-    position: relative;
-    border-radius: 8px;
-    overflow: hidden;
-    aspect-ratio: 2/3;
-    background-color: var(--hover-bg-color);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    border: 1px solid var(--border-color);
-}
-
-.media-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    border-color: #66c0f4; /* Steam Blue Highlight */
-    z-index: 2;
-}
-
-.media-poster {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.media-card:hover .media-poster {
-    transform: scale(1.1);
-}
-
-.media-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
-    padding: 1rem 0.5rem;
-    color: white;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-}
-
-.media-card:hover .media-overlay {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.media-title {
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-align: center;
-    line-height: 1.3;
-}
-
-.media-meta {
-    font-size: 0.7rem;
-    color: #ccc;
-    text-align: center;
-    margin-top: 4px;
-}
-
-/* --- Movies/Series Grid (Text Only Classy Style) --- */
-.text-list-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Wider cards for text */
-    gap: 1rem;
-    width: 100%;
-}
-
-.text-card {
-    background-color: var(--hover-bg-color);
-    padding: 1.2rem;
-    border-radius: 6px;
-    border: 1px solid var(--border-color);
-    /* The "Classy" Accent Border on the left */
-    border-left: 3px solid var(--subtle-text-color); 
-    transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.text-card:hover {
-    transform: translateX(5px); /* Slide right slightly */
-    background-color: #2a2a2a; /* Slightly lighter in dark mode */
-    border-left-color: var(--link-color); /* Highlight color on hover */
-}
-
-.text-card-title {
-    font-family: 'Space Mono', monospace;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--heading-color);
-    margin-bottom: 0.3rem;
-    line-height: 1.4;
-}
-
-.text-card-type {
-    font-size: 0.75rem;
-    color: var(--subtle-text-color);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-/* Optional dot indicator for type */
-.text-card-type::before {
-    content: "";
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    background-color: var(--subtle-text-color);
-    border-radius: 50%;
-    opacity: 0.5;
-}
-
-.text-card:hover .text-card-type::before {
-    background-color: var(--link-color);
-    opacity: 1;
-}
-
-/* Responsive */
 @media (max-width: 600px) {
+    .backlog-wrapper { grid-template-columns: 1fr; }
+    
     .steam-profile-card {
         flex-direction: column;
         gap: 1rem;
         text-align: center;
     }
-    
     .steam-info {
         flex-direction: column;
-    }
-    
-    .media-grid {
-        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-    }
-    
-    .text-list-grid {
-        grid-template-columns: 1fr; /* Full width list on mobile */
     }
 }
