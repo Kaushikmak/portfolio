@@ -1672,7 +1672,8 @@ body.dark-mode .carousel-btn:hover {
     display: flex;
     flex-direction: column;
     text-align: left;
-    height: 100%; /* Ensures all cards in a row are same height */
+    height: 100%;
+    box-sizing: border-box;
 }
 
 .blog-card:hover {
@@ -1732,4 +1733,10 @@ body.dark-mode .carousel-btn:hover {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+.blog-card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Fills the parent <a> tag */
 }
