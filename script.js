@@ -63,11 +63,6 @@ const learningEntries = [
                 Had great fun!
                 </li>
             </ul>
-            
-            // <figure>
-            //     <img src="assets/week1/great_lunch.jpg" width="25%" alt="Fun with friends" class="log-img">
-            //     <figcaption class="img-caption">Lunch with friend</figcaption>
-            // </figure>
         `
     },
     {
