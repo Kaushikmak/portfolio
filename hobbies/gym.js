@@ -6,7 +6,7 @@ const gymStats = [
     { label: "Deadlift", value: "-", unit: "kg" },
     { label: "Plank", value: 49, unit: "sec" },
     { label: "Leg Press", value: 40, unit: "kg" },
-    { label: "Dumbbell", value: 5, unit: "kg" },
+    { label: "Dumbbell", value: 7.5, unit: "kg" },
 ];
 
 const workoutLog = {
@@ -16,6 +16,7 @@ const workoutLog = {
     "2026-01-09": "back & Biceps",
     "2026-01-12": "Shoulders",
     "2026-01-14": "Leg and core",
+    "2026-01-16": "Arms",
     // Add future workouts here...
 };
 
