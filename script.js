@@ -89,6 +89,7 @@ const learningEntries = [
 
 // --- Project Data ---
 const projectEntries = [
+    // task tracker
     {
         id: "task-tracker",
         title: "TaskTracker",
@@ -103,6 +104,7 @@ const projectEntries = [
         live: "https://www.task-cli.in/", 
         tags: ["Go", "CLI", "JSON"]
     },
+    // room chat
     {
         id: "room-chat",
         title: "Room Chat",
@@ -129,6 +131,7 @@ const projectEntries = [
         docs: "https://room-chat-frontend-alpha.vercel.app/api_docs/api_docs.html",
         tags: ["Django", "Python", "WebSockets"]
     },
+    // go shrt
     {
         id: "goshrt",
         title: "GoShrt",
@@ -173,6 +176,44 @@ const projectEntries = [
         live: "https://goshrt.vercel.app/", 
         tags: ["Go", "Redis", "Fiber", "Docker"]
     },
+    // next blog
+    {
+        id: "next-blog",
+        title: "NextBlog",
+        description: "A modern, full-stack blog platform built with Next.js and Convex. Features rich text editing, real-time database updates, and a sleek, responsive UI.",
+        customIcon: `<svg width="240" height="100" viewBox="0 0 240 100" xmlns="http://www.w3.org/2000/svg" class="nextblog-icon">
+  <defs>
+    <linearGradient id="nb-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#000000;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a1a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <g class="nb-container" transform-origin="center">
+    <rect x="5" y="5" width="230" height="90" rx="12" fill="url(#nb-grad)" stroke="#333" stroke-width="1"/>
+    
+    <rect x="15" y="15" width="210" height="70" rx="6" fill="#0a0a0a" stroke="#222" stroke-width="1"/>
+    
+    <circle cx="28" cy="25" r="3" fill="#ff5f56"/>
+    <circle cx="38" cy="25" r="3" fill="#ffbd2e"/>
+    <circle cx="48" cy="25" r="3" fill="#27c93f"/>
+
+    <rect x="25" y="45" width="80" height="6" rx="3" fill="#ededed"/>
+    <rect x="25" y="60" width="140" height="6" rx="3" fill="#666"/>
+    <rect x="25" y="72" width="100" height="6" rx="3" fill="#666"/>
+
+    <rect x="110" y="43" width="2" height="10" fill="#ededed">
+        <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite" />
+    </rect>
+
+    <text x="195" y="65" font-family="'Space Mono', monospace" font-size="32" fill="white" font-weight="bold" opacity="0.05">N</text>
+  </g>
+</svg>`,
+        github: "https://github.com/Kaushikmak/nextblog",
+        live: "https://nextblog-ov87.vercel.app/",
+        tags: ["Next.js", "Convex", "Full Stack"]
+    }
+    ,
+    // fintrack
     {
         id: "fintrack",
         title: "FinTrack",
