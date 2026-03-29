@@ -213,6 +213,36 @@ const projectEntries = [
         tags: ["Next.js", "Convex", "Full Stack"]
     }
     ,
+    {
+        id: "http-proxy",
+        title: "HTTP Proxy Webserver",
+        description: "A high-performance, multi-threaded proxy server engineered in C. Features an amortized O(1) LRU Cache and blind TCP tunneling for HTTPS via select() multiplexing.",
+        customIcon: `<svg width="240" height="100" viewBox="0 0 240 100" xmlns="http://www.w3.org/2000/svg" class="proxy-icon">
+  <defs>
+    <linearGradient id="px-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1117;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#161b22;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <g class="px-container" transform-origin="center">
+    <rect x="5" y="5" width="230" height="90" rx="12" fill="url(#px-grad)" stroke="#30363d" stroke-width="1"/>
+    
+    <line x1="30" y1="50" x2="80" y2="50" stroke="#30363d" stroke-width="2" stroke-dasharray="4" />
+    <line x1="160" y1="50" x2="210" y2="50" stroke="#30363d" stroke-width="2" stroke-dasharray="4" />
+    
+    <circle cx="30" cy="50" r="4" fill="#58a6ff" class="px-pkt px-pkt-in" />
+    <circle cx="160" cy="50" r="4" fill="#ef4444" class="px-pkt px-pkt-miss" />
+    <circle cx="80" cy="50" r="4" fill="#2ea043" class="px-pkt px-pkt-out" />
+    
+    <rect x="80" y="25" width="80" height="50" rx="8" fill="#0d1117" stroke="#58a6ff" stroke-width="2" class="px-box" />
+    <text x="120" y="48" text-anchor="middle" font-family="'Space Mono', monospace" font-size="12" fill="#c9d1d9" font-weight="bold">PROXY</text>
+    <text x="120" y="63" text-anchor="middle" font-family="'Space Mono', monospace" font-size="9" fill="#2ea043" font-weight="bold">O(1) CACHE</text>
+  </g>
+</svg>`,
+        github: "https://github.com/Kaushikmak/http_server_c",
+        live: "#", // Leave as "#" if there isn't a live demo link for the C backend
+        tags: ["C", "Networking", "Multi-threading", "Linux"]
+    },
     // fintrack
     {
         id: "fintrack",

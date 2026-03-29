@@ -1740,3 +1740,101 @@ body.dark-mode .carousel-btn:hover {
     flex-direction: column;
     height: 100%; /* Fills the parent <a> tag */
 }
+
+
+/* --- CUSTOM PROJECT ICON: HTTP PROXY WEBSERVER --- */
+
+.proxy-icon {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+}
+
+.px-container {
+    transition: transform 0.3s ease;
+}
+
+.px-pkt {
+    opacity: 0;
+}
+
+/* Base Packet movement (Left to Right) */
+@keyframes px-move-right {
+    0% { transform: translateX(0); opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { transform: translateX(50px); opacity: 0; }
+}
+
+/* Cache Hit movement (Right to Left) */
+@keyframes px-move-left {
+    0% { transform: translateX(0); opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { transform: translateX(-50px); opacity: 0; }
+}
+
+/* Pulse effect for the Proxy Cache */
+@keyframes px-pulse {
+    0%, 100% { stroke: #58a6ff; }
+    50% { stroke: #2ea043; filter: drop-shadow(0 0 4px #2ea043); }
+}
+
+/* --- INTERACTION 1: HOVER (Main Page) --- */
+.project-card:hover .px-container {
+    transform: scale(1.02);
+}
+.project-card:hover .px-pkt-in { 
+    animation: px-move-right 2s cubic-bezier(0.4, 0, 0.2, 1) infinite; 
+}
+.project-card:hover .px-pkt-miss { 
+    animation: px-move-right 2s cubic-bezier(0.4, 0, 0.2, 1) infinite; 
+    animation-delay: 0.5s; 
+}
+.project-card:hover .px-pkt-out { 
+    animation: px-move-left 2s cubic-bezier(0.4, 0, 0.2, 1) infinite; 
+    animation-delay: 1.2s; 
+}
+.project-card:hover .px-box { 
+    animation: px-pulse 2s ease-in-out infinite; 
+    animation-delay: 1.2s; 
+}
+
+/* --- INTERACTION 2: LOOP (Projects Page Grid) --- */
+.project-grid .px-container {
+    transform: scale(1.02);
+}
+.project-grid .px-pkt-in { 
+    animation: px-move-right 2s cubic-bezier(0.4, 0, 0.2, 1) infinite; 
+}
+.project-grid .px-pkt-miss { 
+    animation: px-move-right 2s cubic-bezier(0.4, 0, 0.2, 1) infinite; 
+    animation-delay: 0.5s; 
+}
+.project-grid .px-pkt-out { 
+    animation: px-move-left 2s cubic-bezier(0.4, 0, 0.2, 1) infinite; 
+    animation-delay: 1.2s; 
+}
+.project-grid .px-box { 
+    animation: px-pulse 2s ease-in-out infinite; 
+    animation-delay: 1.2s; 
+}
+
+/* --- MOBILE ANIMATIONS: Force Loops (Auto-play) --- */
+@media (max-width: 768px) {
+    .px-pkt-in { 
+        animation: px-move-right 2s cubic-bezier(0.4, 0, 0.2, 1) infinite !important; 
+    }
+    .px-pkt-miss { 
+        animation: px-move-right 2s cubic-bezier(0.4, 0, 0.2, 1) infinite !important; 
+        animation-delay: 0.5s !important; 
+    }
+    .px-pkt-out { 
+        animation: px-move-left 2s cubic-bezier(0.4, 0, 0.2, 1) infinite !important; 
+        animation-delay: 1.2s !important; 
+    }
+    .px-box { 
+        animation: px-pulse 2s ease-in-out infinite !important; 
+        animation-delay: 1.2s !important; 
+    }
+}
