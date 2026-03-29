@@ -240,7 +240,7 @@ const projectEntries = [
   </g>
 </svg>`,
         github: "https://github.com/Kaushikmak/http_server_c",
-        live: "#", // Leave as "#" if there isn't a live demo link for the C backend
+        live: "https://http-server-c.vercel.app/", // Leave as "#" if there isn't a live demo link for the C backend
         tags: ["C", "Networking", "Multi-threading", "Linux"]
     },
     // fintrack
