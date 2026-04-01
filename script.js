@@ -243,6 +243,46 @@ const projectEntries = [
         live: "https://http-server-c.vercel.app/", // Leave as "#" if there isn't a live demo link for the C backend
         tags: ["C", "Networking", "Multi-threading", "Linux"]
     },
+    {
+        id: "mt-mergesort",
+        title: "Multithreaded Merge Sort",
+        description: "High-performance concurrent sorting engine built in C++17. Features runtime thread-tuning, real-time hardware telemetry, and an interactive benchmark dashboard.",
+        customIcon: `<svg width="240" height="100" viewBox="0 0 240 100" xmlns="http://www.w3.org/2000/svg" class="mt-sort-icon">
+  <defs>
+    <linearGradient id="mt-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#050505;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#141414;stop-opacity:1" />
+    </linearGradient>
+    <clipPath id="mt-clip">
+        <rect x="5" y="5" width="230" height="90" rx="12" />
+    </clipPath>
+  </defs>
+  <g class="mt-container" transform-origin="center" clip-path="url(#mt-clip)">
+    <rect x="5" y="5" width="230" height="90" rx="12" fill="url(#mt-grad)" stroke="#1e1e1e" stroke-width="1"/>
+
+    <circle cx="25" cy="25" r="4" fill="#00ff88" class="mt-t1" />
+    <line x1="25" y1="25" x2="45" y2="45" stroke="#00ff88" stroke-width="1.5" opacity="0.6" stroke-dasharray="3 3"/>
+    
+    <circle cx="25" cy="75" r="4" fill="#ff6b35" class="mt-t2" />
+    <line x1="25" y1="75" x2="45" y2="55" stroke="#ff6b35" stroke-width="1.5" opacity="0.6" stroke-dasharray="3 3"/>
+
+    <rect x="145" y="15" width="75" height="18" rx="4" fill="#00ff88" fill-opacity="0.1" stroke="#00ff88" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="182" y="27" text-anchor="middle" font-family="'Space Mono', monospace" font-size="8" fill="#00ff88" font-weight="bold">8.06x SPEEDUP</text>
+
+    <g transform="translate(70, 80) scale(1, -1)">
+        <rect x="0" y="0" width="10" height="45" rx="2" fill="#3b82f6" class="mt-bar mt-b1" />
+        <rect x="16" y="0" width="10" height="20" rx="2" fill="#3b82f6" class="mt-bar mt-b2" />
+        <rect x="32" y="0" width="10" height="60" rx="2" fill="#3b82f6" class="mt-bar mt-b3" />
+        <rect x="56" y="0" width="10" height="10" rx="2" fill="#3b82f6" class="mt-bar mt-b4" />
+        <rect x="72" y="0" width="10" height="35" rx="2" fill="#3b82f6" class="mt-bar mt-b5" />
+        <rect x="88" y="0" width="10" height="50" rx="2" fill="#3b82f6" class="mt-bar mt-b6" />
+    </g>
+  </g>
+</svg>`,
+        github: "https://github.com/Kaushikmak/multithreaded_mergesort",
+        live: "https://multithreaded-mergesort.vercel.app/", 
+        tags: ["C++17", "pthreads", "Next.js", "Python"]
+    },
     // fintrack
     {
         id: "fintrack",
