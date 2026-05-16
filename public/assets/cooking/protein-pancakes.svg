@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="Protein pancakes illustration">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fdeccf"/>
+      <stop offset="100%" stop-color="#f9d7a0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <ellipse cx="600" cy="580" rx="320" ry="80" fill="#7a4b2f" opacity="0.28"/>
+  <ellipse cx="600" cy="520" rx="310" ry="78" fill="#d69a5a"/>
+  <ellipse cx="600" cy="470" rx="280" ry="72" fill="#e2aa6d"/>
+  <ellipse cx="600" cy="425" rx="250" ry="66" fill="#efbc7f"/>
+  <circle cx="490" cy="410" r="16" fill="#7d3c1d"/>
+  <circle cx="640" cy="445" r="18" fill="#7d3c1d"/>
+  <circle cx="705" cy="402" r="13" fill="#7d3c1d"/>
+  <path d="M840 320c-80 40-170 68-260 82" stroke="#fff" stroke-width="24" stroke-linecap="round" fill="none" opacity="0.8"/>
+  <text x="600" y="770" font-family="Georgia, serif" font-size="58" text-anchor="middle" fill="#6b3716">Protein Pancakes</text>
+</svg>

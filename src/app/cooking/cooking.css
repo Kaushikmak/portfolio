@@ -1,68 +1,125 @@
+.cooking-page {
+  --cook-ink: #2f1a0f;
+  --cook-wood: #f3e3cd;
+  --cook-spice: #d95f1a;
+  --cook-herb: #56743d;
+}
+
+.cooking-hero {
+  border: 1px solid rgba(217, 95, 26, 0.25);
+  border-radius: 18px;
+  padding: 1.5rem;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(255, 181, 120, 0.3), transparent 45%),
+    linear-gradient(135deg, rgba(243, 227, 205, 0.45), rgba(255, 244, 228, 0.2));
+}
+
+.cooking-hero h1 {
+  color: var(--cook-ink);
+}
+
+.cooking-hero .subtitle {
+  max-width: 62ch;
+}
+
+.hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.hero-chips span {
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #fff;
+  background: linear-gradient(90deg, var(--cook-spice), #b44813);
+}
+
+.kitchen-note {
+  border: 1px solid rgba(86, 116, 61, 0.3);
+  border-radius: 14px;
+  padding: 1rem 1.2rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.75), rgba(245, 255, 237, 0.4));
+}
+
+.kitchen-note p {
+  margin: 0.3rem 0;
+}
+
 .recipe-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin-top: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.2rem;
 }
 
 .recipe-card {
-  background: var(--bg-color);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: 16px;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s, border-color 0.3s;
+  border: 1px solid rgba(217, 95, 26, 0.24);
+  background: linear-gradient(180deg, rgba(255, 252, 246, 0.95), rgba(255, 248, 237, 0.9));
+  box-shadow: 0 10px 28px -18px rgba(124, 58, 20, 0.55);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .recipe-card:hover {
-  transform: translateY(-5px);
-  border-color: #ff7b00;
-  box-shadow: 0 10px 30px -10px rgba(255, 123, 0, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px -18px rgba(124, 58, 20, 0.65);
 }
 
-.recipe-icon {
-  height: 120px;
-  background: var(--hover-bg-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 4rem;
-  border-bottom: 1px solid var(--border-color);
+.recipe-img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--cook-wood);
+  border-bottom: 1px solid rgba(217, 95, 26, 0.2);
 }
 
-.recipe-content {
-  padding: 1.5rem;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
+.recipe-title {
+  margin: 0.9rem 1rem 0.4rem;
+  color: #3b220f;
 }
 
-.recipe-content h3 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-  color: var(--heading-color);
+.recipe-desc {
+  margin: 0 1rem 1rem;
+  color: #5e4a39;
+  line-height: 1.45;
 }
 
-.recipe-meta {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+.staples-grid {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 0.9rem;
 }
 
-.recipe-tag {
-  background: rgba(255, 123, 0, 0.1);
-  color: #ff7b00;
-  padding: 0.2rem 0.6rem;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
+.staple-card {
+  border-radius: 14px;
+  padding: 1rem;
+  border: 1px dashed rgba(86, 116, 61, 0.45);
+  background: linear-gradient(160deg, rgba(236, 251, 225, 0.75), rgba(255, 255, 255, 0.85));
 }
 
-.recipe-content p {
-  color: var(--subtle-text-color);
-  font-size: 0.9rem;
+.staple-card h3 {
+  margin: 0 0 0.45rem;
+  color: var(--cook-herb);
+}
+
+.staple-card p {
   margin: 0;
-  line-height: 1.5;
+  color: #4f5a47;
+}
+
+@media (max-width: 700px) {
+  .cooking-hero {
+    padding: 1.1rem;
+  }
+
+  .hero-chips span {
+    font-size: 0.73rem;
+  }
 }

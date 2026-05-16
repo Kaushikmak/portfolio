@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="Avocado quinoa salad illustration">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#edf8ef"/>
+      <stop offset="100%" stop-color="#d5efda"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg3)"/>
+  <circle cx="600" cy="520" r="280" fill="#f4f4f4"/>
+  <circle cx="600" cy="520" r="246" fill="#f8faf2"/>
+  <circle cx="560" cy="510" r="58" fill="#9acc67"/>
+  <circle cx="560" cy="510" r="22" fill="#6e4e33"/>
+  <circle cx="670" cy="470" r="54" fill="#a7d475"/>
+  <circle cx="705" cy="560" r="50" fill="#b8dd86"/>
+  <circle cx="490" cy="585" r="46" fill="#9fcf6f"/>
+  <circle cx="650" cy="620" r="20" fill="#e55243"/>
+  <circle cx="540" cy="430" r="16" fill="#e55243"/>
+  <circle cx="740" cy="505" r="18" fill="#e55243"/>
+  <circle cx="470" cy="490" r="14" fill="#e55243"/>
+  <circle cx="500" cy="520" r="6" fill="#dcc8a2"/>
+  <circle cx="520" cy="550" r="6" fill="#dcc8a2"/>
+  <circle cx="610" cy="560" r="6" fill="#dcc8a2"/>
+  <circle cx="640" cy="500" r="6" fill="#dcc8a2"/>
+  <circle cx="690" cy="530" r="6" fill="#dcc8a2"/>
+  <text x="600" y="770" font-family="Georgia, serif" font-size="58" text-anchor="middle" fill="#2e5a35">Avocado Quinoa Salad</text>
+</svg>
