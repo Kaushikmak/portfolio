@@ -6,12 +6,17 @@ import ActivityHeatmap from "../components/ActivityHeatmap";
 import "./gym.css";
 import { useState, useEffect } from "react";
 
+type HeatmapPoint = {
+  date: string;
+  count: number;
+};
+
 export default function GymPage() {
-  const [gymData, setGymData] = useState([]);
+  const [gymData, setGymData] = useState<HeatmapPoint[]>([]);
 
   useEffect(() => {
     // client‑side mock data generation to avoid hydration mismatch
-    const data = [];
+    const data: HeatmapPoint[] = [];
     const start = new Date(2026, 0, 1);
     for (let i = 0; i < 150; i++) {
       if (Math.random() < 0.6) {

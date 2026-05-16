@@ -4,20 +4,22 @@ import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import ProfileCard from "./components/ProfileCard";
 import Skills from "./components/Skills";
+import Experience from "./components/Experience";
 import ProjectCarousel from "./components/ProjectCarousel";
-import LearningLogEntry from "./components/LearningLogEntry";
+import WeeklyLogPreview from "./components/WeeklyLogPreview";
 import ThemeToggle from "./components/ThemeToggle";
 import Link from "next/link";
 
 export default function Home() {
   const projects = useQuery(api.queries.getProjects) || [];
-  const learningLogs = useQuery(api.queries.getLearningLogs) || [];
+  const latestLearningLog = useQuery(api.queries.getLatestLearningLog);
 
   return (
     <>
       <div className="card">
         <ProfileCard />
         <Skills />
+        <Experience />
 
         <div className="section">
           <h2>Projects</h2>
@@ -39,11 +41,7 @@ export default function Home() {
         <div className="section">
           <h2>Life Log</h2>
           <div id="latest-learning-log" className="learning-log">
-            {learningLogs.length > 0 && (
-              <div style={{ cursor: 'pointer' }} onClick={() => window.location.href = `/learning#${learningLogs[0].logId}`}>
-                <LearningLogEntry entry={learningLogs[0]} isFullView={false} />
-              </div>
-            )}
+            {latestLearningLog && <WeeklyLogPreview entry={latestLearningLog} />}
           </div>
           <div className="view-more-container">
             <Link href="/learning" className="view-more-button">View All Entries</Link>
@@ -53,7 +51,7 @@ export default function Home() {
         <div className="section">
           <h2>Hobbies</h2>
           <p style={{ color: "var(--subtle-text-color)", marginBottom: "1.5rem" }}>
-            What I do when I'm not staring at a terminal. Games, movies, and other distractions.
+            What I do when I am not staring at a terminal. Games, movies, and other distractions.
           </p>
           <div className="view-more-container">
             {/* The hobbies index is now migrated to a Next.js page */}
@@ -66,7 +64,7 @@ export default function Home() {
         <h2>Get in Touch</h2>
         <p>
           Want to chat? Just drop your message on{" "}
-          <a href="https://x.com/tasytaco" target="_blank" rel="noopener noreferrer">twitter</a>
+          <a href="https://x.com/tstytaco" target="_blank" rel="noopener noreferrer">twitter</a>
         </p>
       </footer>
 

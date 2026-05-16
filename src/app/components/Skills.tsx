@@ -98,9 +98,9 @@ export default function Skills() {
                     <span className="skill-name">Docker</span>
                     <div className="skill-tooltip">
                         <pre><code><span className="kwd">FROM</span> python:3.9
-<span className="kwd">WORKDIR</span> /app
-<span className="kwd">COPY</span> . .
-<span className="kwd">CMD</span> ["python", "app.py"]</code></pre>
+<span className="kwd"> WORKDIR</span> /app{`\n`}
+<span className="kwd"> COPY</span> . .
+<span className="kwd"> CMD</span> ["python", "app.py"]</code></pre>
                     </div>
                 </div>
 

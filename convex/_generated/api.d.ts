@@ -8,6 +8,8 @@
  * @module
  */
 
+import type * as learningAdmin from "../learningAdmin.js";
+import type * as learningMigrations from "../learningMigrations.js";
 import type * as queries from "../queries.js";
 import type * as seed from "../seed.js";
 
@@ -18,6 +20,8 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  learningAdmin: typeof learningAdmin;
+  learningMigrations: typeof learningMigrations;
   queries: typeof queries;
   seed: typeof seed;
 }>;

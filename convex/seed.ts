@@ -1,77 +1,103 @@
 import { mutation } from "./_generated/server";
 
 const learningEntries = [
-    {
-        id: "week-2-2026",
-        date: "January 11, 2026",
-        title: "Week 2, 2026: Rate Limiting & College Resumes",
-        summary: "Continued my coding streak with Go projects, classes started again. Started gym.",
-        content: `
-            <p>This week I continued my coding streak with Go projects, classes started again, and I started the gym.<br>
-            Went out with friends to a new place called SALT.
-            </p>
-            <h4>What I Learned/Code</h4>
-            <ul>
-                <li><strong>Goshrt:</strong> A tiny url like service written in golang. Learned about redis, docker and rate limiting. Also learned about EC2 instances and how to host there.<br>Here is link:
-                <a href="https://goshrt.vercel.app/" target="_blank">Goshrt</a></li>
-                <li><strong>Competitive Programming:</strong> Solved few 800-1000 rated problems on codeforces.</li>
-                <li>I'm having problems with room chat application, render instance goes down due to inactivity and it takes too much time to start. Next week I'll try to fix it.</li>
-            </ul>
-            <hr class="section-divider">
-            <h4>Side Quests</h4>
-            <ul>
-                <li><strong>GYM:</strong> Yes I, finally started gym.</li>
-                <li><strong>Social:</strong> Sunday went out with friends to a new place called SALT. It was fun there.
-                </li>
-            </ul>
-        `
-    },
-    {
-        id: "week-1-2026",
-        date: "January 5, 2026",
-        title: "Week 1, 2026: Checksums & Campus Life",
-        summary: "Started 2026 by exploring error-detection algorithm and returning to the competitive programming grind.Went back to hostel life and had fun with friends.",
-        content: `
-            <p>Happy new year anon! The first 4 days have been a mix of regaining coding momentum and settling back into hostel life.</p>
-            <h4>What I Learned/Code</h4>
-            <ul>
-                <li><strong>Portfolio:</strong> Added rich text editor in my blog website.</li>
-                <li><strong>Competitive Programming:</strong> Again started codeforces and leetcode. Need to revisit old concepts
-                </li>
-                <li><strong>System Design:</strong> Explored the <strong><a href="https://www.c-sharpcorner.com/article/what-is-verhoeff-algorithm/" target="_blank">Verhoeff Algorithm</a></strong>—a specialized checksum formula used by Aadhaar for error detection.</li>
-            </ul>
-            <hr class="section-divider">
-            <h4>Side Quests</h4>
-            <ul>
-                <li><strong>Gear Upgrade:</strong> Got new headphones.</li>
-                <li><strong>Social:</strong> Family dinner before leaving.
-                Went out for lunch with friend after a while.
-                Had get fun late night talks with friends in hostel.
-                Had great fun!
-                </li>
-            </ul>
-        `
-    },
-    {
-        id: "started-learning-go",
-        date: "December 20, 2025",
-        title: "Learning new programming lanugage, Go!",
-        content: `Golang is a statically typed, compiled language used heavily in backend and systems development, famous for its concurrency (haven't touched yet, but will soon learn about concurrency) model and fast compile times—which means less time waiting and more time questioning life choices in code (also I find gopher very cute :) ). While trying to get into backend systems, I cam to know about it. The syntax is refreshingly short and coming from C/C++, it feels like someone took systems programming and removed just enough pain to make it enjoyable. Also the projects I genuinely admire—like Docker and Kubernetes—are built using Go.
-        I'm goin to use boot.dev free material on thier website to learn about it, also roadmap.sh has some good project ideas will implement them for sure.
-        `
-    },
-    {
-        id: "interview-experience",
-        date: "October 30, 2025",
-        title: "Getting rejected by CITI bank in HR interview",
-        content: `Before Diwali I gave CITI bank's OA on campus. I was not sure about whether I'll be shortlisted or not, as I was only able to solve only 2.5 qns out of 3. Although qns were easy. On wednesday october 29 I got list and I was shortlisted.started my preperation for interview on thursday october 30. First one was technical interview they mostly asked me about my projects and whole interview went in that direction, and after the interview I was sure that I'll be shortlisted for HR. Then after 2-3 hours list came as expected I was selected for HR round. Everyone was saying it's just formality as it was only 10 mins. interview. I went in again it was super smooth but then list came, and still I don't know what's the reason they rejected me. I guess I'll never know about that. But what else can I do except grinding even harder making projects and learn about fun technologies.`
-    },
-    {
-        id: "graphs-01",
-        date: "October 05, 2025",
-        title: "Learning about Graphs",
-        content: `This week, I've started exploring the fundamentals of graphs. I studied about traversal techniques, and solved few questions from CSES. Most fun question was "Monsters" where I've to implement multi-source bfs`
-    }
+  {
+    id: "week-2-2026",
+    year: 2026,
+    weekNumber: 2,
+    weekSlug: "week-2",
+    weekStartDate: "2026-01-05",
+    weekEndDate: "2026-01-11",
+    date: "January 11, 2026",
+    title: "Week 2, 2026: Rate Limiting & College Resumes",
+    summary: "Go backend progress, classes resumed, and first gym week.",
+    coverImage: "/assets/week1/great_lunch.jpg",
+    galleryImages: [
+      { src: "/assets/week1/great_lunch.jpg", alt: "Lunch with friends", caption: "Sunday lunch at SALT." },
+    ],
+    tags: ["Go", "Gym", "College"],
+    content: `
+      <h4>What Happened</h4>
+      <p>This week I kept my coding streak alive with Go projects, classes started again, and I finally started gym.</p>
+      <h4>Build + Learn</h4>
+      <ul>
+        <li><strong>GoShrt:</strong> Worked on rate limiting, Redis, Docker, and deployment flow.</li>
+        <li><strong>Competitive Programming:</strong> Solved a few 800-1000 problems on Codeforces.</li>
+        <li><strong>Next Up:</strong> Stabilize Room Chat deployment startup delays.</li>
+      </ul>
+    `,
+  },
+  {
+    id: "week-1-2026",
+    year: 2026,
+    weekNumber: 1,
+    weekSlug: "week-1",
+    weekStartDate: "2025-12-29",
+    weekEndDate: "2026-01-04",
+    date: "January 5, 2026",
+    title: "Week 1, 2026: Checksums & Campus Life",
+    summary: "Started the year with learning and getting back to hostel rhythm.",
+    coverImage: "/media/banner.jpg",
+    tags: ["System Design", "CP", "Hostel Life"],
+    content: `
+      <h4>What I Learned</h4>
+      <ul>
+        <li>Added rich text editor support in my blog project.</li>
+        <li>Restarted Codeforces and LeetCode practice.</li>
+        <li>Read about Verhoeff checksum and Aadhaar error detection logic.</li>
+      </ul>
+      <h4>Life Notes</h4>
+      <p>Hostel life started again, with family time and meetups before classes got busy.</p>
+    `,
+  },
+  {
+    id: "week-52-2025",
+    year: 2025,
+    weekNumber: 52,
+    weekSlug: "week-52",
+    weekStartDate: "2025-12-22",
+    weekEndDate: "2025-12-28",
+    date: "December 28, 2025",
+    title: "Week 52, 2025: Starting Go",
+    summary: "Learning Go fundamentals and planning backend-focused projects.",
+    tags: ["Go", "Backend"],
+    content: `
+      <p>This week I started learning Go as my next backend language. The syntax feels clean and practical.</p>
+      <p>I also mapped a project plan using Boot.dev and roadmap.sh ideas for consistent practice.</p>
+    `,
+  },
+  {
+    id: "week-44-2025",
+    year: 2025,
+    weekNumber: 44,
+    weekSlug: "week-44",
+    weekStartDate: "2025-10-27",
+    weekEndDate: "2025-11-02",
+    date: "October 30, 2025",
+    title: "Week 44, 2025: Interview Experience",
+    summary: "Campus placement rounds, mixed outcome, clear motivation.",
+    tags: ["Interviews", "Career"],
+    content: `
+      <p>I reached the HR stage in a campus process but didn’t make the final list.</p>
+      <p>Big takeaway: keep building stronger projects and communication confidence.</p>
+    `,
+  },
+  {
+    id: "week-40-2025",
+    year: 2025,
+    weekNumber: 40,
+    weekSlug: "week-40",
+    weekStartDate: "2025-09-29",
+    weekEndDate: "2025-10-05",
+    date: "October 5, 2025",
+    title: "Week 40, 2025: Graphs Foundation",
+    summary: "Started graph traversals and solved BFS-heavy problems from CSES.",
+    tags: ["DSA", "Graphs"],
+    content: `
+      <p>I learned traversal fundamentals and solved graph problems including multi-source BFS patterns.</p>
+      <p>The CSES "Monsters" problem was the most fun this week.</p>
+    `,
+  },
 ];
 
 const projectEntries = [
@@ -351,6 +377,15 @@ export default mutation({
             summary: l.summary,
             content: l.content,
             order: i,
+            year: l.year,
+            weekNumber: l.weekNumber,
+            weekSlug: l.weekSlug,
+            weekStartDate: l.weekStartDate,
+            weekEndDate: l.weekEndDate,
+            coverImage: l.coverImage,
+            galleryImages: l.galleryImages,
+            tags: l.tags,
+            isPublished: true,
         });
     }
 

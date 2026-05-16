@@ -53,6 +53,20 @@ npx convex dev
 - Read queries are in `convex/queries.ts`.
 - Seed data is in `convex/seed.ts`.
 
+## Private weekly log admin
+
+- Admin login page: `/learning/admin-login`
+- Protected editor page: `/learning/admin`
+- Required env vars in `.env.local`:
+
+```bash
+ADMIN_USERNAME=your_username
+ADMIN_PASSWORD=your_strong_password
+ADMIN_SESSION_SECRET=long_random_secret_value
+```
+
+- Use this page to create/update weekly logs, cover image, gallery images, tags, and full HTML content.
+
 ## Build and run
 
 ```bash
