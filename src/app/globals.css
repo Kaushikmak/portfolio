@@ -1,0 +1,1840 @@
+/* --- CSS Variables for Theming --- */
+:root {
+    --bg-color: #FFFFFF;
+    --text-color: #4A4A4A;
+    --heading-color: #1a1a1a;
+    --subtle-text-color: #888888;
+    --border-color: #EAEAEA;
+    --link-color: #1D4ED8;
+    --hover-bg-color: #F5F5F5;
+    --skill-bg-color: #1a1a1a;
+    --skill-text-color: #FFFFFF;
+    --tag-border-color: #EAEAEA; 
+    --education-tag-bg: #F0F0F0; 
+    --education-tag-text: #666666; 
+}
+
+body.dark-mode {
+    --bg-color: #121212; 
+    --text-color: #E5E7EB;
+    --heading-color: #F9FAFB;
+    --subtle-text-color: #9CA3AF;
+    --border-color: #2a2a2a; 
+    --link-color: #38BDF8;
+    --hover-bg-color: #1a1a1a; 
+    --skill-bg-color: #2a2a2a; 
+    --skill-text-color: #E5E7EB;
+    --tag-border-color: #374151; 
+    --education-tag-bg: #374151; 
+    --education-tag-text: #E5E7EB; 
+}
+
+/* General Body Styles */
+body {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    min-height: 100vh;
+    margin: 0;
+    background-color: var(--bg-color); 
+    font-family: 'Space Mono', monospace;
+    color: var(--text-color); 
+    padding: 0 1rem; 
+    box-sizing: border-box; 
+    transition: background-color 0.3s, color 0.3s; 
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    max-width: 900px;
+    padding: 2rem 0; 
+    width: 100%;
+    flex-grow: 1; 
+}
+
+.main-content {
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+}
+
+.text-content {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--heading-color);
+    margin: 0;
+}
+
+.subtitle {
+    margin: 0 0 1.5rem 0; 
+    font-size: 1rem;
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 150px;
+    height: 150px;
+    perspective: 1000px;
+    flex-shrink: 0; 
+    cursor: pointer;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.7s;
+    transform-style: preserve-3d;
+}
+
+.flip-card.is-flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    overflow: hidden; 
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+}
+
+.flip-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.bio {
+    text-align: left;
+    max-width: 450px; 
+}
+
+.bio-text {
+    margin: 0;
+    line-height: 1.6;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--subtle-text-color);
+    margin-top: 1rem;
+}
+
+.location svg {
+    stroke: #d9534f;
+}
+
+.social-links {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.social-links a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-color);
+    transition: background-color 0.2s;
+}
+
+.social-links a:hover {
+    background-color: var(--hover-bg-color);
+}
+
+.section {
+    width: 100%;
+    margin-top: 3rem;
+    padding: 0 1rem;
+}
+
+.section h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--heading-color);
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.education-entry {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.education-logo {
+    width: 40px;
+    height: 40px;
+}
+
+.education-details {
+    text-align: left;
+}
+
+.education-details strong {
+    display: block;
+    color: var(--heading-color);
+    font-weight: 700;
+}
+
+.education-details p {
+    margin: 0;
+    color: var(--text-color);
+}
+
+.education-year-tag {
+    margin-left: auto;
+    background-color: var(--education-tag-bg);
+    color: var(--education-tag-text);
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--tag-border-color);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    display: inline-flex; 
+    align-items: center;
+    justify-content: center;
+}
+
+/* CP Profiles */
+.cp-profiles {
+    margin-top: 1.5rem;
+    text-align: left;
+}
+
+.cp-title {
+    color: var(--subtle-text-color);
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+}
+
+.profile-links {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.profile-links a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem; 
+    border: 1px solid var(--tag-border-color); 
+    border-radius: 6px;
+    color: var(--text-color); 
+    transition: background-color 0.2s, border-color 0.2s;
+    text-decoration: none; 
+}
+
+.profile-links a:hover {
+    background-color: var(--hover-bg-color);
+    border-color: var(--link-color); 
+}
+
+.github-heatmap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.github-heatmap img {
+    max-width: 100%;
+}
+
+.get-in-touch {
+    width: 100%;
+    text-align: center;
+    margin-top: 4rem;
+    padding: 2rem 0;
+}
+
+.get-in-touch h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+}
+
+.get-in-touch p {
+    color: var(--subtle-text-color);
+    margin: 0;
+}
+
+.get-in-touch a {
+    color: var(--link-color); 
+    text-decoration: underline;
+    font-weight: 700;
+}
+
+.get-in-touch a:hover {
+    text-decoration: none; 
+}
+
+.theme-toggle-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--skill-bg-color);
+    color: var(--skill-text-color);
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+
+.theme-toggle-button:hover {
+    transform: scale(1.1);
+}
+
+.theme-toggle-button .moon-icon {
+    display: block;
+}
+
+.theme-toggle-button .sun-icon {
+    display: none;
+}
+
+body.dark-mode .theme-toggle-button .moon-icon {
+    display: none;
+}
+
+body.dark-mode .theme-toggle-button .sun-icon {
+    display: block;
+}
+
+/* --- Learning Log Section --- */
+.learning-log {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: left;
+}
+
+.log-entry {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    background-color: transparent;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+#latest-learning-log .log-entry {
+    cursor: pointer;
+}
+
+#latest-learning-log .log-entry:hover {
+    background-color: var(--hover-bg-color);
+    border-color: var(--link-color);
+}
+
+.log-date {
+    font-size: 0.85rem;
+    color: var(--subtle-text-color);
+    margin: 0 0 0.75rem 0;
+}
+
+.log-content h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+    color: var(--heading-color);
+}
+
+.log-content p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+.read-more {
+    color: var(--link-color);
+    font-weight: 700;
+    text-decoration: none;
+}
+.read-more:hover {
+    text-decoration: underline;
+}
+
+.view-more-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+.view-more-button {
+    border: 1px solid var(--border-color);
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.view-more-button:hover {
+    background-color: var(--hover-bg-color);
+    border-color: var(--link-color);
+}
+
+/* --- Learning Log Page Specific --- */
+.page-header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+}
+
+.page-header h1 {
+    margin-bottom: 0.5rem;
+}
+
+.back-link {
+    display: inline-block;
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.log-entry .log-full {
+    display: none;
+}
+
+.log-entry.is-expanded .log-short {
+    display: none;
+}
+
+.log-entry.is-expanded .log-full {
+    display: block;
+}
+
+.expand-button {
+    margin-top: 1rem;
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.expand-button:hover {
+    background-color: var(--hover-bg-color);
+    border-color: var(--link-color);
+}
+
+/* --- Project Section Styles --- */
+.carousel-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* Carousel Container */
+.project-carousel {
+    display: flex;
+    overflow-x: auto;
+    gap: 2rem;
+    padding: 1.5rem 0.5rem 2.5rem 0.5rem;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+}
+
+.project-carousel::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+/* Project Card Styles */
+.project-card {
+    min-width: 300px;
+    max-width: 300px;
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    flex-shrink: 0; 
+}
+
+/* Micro-interaction: Hover Effect */
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border-color: var(--link-color);
+}
+
+.project-image-container {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    background-color: var(--hover-bg-color);
+}
+
+.project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Image Zoom on Hover */
+.project-card:hover .project-image {
+    transform: scale(1.05);
+}
+
+/* Overlay for Links */
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.project-link-icon {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.7rem;
+    border-radius: 50%;
+    transition: background 0.2s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.project-link-icon:hover {
+    background: var(--link-color);
+    transform: scale(1.1);
+    border-color: var(--link-color);
+}
+
+.project-content {
+    padding: 1.25rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.project-content h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: var(--heading-color);
+}
+
+.project-content p {
+    font-size: 0.85rem;
+    color: var(--subtle-text-color);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.project-tag {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    background-color: var(--education-tag-bg);
+    color: var(--education-tag-text);
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+/* --- CUSTOM PROJECT ICONS (TASK TRACKER) --- */
+
+.custom-icon-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0d1117; /* Terminal dark background */
+}
+
+.task-tracker-icon {
+    width: 64px;
+    height: 64px;
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .task-tracker-icon {
+    transform: scale(1.1);
+}
+
+/* Typing / Terminal Animations (Default: Hover Only) */
+.cursor-line {
+    opacity: 1;
+}
+
+.project-card:hover .cursor-line {
+    animation: blink-cursor 0.8s steps(2, start) infinite;
+}
+
+@keyframes blink-cursor {
+    to { opacity: 0; }
+}
+
+.checkmark-path {
+    stroke-dasharray: 10;
+    stroke-dashoffset: 10;
+}
+
+.project-card:hover .checkmark-path {
+    animation: draw-check 0.5s ease-out forwards;
+}
+
+@keyframes draw-check {
+    to { stroke-dashoffset: 0; }
+}
+
+/* --- AUTO-LOOP LOGIC FOR ALL PROJECTS PAGE --- */
+/* This block forces the animation to run infinitely on the Project Grid page only */
+
+.project-grid .cursor-line {
+    animation: blink-cursor 0.8s steps(2, start) infinite !important;
+}
+
+.project-grid .checkmark-path {
+    /* Draws checkmark, waits, then resets - 3s cycle */
+    animation: draw-check-loop 3s ease-in-out infinite !important;
+}
+
+@keyframes draw-check-loop {
+    0% { stroke-dashoffset: 10; opacity: 1; }
+    30% { stroke-dashoffset: 0; opacity: 1; } /* Drawn */
+    80% { stroke-dashoffset: 0; opacity: 1; } /* Stay Visible */
+    90% { stroke-dashoffset: 0; opacity: 0; } /* Fade out */
+    100% { stroke-dashoffset: 10; opacity: 0; } /* Reset position hidden */
+}
+
+
+/* Grid Layout for Projects Page */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    width: 100%;
+}
+
+.project-grid .project-card {
+    min-width: auto;
+    max-width: none;
+}
+
+/* Navigation Buttons (Arrows) */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4px);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    color: var(--heading-color);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.2s ease, background-color 0.2s;
+    pointer-events: none;
+}
+
+.carousel-wrapper:hover .carousel-btn {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.left-btn {
+    left: -20px;
+}
+
+.right-btn {
+    right: -20px;
+}
+
+.carousel-btn:hover {
+    background: var(--heading-color);
+    color: var(--bg-color);
+    transform: translateY(-50%) scale(1.1);
+}
+
+
+/* --- Skills Section Styles --- */
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: flex-start; /* Default left align for desktop */
+}
+
+/* Skill Card - Default White Style */
+.skill-card {
+    position: relative;
+    background-color: var(--education-tag-bg);
+    color: var(--text-color);
+    border: 1px solid var(--tag-border-color);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+    z-index: 1; 
+}
+
+.skill-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: var(--hover-bg-color);
+    border-color: var(--link-color);
+    z-index: 1000; 
+}
+
+/* --- New Animation: Pop, Zoom, Rotate, Trail --- */
+@keyframes skill-jump-trail {
+    0% {
+        transform: translateY(0) scale(1) rotate(0deg);
+        filter: none;
+    }
+    30% {
+        transform: translateY(-8px) scale(1.15) rotate(8deg);
+        /* The "Trail" effect using overlapping shadows */
+        filter: drop-shadow(-3px 3px 0px rgba(var(--link-color), 0.3))
+                drop-shadow(-6px 6px 0px rgba(var(--link-color), 0.15));
+    }
+    60% {
+        transform: translateY(-4px) scale(1.05) rotate(-4deg);
+        filter: drop-shadow(-2px 2px 0px rgba(var(--link-color), 0.3));
+    }
+    100% {
+        transform: translateY(0) scale(1) rotate(0deg);
+        filter: none;
+    }
+}
+
+/* Apply animation to the ICON on hover */
+.skill-card:hover .skill-icon {
+    animation: skill-jump-trail 0.7s ease-in-out;
+}
+
+
+.skill-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.skill-card svg.skill-icon {
+    stroke: var(--text-color);
+}
+
+/* --- Code Tooltip (Hover/Click) --- */
+.skill-tooltip {
+    position: absolute;
+    bottom: 130%; 
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 1rem;
+    width: max-content;
+    min-width: 200px;
+    max-width: 320px;
+    z-index: 9999;
+    
+    /* Animation */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    pointer-events: none;
+    text-align: left;
+}
+
+/* Arrow */
+.skill-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -6px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: #1e1e1e transparent transparent transparent;
+}
+
+/* Show Tooltip */
+.skill-card:hover .skill-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Code Styles */
+.skill-tooltip pre {
+    margin: 0;
+}
+
+.skill-tooltip code {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+/* Syntax Highlighting */
+.kwd { color: #569cd6; font-weight: bold; }
+.str { color: #ce9178; }
+.num { color: #b5cea8; }
+.type { color: #4ec9b0; }
+.func { color: #dcdcaa; }
+.cmt { color: #6a9955; font-style: italic; }
+
+
+/* --- Competitive Programming Links & Tooltips --- */
+
+.cp-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    object-fit: contain;
+    vertical-align: middle;
+}
+
+/* Ensure the link acts as a container for the absolute tooltip */
+.profile-links a.cp-card {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 1rem; 
+    border: 1px solid var(--tag-border-color); 
+    border-radius: 6px;
+    color: var(--text-color); 
+    transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+    text-decoration: none; 
+    font-weight: 700;
+}
+
+.profile-links a.cp-card:hover {
+    background-color: var(--hover-bg-color);
+    border-color: var(--link-color);
+    transform: translateY(-2px);
+    z-index: 10; /* Bring to front on hover */
+}
+
+/* --- The New Tooltip (For CP) --- */
+.cp-tooltip {
+    position: absolute;
+    bottom: 135%; /* Sits above the button */
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background-color: #1e1e1e; /* Dark background like skill popups */
+    color: #fff;
+    padding: 0.6rem 0.9rem;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-family: 'Space Mono', monospace;
+    white-space: nowrap;
+    
+    /* Flexbox for text + icon alignment */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    
+    /* Animation states */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    pointer-events: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Tooltip Arrow */
+.cp-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%; /* Bottom of tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #1e1e1e transparent transparent transparent;
+}
+
+/* Show Tooltip on Hover */
+.profile-links a.cp-card:hover .cp-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Mini Icon inside Tooltip */
+.cp-tooltip-icon {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+    /* Invert color to make icons white on the dark tooltip background */
+    filter: grayscale(100%) brightness(200%); 
+}
+
+
+/* --- Mail Popup & Copy Interaction --- */
+
+/* Wrapper for the mail icon to handle relative positioning */
+.mail-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* The Popup Card */
+.mail-popup {
+    position: absolute;
+    bottom: 140%; /* Sits above the icon */
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background-color: #1e1e1e;
+    color: #fff;
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #333;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    white-space: nowrap;
+    
+    /* Animation states */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    pointer-events: none; /* Prevent blocking clicks when hidden */
+    z-index: 2000; /* High Z-index */
+}
+
+/* FIX: The invisible bridge to prevent closing when crossing gap */
+.mail-popup::before {
+    content: "";
+    position: absolute;
+    top: 100%; /* Directly below the popup */
+    left: 0;
+    width: 100%;
+    height: 20px; /* Covers the distance to the icon */
+    background: transparent;
+}
+
+/* Tooltip Arrow */
+.mail-popup::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #1e1e1e transparent transparent transparent;
+}
+
+/* Show Popup on Hover */
+.mail-wrapper:hover .mail-popup {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto; /* Enable interaction */
+}
+
+/* Email Text */
+.mail-address {
+    font-size: 0.8rem;
+    font-family: 'Space Mono', monospace;
+    color: #d4d4d4;
+    user-select: all; /* Makes it easy to select manually too */
+}
+
+/* Copy Button */
+.copy-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background 0.2s;
+    color: #fff;
+}
+
+.copy-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.copy-btn:active {
+    transform: scale(0.95);
+}
+
+
+/* Dark Mode Adjustments */
+body.dark-mode .project-card:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+body.dark-mode .carousel-btn {
+    background: rgba(30, 30, 30, 0.8);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+body.dark-mode .carousel-btn:hover {
+    background: var(--text-color);
+    color: var(--bg-color);
+}
+
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    .card {
+        padding: 1rem 0;
+    }
+
+    .main-content {
+        flex-direction: column; 
+        text-align: center; 
+    }
+
+    .text-content, .bio, .header, .section h2, .cp-profiles {
+        text-align: center; 
+        align-items: center; 
+    }
+    
+    .location, .social-links, .profile-links, .action-links {
+        justify-content: center; 
+    }
+
+    h1 {
+        font-size: 2rem; 
+    }
+
+    .education-entry {
+        flex-direction: column; 
+        text-align: center;
+        gap: 0.5rem;
+    }
+
+    .education-year-tag { 
+        margin-left: 0; 
+        margin-top: 0.5rem;
+    }
+
+    .education-details {
+        text-align: center; 
+    }
+
+    /* Hide arrows on mobile */
+    .carousel-btn {
+        display: none;
+    }
+    .left-btn { left: 0; }
+    .right-btn { right: 0; }
+
+    /* --- Mobile Fixes for Skills --- */
+    
+    /* 1. Center the Skills Title and List */
+    .cp-title {
+        text-align: center;
+        width: 100%;
+    }
+
+    .skills-list {
+        justify-content: center;
+    }
+
+    /* 2. Fix Tooltip Overflow (Make it a Centered Modal) */
+    .skill-tooltip {
+        position: fixed; /* Fixed relative to screen */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        bottom: auto; /* Override default bottom positioning */
+        width: 85vw; /* 85% of screen width */
+        max-width: 350px;
+        white-space: normal; /* Allow text wrapping */
+        z-index: 9999;
+        
+        /* Deep Shadow + Backdrop to dim background */
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5), 0 0 0 100vh rgba(0,0,0,0.6);
+    }
+    
+    /* FIX: Disable card movement on mobile to prevent positioning bugs */
+    .skill-card:hover {
+        transform: none; /* Keep card in place so fixed tooltip calculates correctly */
+        /* Z-index 1000 is still inherited from above to stay on top */
+    }
+    
+    /* Disable the jump animation on mobile (distracting/broken with modal) */
+    .skill-card:hover .skill-icon {
+        animation: none;
+    }
+    
+    /* Override hover visibility transform for mobile modal */
+    .skill-card:hover .skill-tooltip {
+        transform: translate(-50%, -50%); /* Keep it centered */
+    }
+
+    /* Hide the little arrow on mobile since it's a floating modal */
+    .skill-tooltip::after {
+        display: none;
+    }
+}
+
+/* --- Toast Notification (Bottom Corner Popup) --- */
+.toast-notification {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--heading-color); /* Dark/Light contrast based on theme */
+    color: var(--bg-color); /* Inverted text color */
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 9999;
+    
+    /* Hidden State */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), visibility 0.3s;
+}
+
+/* Visible State (Toggled via JS) */
+.toast-notification.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Mobile Adjustment */
+@media (max-width: 768px) {
+    .toast-notification {
+        bottom: 20px;
+        right: 50%;
+        transform: translateX(50%) translateY(20px); /* Center horizontally on mobile */
+        width: max-content;
+    }
+    
+    .toast-notification.show {
+        transform: translateX(50%) translateY(0);
+    }
+}
+
+
+/* --- CUSTOM PROJECT ICON: ROOM CHAT --- */
+
+.room-chat-icon {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+}
+
+.rc-logo-text {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 900;
+    font-size: 25px;
+    fill: #ffffff;
+}
+
+.rc-container {
+    transition: transform 0.3s ease;
+}
+
+/* DEFAULT STATE: Visible (Solves the black screen issue) */
+.rc-letter {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
+/* Animation 1: Bounce In (Hover - Plays Once) */
+@keyframes rc-bounceIn {
+    0% { opacity: 0; transform: scale(0.3) translateY(20px); }
+    50% { opacity: 1; transform: scale(1.2) translateY(-10px); }
+    70% { transform: scale(0.9) translateY(5px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Animation 2: Bounce Loop (Grid - Infinite Cycle) */
+@keyframes rc-bounce-loop {
+    0%, 20% { opacity: 0; transform: scale(0.3) translateY(20px); } /* Wait invisible */
+    30% { opacity: 1; transform: scale(1.2) translateY(-10px); } /* Pop up */
+    40% { transform: scale(0.9) translateY(5px); }
+    50%, 90% { opacity: 1; transform: scale(1) translateY(0); } /* Stay visible */
+    100% { opacity: 0; transform: scale(0.3) translateY(20px); } /* Reset */
+}
+
+/* INTERACTION 1: HOVER (Main Page) */
+.project-card:hover .rc-container {
+    transform: rotate(0deg) scale(1.05);
+}
+
+/* FIX: Use longhand properties here. 
+   Using the 'animation' shorthand would reset 'animation-delay' to 0s, 
+   breaking the staggered effect.
+*/
+.project-card:hover .rc-letter {
+    animation-name: rc-bounceIn;
+    animation-duration: 0.6s;
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation-fill-mode: both; /* Ensures they hide instantly at start of hover */
+}
+
+/* INTERACTION 2: LOOP (Projects Page Grid) */
+.project-grid .rc-container {
+    transform: rotate(0deg) scale(1.05);
+}
+
+.project-grid .rc-letter {
+    animation-name: rc-bounce-loop;
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+}
+
+/* Stagger Delays (R to T) - These will now work correctly */
+.rc-letter:nth-child(1) { animation-delay: 0.0s; } /* R */
+.rc-letter:nth-child(2) { animation-delay: 0.1s; } /* O */
+.rc-letter:nth-child(3) { animation-delay: 0.2s; } /* O */
+.rc-letter:nth-child(4) { animation-delay: 0.3s; } /* M */
+.rc-letter:nth-child(5) { animation-delay: 0.4s; } /* C */
+.rc-letter:nth-child(6) { animation-delay: 0.5s; } /* H */
+.rc-letter:nth-child(7) { animation-delay: 0.6s; } /* A */
+.rc-letter:nth-child(8) { animation-delay: 0.7s; } /* T */
+
+
+
+
+
+/*============================================================================*/
+
+/* --- CUSTOM PROJECT ICON: FINTRACK (Next.js Minimalist) --- */
+
+.fintrack-icon {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+}
+
+.ft-container {
+    transition: transform 0.3s ease;
+}
+
+.ft-title {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 800; /* Bold/Black font weight for sleek look */
+    font-size: 28px;
+    fill: #ffffff;
+    letter-spacing: -1px; /* Tight tracking like Next.js headers */
+}
+
+/* Background Graph Line Setup */
+.ft-graph-line {
+    stroke-dasharray: 250;
+    stroke-dashoffset: 250; /* Hidden by default */
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+/* Background Money Symbols Setup */
+.ft-money-bg {
+    opacity: 0;
+    transform: translateY(10px);
+    font-family: 'Space Mono', monospace;
+}
+
+/* Letters Setup */
+.ft-letter {
+    opacity: 1;
+    transform: translateY(0);
+    display: inline-block;
+}
+
+/* --- ANIMATIONS --- */
+
+/* 1. Graph Drawing */
+@keyframes ft-draw-graph {
+    to { stroke-dashoffset: 0; }
+}
+
+/* 2. Money Floating */
+@keyframes ft-float-money {
+    0% { opacity: 0; transform: translateY(10px); }
+    50% { opacity: 0.3; transform: translateY(0px); }
+    100% { opacity: 0; transform: translateY(-10px); }
+}
+
+/* 3. Text Reveal (Sleek Slide Up) */
+@keyframes ft-slide-up {
+    0% { opacity: 0; transform: translateY(15px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Loop Animation for Grid (Cycle: 4s) */
+@keyframes ft-loop-sequence {
+    0%, 20% { opacity: 0; transform: translateY(15px); }
+    30%, 80% { opacity: 1; transform: translateY(0); } /* Stay visible */
+    90%, 100% { opacity: 0; transform: translateY(-10px); } /* Fade out up */
+}
+
+/* --- INTERACTION 1: HOVER (Main Page) --- */
+
+.project-card:hover .ft-container {
+    transform: scale(1.02); /* Subtle zoom */
+}
+
+/* Animate Graph */
+.project-card:hover .ft-graph-line {
+    animation: ft-draw-graph 1.5s ease forwards;
+}
+
+/* Animate Money Background */
+.project-card:hover .ft-money-bg {
+    animation: ft-float-money 2s ease-in-out infinite;
+}
+.project-card:hover .ft-money-bg:nth-child(1) { animation-delay: 0.1s; }
+.project-card:hover .ft-money-bg:nth-child(2) { animation-delay: 0.5s; }
+.project-card:hover .ft-money-bg:nth-child(3) { animation-delay: 0.3s; }
+
+/* Animate Text Letters (Staggered Slide) */
+.project-card:hover .ft-letter {
+    animation-name: ft-slide-up;
+    animation-duration: 0.4s;
+    animation-timing-function: cubic-bezier(0.2, 0.65, 0.3, 0.9);
+    animation-fill-mode: both;
+}
+
+
+/* --- INTERACTION 2: LOOP (Projects Page Grid) --- */
+
+.project-grid .ft-graph-line {
+    animation: ft-draw-graph 2s ease-in-out infinite alternate;
+}
+
+.project-grid .ft-money-bg {
+    animation: ft-float-money 3s ease-in-out infinite;
+}
+
+.project-grid .ft-letter {
+    animation-name: ft-loop-sequence;
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+}
+
+/* Stagger Delays for FinTrack Letters */
+.ft-letter:nth-child(1) { animation-delay: 0.00s; }
+.ft-letter:nth-child(2) { animation-delay: 0.05s; }
+.ft-letter:nth-child(3) { animation-delay: 0.10s; }
+.ft-letter:nth-child(4) { animation-delay: 0.15s; }
+.ft-letter:nth-child(5) { animation-delay: 0.20s; }
+.ft-letter:nth-child(6) { animation-delay: 0.25s; }
+.ft-letter:nth-child(7) { animation-delay: 0.30s; }
+.ft-letter:nth-child(8) { animation-delay: 0.35s; }
+
+
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    
+    /* ... (Your existing mobile styles if any) ... */
+
+
+    /* --- MOBILE ANIMATIONS: Force Loops (Auto-play) --- */
+    /* Since mobile has no hover, we trigger the 'Loop' animations defined earlier */
+
+    /* 1. ROOM CHAT: Continuous Bounce Loop */
+    .rc-letter {
+        animation-name: rc-bounce-loop !important;
+        animation-duration: 4s !important;
+        animation-iteration-count: infinite !important;
+        animation-timing-function: ease-in-out !important;
+        animation-fill-mode: both !important;
+    }
+    
+    /* Maintain the container scale/rotation */
+    .rc-container {
+        transform: scale(1.05); 
+    }
+
+    /* 2. FINTRACK: Continuous Graph & Money Loop */
+    .ft-letter {
+        animation-name: ft-loop-sequence !important;
+        animation-duration: 4s !important;
+        animation-iteration-count: infinite !important;
+        animation-timing-function: ease-in-out !important;
+        animation-fill-mode: both !important;
+    }
+
+    .ft-graph-line {
+        animation: ft-draw-graph 2s ease-in-out infinite alternate !important;
+        stroke-dashoffset: 0; /* Ensure visible */
+    }
+
+    .ft-money-bg {
+        animation: ft-float-money 3s ease-in-out infinite !important;
+    }
+
+    /* 3. TASK TRACKER: Continuous Cursor & Checkmark (Consistency) */
+    .cursor-line {
+        animation: blink-cursor 0.8s steps(2, start) infinite !important;
+    }
+
+    .checkmark-path {
+        animation: draw-check-loop 3s ease-in-out infinite !important;
+    }
+}
+
+
+/* --- Rich Media Log Styles --- */
+
+/* Ensure the log text container handles spacing for mixed HTML */
+.log-text {
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+/* Headings inside logs */
+.log-full h4, .log-text h4 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--heading-color);
+    border-bottom: 1px solid var(--border-color);
+    display: inline-block;
+    padding-bottom: 4px;
+}
+
+/* Images inside logs */
+.log-img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin: 1rem 0;
+    border: 1px solid var(--border-color);
+    display: block;
+}
+
+.img-caption {
+    display: block;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--subtle-text-color);
+    margin-top: -0.5rem;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}
+
+/* Bullet Points & Lists */
+.log-full ul, .log-full ol, 
+.log-text ul, .log-text ol {
+    margin: 0.5rem 0 1rem 1.2rem;
+    padding-left: 1rem;
+}
+
+.log-full li, .log-text li {
+    margin-bottom: 0.5rem;
+}
+
+/* Audio Player Wrapper */
+.audio-wrapper {
+    width: 100%;
+    margin: 1rem 0;
+}
+
+/* --- CUSTOM PROJECT ICON: GOSHRT (Updated) --- */
+
+.goshrt-icon {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+}
+
+.gs-container {
+    transition: transform 0.3s ease;
+}
+
+/* 1. Packet Animation (Background) */
+.gs-packet {
+    opacity: 0;
+}
+
+/* Packets loop infinitely on Grid/Hover */
+.project-card:hover .gs-packet,
+.project-grid .gs-packet {
+    animation: gs-transmit 2s linear infinite;
+}
+
+/* Stagger the packets */
+.p1 { animation-delay: 0s; }
+.p2 { animation-delay: 1s; }
+
+@keyframes gs-transmit {
+    0% { transform: translateX(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateX(240px); opacity: 0; }
+}
+
+/* 2. Bar Shrinking Animation */
+.gs-bar {
+    width: 200px; /* Start Long */
+    fill: url(#gs-grad);
+    transition: width 0.3s ease, fill 0.3s ease, x 0.3s ease;
+}
+
+/* 3. Text Swapping Animation */
+.gs-text {
+    pointer-events: none;
+}
+.gs-text-long { opacity: 1; }
+.gs-text-short { opacity: 0; }
+
+
+/* --- ANIMATION SEQUENCES --- */
+
+/* Keyframes: Shrink Bar & Change Color */
+@keyframes gs-shrink-bar {
+    0%, 20% { width: 200px; x: -100px; fill: url(#gs-grad); }
+    40%, 80% { width: 80px; x: -40px; fill: #ef4444; } /* Red for Redis/Short */
+    100% { width: 200px; x: -100px; fill: url(#gs-grad); }
+}
+
+/* Keyframes: Hide Long Text */
+@keyframes gs-hide-long {
+    0%, 20% { opacity: 1; transform: scale(1); }
+    30%, 100% { opacity: 0; transform: scale(0.8); }
+}
+
+/* Keyframes: Show Short Text */
+@keyframes gs-show-short {
+    0%, 30% { opacity: 0; transform: scale(0.8); }
+    40%, 80% { opacity: 1; transform: scale(1); }
+    90%, 100% { opacity: 0; transform: scale(0.8); }
+}
+
+
+/* --- TRIGGERS --- */
+
+/* Interaction 1: Hover (Main Page) */
+.project-card:hover .gs-container {
+    transform: scale(1.02);
+}
+
+.project-card:hover .gs-bar {
+    animation: gs-shrink-bar 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.project-card:hover .gs-text-long {
+    animation: gs-hide-long 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.project-card:hover .gs-text-short {
+    animation: gs-show-short 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+
+/* Interaction 2: Loop (Projects Page Grid) */
+/* Force animations to run on the grid view */
+.project-grid .gs-bar {
+    animation: gs-shrink-bar 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.project-grid .gs-text-long {
+    animation: gs-hide-long 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.project-grid .gs-text-short {
+    animation: gs-show-short 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Mobile: Force Loop */
+@media (max-width: 768px) {
+    .gs-bar, .gs-text-long, .gs-text-short, .gs-packet {
+        animation-play-state: running !important;
+    }
+    
+    /* Apply animations directly if not triggered by hover on mobile */
+    .gs-bar { animation: gs-shrink-bar 3s cubic-bezier(0.4, 0, 0.2, 1) infinite !important; }
+    .gs-text-long { animation: gs-hide-long 3s cubic-bezier(0.4, 0, 0.2, 1) infinite !important; }
+    .gs-text-short { animation: gs-show-short 3s cubic-bezier(0.4, 0, 0.2, 1) infinite !important; }
+    .gs-packet { animation: gs-transmit 2s linear infinite !important; }
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+}
+
+/* Blog Card: Matches .log-entry style */
+.blog-card {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s, background-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    border-color: var(--link-color);
+    background-color: var(--hover-bg-color);
+}
+
+.blog-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+
+.blog-date {
+    font-size: 0.8rem;
+    color: var(--subtle-text-color);
+    font-family: 'Space Mono', monospace;
+}
+
+/* Tiny tags for the card */
+.blog-tags {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.blog-tag {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+    background-color: var(--education-tag-bg);
+    color: var(--education-tag-text);
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.blog-card h3 {
+    margin: 0 0 0.8rem 0;
+    font-size: 1.1rem;
+    color: var(--heading-color);
+    line-height: 1.4;
+}
+
+.blog-card p {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+    flex-grow: 1; /* Pushes the 'Read Article' link to the bottom */
+}
+
+.read-link {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--link-color);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.blog-card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Fills the parent <a> tag */
+}
+
+
+/* --- CUSTOM PROJECT ICON: HTTP PROXY WEBSERVER --- */
+
+.proxy-icon {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+}
+
+.px-container {
+    transition: transform 0.3s ease;
+}
+
+.px-pkt {
+    opacity: 0;
+}
+
+/* Base Packet movement (Left to Right) */
+@keyframes px-move-right {
+    0% { transform: translateX(0); opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { transform: translateX(50px); opacity: 0; }
+}
+
+/* Cache Hit movement (Right to Left) */
+@keyframes px-move-left {
+    0% { transform: translateX(0); opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { transform: translateX(-50px); opacity: 0; }
+}
+
+/* Pulse effect for the Proxy Cache */
+@keyframes px-pulse {
+    0%, 100% { stroke: #58a6ff; }
+    50% { stroke: #2ea043; filter: drop-shadow(0 0 4px #2ea043); }
+}
+
+/* --- INTERACTION 1: HOVER (Main Page) --- */
+.project-card:hover .px-container {
+    transform: scale(1.02);
+}
+.project-card:hover .px-pkt-in { 
+    animation: px-move-right 2s cubic-bezier(0.4, 0, 0.2, 1) infinite; 
+}
+.project-card:hover .px-pkt-miss { 
+    animation: px-move-right 2s cubic-bezier(0.4, 0, 0.2, 1) infinite; 
+    animation-delay: 0.5s; 
+}
+.project-card:hover .px-pkt-out { 
+    animation: px-move-left 2s cubic-bezier(0.4, 0, 0.2, 1) infinite; 
+    animation-delay: 1.2s; 
+}
+.project-card:hover .px-box { 
+    animation: px-pulse 2s ease-in-out infinite; 
+    animation-delay: 1.2s; 
+}
+
+/* --- INTERACTION 2: LOOP (Projects Page Grid) --- */
+.project-grid .px-container {
+    transform: scale(1.02);
+}
+.project-grid .px-pkt-in { 
+    animation: px-move-right 2s cubic-bezier(0.4, 0, 0.2, 1) infinite; 
+}
+.project-grid .px-pkt-miss { 
+    animation: px-move-right 2s cubic-bezier(0.4, 0, 0.2, 1) infinite; 
+    animation-delay: 0.5s; 
+}
+.project-grid .px-pkt-out { 
+    animation: px-move-left 2s cubic-bezier(0.4, 0, 0.2, 1) infinite; 
+    animation-delay: 1.2s; 
+}
+.project-grid .px-box { 
+    animation: px-pulse 2s ease-in-out infinite; 
+    animation-delay: 1.2s; 
+}
+
+/* --- MOBILE ANIMATIONS: Force Loops (Auto-play) --- */
+@media (max-width: 768px) {
+    .px-pkt-in { 
+        animation: px-move-right 2s cubic-bezier(0.4, 0, 0.2, 1) infinite !important; 
+    }
+    .px-pkt-miss { 
+        animation: px-move-right 2s cubic-bezier(0.4, 0, 0.2, 1) infinite !important; 
+        animation-delay: 0.5s !important; 
+    }
+    .px-pkt-out { 
+        animation: px-move-left 2s cubic-bezier(0.4, 0, 0.2, 1) infinite !important; 
+        animation-delay: 1.2s !important; 
+    }
+    .px-box { 
+        animation: px-pulse 2s ease-in-out infinite !important; 
+        animation-delay: 1.2s !important; 
+    }
+}

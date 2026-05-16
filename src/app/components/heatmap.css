@@ -1,0 +1,211 @@
+/* heatmap.css */
+.heatmap-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  /* Hide native scrollbar */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.heatmap-wrapper::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+.heatmap-grid {
+  display: grid;
+  grid-template-rows: repeat(7, 1fr);
+  grid-auto-flow: column;
+  gap: 4px; /* tighter modern spacing */
+  width: max-content;
+}
+
+@keyframes cellPop {
+  0% { transform: scale(0); opacity: 0; }
+  80% { transform: scale(1.2); opacity: 0.9; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.heatmap-cell {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  background-color: rgba(255,255,255,0.04);
+  cursor: pointer;
+  position: relative;
+  opacity: 0;
+  animation: cellPop 0.35s ease forwards;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.heatmap-cell:hover {
+  transform: scale(1.4);
+  box-shadow: 0 0 8px rgba(255,255,255,0.6);
+  z-index: 10;
+}
+
+/* Tooltip */
+.heatmap-cell .tooltip {
+  visibility: hidden;
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s, bottom 0.2s;
+  pointer-events: none;
+  border: 1px solid #333;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.heatmap-cell:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+  bottom: 130%;
+}
+
+/* Theme: Gym (Neon Green/Teal) */
+.theme-gym .level-1 { background-color: #0e4429; box-shadow: 0 0 3px #0e4429; }
+.theme-gym .level-2 { background-color: #006d32; box-shadow: 0 0 6px #006d32; }
+.theme-gym .level-3 { background-color: #26a641; box-shadow: 0 0 9px #26a641; }
+.theme-gym .level-4 { background-color: #39d353; box-shadow: 0 0 12px #39d353; }
+
+/* Theme: Cooking (Warm Orange/Red) */
+.theme-cooking .level-1 { background-color: #591b05; box-shadow: 0 0 3px #591b05; }
+.theme-cooking .level-2 { background-color: #933405; box-shadow: 0 0 6px #933405; }
+.theme-cooking .level-3 { background-color: #d85c13; box-shadow: 0 0 9px #d85c13; }
+.theme-cooking .level-4 { background-color: #ff7b00; box-shadow: 0 0 12px #ff7b00; }
+
+.heatmap-stats {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1rem;
+  padding: 1.2rem;
+  background: var(--hover-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  backdrop-filter: blur(4px);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--heading-color);
+  font-family: 'Space Mono', monospace;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--subtle-text-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+
+@keyframes slideInHeatmap {
+  from { opacity: 0; transform: translateY(10px) scale(0.8); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.heatmap-cell {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.05);
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  position: relative;
+  opacity: 0;
+  animation: slideInHeatmap 0.4s ease forwards;
+}
+
+.heatmap-cell:hover {
+  transform: scale(1.4);
+  z-index: 10;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+}
+
+/* Tooltip */
+.heatmap-cell .tooltip {
+  visibility: hidden;
+  position: absolute;
+  bottom: 180%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #111;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s, bottom 0.2s;
+  pointer-events: none;
+  z-index: 20;
+  border: 1px solid #333;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.heatmap-cell:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+  bottom: 150%;
+}
+
+/* Theme: Gym (Neon Green/Teal) */
+.theme-gym .level-1 { background-color: #0e4429; box-shadow: 0 0 2px #0e4429; }
+.theme-gym .level-2 { background-color: #006d32; box-shadow: 0 0 5px #006d32; }
+.theme-gym .level-3 { background-color: #26a641; box-shadow: 0 0 8px #26a641; }
+.theme-gym .level-4 { background-color: #39d353; box-shadow: 0 0 12px #39d353; }
+
+/* Theme: Cooking (Orange/Red) */
+.theme-cooking .level-1 { background-color: #591b05; box-shadow: 0 0 2px #591b05; }
+.theme-cooking .level-2 { background-color: #933405; box-shadow: 0 0 5px #933405; }
+.theme-cooking .level-3 { background-color: #d85c13; box-shadow: 0 0 8px #d85c13; }
+.theme-cooking .level-4 { background-color: #ff7b00; box-shadow: 0 0 12px #ff7b00; }
+
+.heatmap-stats {
+  display: flex;
+  gap: 3rem;
+  margin-top: 1rem;
+  padding: 1.5rem;
+  background: var(--hover-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--heading-color);
+  margin-bottom: 0.2rem;
+  font-family: 'Space Mono', monospace;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--subtle-text-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
