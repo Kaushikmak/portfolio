@@ -66,7 +66,7 @@ export default function Home() {
         <h2>Get in Touch</h2>
         <p>
           Want to chat? Just drop your message on{" "}
-          <a href="https://x.com/tstytaco" target="_blank" rel="noopener noreferrer">twitter</a>
+          <a href="https://x.com/tasytaco" target="_blank" rel="noopener noreferrer">twitter</a>
         </p>
       </footer>
 

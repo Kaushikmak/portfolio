@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kaushik Portfolio (Next.js + Convex)
 
-## Getting Started
+This repository contains the migrated portfolio site built with Next.js App Router and Convex.
 
-First, run the development server:
+## What changed from the old portfolio
+
+- The old static site files are preserved in `old_portfolio/`.
+- The new active app lives in `src/app/`.
+- Dynamic sections such as projects and learning logs are now served from Convex.
+
+## Tech stack
+
+- Next.js `16`
+- React `19`
+- TypeScript
+- Convex (database + backend functions)
+
+## Routes
+
+- `/` - home (profile, skills, projects preview, life log)
+- `/projects` - complete projects listing
+- `/learning` - learning/life log feed
+- `/hobbies` - hobbies page
+- `/gym` - gym log page
+- `/cooking` - cooking/recipes page
+
+## Local development
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Start Next.js dev server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. In another terminal, run Convex dev:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npx convex dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Open `http://localhost:3000`
 
-## Learn More
+## Convex setup notes
 
-To learn more about Next.js, take a look at the following resources:
+- This project expects `NEXT_PUBLIC_CONVEX_URL` and `CONVEX_DEPLOYMENT` in `.env.local`.
+- Schema is defined in `convex/schema.ts`.
+- Read queries are in `convex/queries.ts`.
+- Seed data is in `convex/seed.ts`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Build and run
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run build
+npm run start
+```
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Recommended deployment target is Vercel for the Next.js app, with Convex as the backend.
