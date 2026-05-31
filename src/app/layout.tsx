@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "TastyTaco",
   description: "Engineering student building systems, backend tools, and learning computer science through projects.",
   authors: [{ name: "Kaushik" }], // the username or generic
+  icons: {
+    icon: "/pf2.png",
+  },
   openGraph: {
     title: "TastyTaco",
     description: "Engineering student building systems, backend tools, and learning computer science through projects.",
