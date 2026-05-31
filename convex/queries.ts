@@ -133,3 +133,48 @@ export const getBlogs = query({
     return await ctx.db.query("blogs").withIndex("by_order").take(100);
   },
 });
+
+export const getCookingLogs = query({
+  args: {},
+  handler: async (ctx) => {
+    return await ctx.db.query("cookingLogs").withIndex("by_order").take(100);
+  },
+});
+
+export const getGymActivity = query({
+  args: {},
+  handler: async (ctx) => {
+    return await ctx.db.query("gymActivity").withIndex("by_date").order("desc").take(365);
+  },
+});
+
+export const getGymRoutines = query({
+  args: {},
+  handler: async (ctx) => {
+    return await ctx.db.query("gymRoutines").withIndex("by_order").take(20);
+  },
+});
+
+export const getTechBlogs = query({
+  args: {},
+  handler: async (ctx) => {
+    return await ctx.db
+      .query("techBlogs")
+      .withIndex("by_date")
+      .order("desc")
+      .filter((q) => q.eq(q.field("isPublished"), true))
+      .take(100);
+  },
+});
+
+export const getTechBlogBySlug = query({
+  args: {
+    slug: v.string(),
+  },
+  handler: async (ctx, args) => {
+    return await ctx.db
+      .query("techBlogs")
+      .withIndex("by_slug", (q) => q.eq("slug", args.slug))
+      .first();
+  },
+});

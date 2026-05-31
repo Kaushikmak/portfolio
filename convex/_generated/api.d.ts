@@ -8,10 +8,12 @@
  * @module
  */
 
+import type * as adminMutations from "../adminMutations.js";
 import type * as learningAdmin from "../learningAdmin.js";
 import type * as learningMigrations from "../learningMigrations.js";
 import type * as queries from "../queries.js";
 import type * as seed from "../seed.js";
+import type * as techBlogsAdmin from "../techBlogsAdmin.js";
 
 import type {
   ApiFromModules,
@@ -20,10 +22,12 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  adminMutations: typeof adminMutations;
   learningAdmin: typeof learningAdmin;
   learningMigrations: typeof learningMigrations;
   queries: typeof queries;
   seed: typeof seed;
+  techBlogsAdmin: typeof techBlogsAdmin;
 }>;
 
 /**

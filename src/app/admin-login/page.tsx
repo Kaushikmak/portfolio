@@ -30,16 +30,16 @@ export default function AdminLoginPage() {
       return;
     }
 
-    router.push("/learning/admin");
+    router.push("/admin");
     router.refresh();
   };
 
   return (
     <div className="card learning-journal-page">
-      <Link href="/learning" className="back-link">&larr; Back to Life Log</Link>
+      <Link href="/" className="back-link">&larr; Back to Home</Link>
       <div className="section" style={{ maxWidth: 520, width: "100%" }}>
         <h2>Admin Sign In</h2>
-        <p className="subtitle">Private area for managing weekly journal entries.</p>
+        <p className="subtitle">Private area for managing portfolio content.</p>
         <form onSubmit={onSubmit} className="journal-admin-form">
           <label>
             Username

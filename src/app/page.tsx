@@ -13,6 +13,7 @@ import Link from "next/link";
 export default function Home() {
   const projects = useQuery(api.queries.getProjects) || [];
   const latestLearningLog = useQuery(api.queries.getLatestLearningLog);
+  const latestTechBlog = useQuery(api.queries.getTechBlogs)?.[0];
 
   return (
     <>
@@ -39,18 +40,44 @@ export default function Home() {
         </div>
 
         <div className="section">
+          <h2>Quick Tech Bytes</h2>
+          <p className="subtitle" suppressHydrationWarning>
+            Short technical thoughts, snippets, and mini-guides.
+          </p>
+          <div className="tech-blogs-grid" style={{ display: "flex", flexDirection: "column", gap: "1rem", marginTop: "1rem" }}>
+            {latestTechBlog ? (
+              <Link href={`/tech-blogs/${latestTechBlog.slug}`} style={{ textDecoration: "none" }}>
+                <article className="journal-card compact" style={{ cursor: "pointer", transition: "transform 0.2s ease" }}>
+                  <div className="journal-content" style={{ padding: "1.2rem" }}>
+                    <p className="journal-meta">{latestTechBlog.date}</p>
+                    <h3 style={{ margin: "0.4rem 0", color: "var(--text)" }}>{latestTechBlog.title}</h3>
+                    {latestTechBlog.summary && <p style={{ color: "var(--text-muted)", margin: "0.4rem 0 0.8rem 0", fontSize: "0.9rem" }}>{latestTechBlog.summary}</p>}
+                    <span className="journal-link" style={{ marginTop: 0 }}>Read Snippet</span>
+                  </div>
+                </article>
+              </Link>
+            ) : (
+              <p>No tech bytes yet.</p>
+            )}
+          </div>
+          <div className="view-more-container">
+            <Link href="/tech-blogs" className="view-more-button">View All Tech Bytes</Link>
+          </div>
+        </div>
+
+        <div className="section">
           <h2>Life Log</h2>
           <div id="latest-learning-log" className="learning-log">
             {latestLearningLog && <WeeklyLogPreview entry={latestLearningLog} />}
           </div>
           <div className="view-more-container">
-            <Link href="/learning" className="view-more-button">View All Entries</Link>
+            <Link href="/learning" className="view-more-button">View Weekly Logs</Link>
           </div>
         </div>
 
         <div className="section">
           <h2>Hobbies</h2>
-          <p style={{ color: "var(--subtle-text-color)", marginBottom: "1.5rem" }}>
+          <p className="subtitle" suppressHydrationWarning>
             What I do when I am not staring at a terminal. Games, movies, and other distractions.
           </p>
           <div className="view-more-container">

@@ -51,4 +51,34 @@ export default defineSchema({
     tags: v.array(v.string()),
     order: v.number(),
   }).index("by_order", ["order"]),
+
+  cookingLogs: defineTable({
+    title: v.string(),
+    description: v.string(),
+    image: v.string(),
+    order: v.number(),
+  }).index("by_order", ["order"]),
+
+  techBlogs: defineTable({
+    title: v.string(),
+    summary: v.optional(v.string()),
+    content: v.string(),
+    date: v.string(),
+    slug: v.string(),
+    tags: v.optional(v.array(v.string())),
+    isPublished: v.optional(v.boolean()),
+  })
+    .index("by_date", ["date"])
+    .index("by_slug", ["slug"]),
+
+  gymActivity: defineTable({
+    date: v.string(), // "YYYY-MM-DD"
+    count: v.number(),
+  }).index("by_date", ["date"]),
+
+  gymRoutines: defineTable({
+    day: v.string(), // "Push", "Pull", "Legs"
+    exercises: v.array(v.string()), // ["Bench Press: 3x8", ...]
+    order: v.number(),
+  }).index("by_order", ["order"]),
 });

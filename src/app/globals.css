@@ -507,6 +507,12 @@ body.dark-mode .theme-toggle-button .sun-icon {
     padding: 0 1rem;
 }
 
+@media (max-width: 768px) {
+    .journal-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
 .journal-sidebar, .journal-main {
     padding: 1rem;
 }
@@ -2097,4 +2103,26 @@ body.dark-mode .carousel-btn:hover {
         animation: px-pulse 2s ease-in-out infinite !important; 
         animation-delay: 1.2s !important; 
     }
+}
+
+/* --- Tech Blog Code Blocks --- */
+.tech-blog-content pre {
+    background: var(--card-bg-elevated, #1a1b26);
+    border-radius: 8px;
+    padding: 16px;
+    overflow-x: auto;
+    font-family: monospace;
+    border: 1px solid var(--border-color, #333);
+    margin: 1.5rem 0;
+    color: var(--skill-text-color, #a9b1d6);
+    line-height: 1.5;
+}
+
+.tech-blog-content code {
+    font-family: monospace;
+    font-size: 0.9em;
+}
+
+.tech-blog-content pre code {
+    font-size: 0.95em;
 }

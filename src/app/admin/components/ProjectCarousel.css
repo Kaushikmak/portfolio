@@ -1,0 +1,14 @@
+.carousel-btn {
+  background: var(--button-bg);
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.carousel-btn:hover {
+  transform: rotate(360deg);
+}
+.carousel-btn:active {
+  transform: scale(0.9);
+}

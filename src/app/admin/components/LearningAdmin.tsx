@@ -163,15 +163,8 @@ export default function LearningAdminPage() {
   };
 
   return (
-    <div className="card learning-journal-page learning-admin-page">
-      <div className="section" style={{ width: "100%" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <h2>Weekly Journal Admin</h2>
-          <div style={{ display: "flex", gap: 10 }}>
-            <Link href="/learning" className="view-more-button">View Life Log</Link>
-            <button className="view-more-button" onClick={logout}>Sign Out</button>
-          </div>
-        </div>
+    <div className="card learning-journal-page learning-admin-page" style={{ padding: 0, marginTop: 0 }}>
+      <div className="section" style={{ width: "100%", marginTop: 0, padding: 0 }}>
 
         <div className="journal-layout" style={{ padding: 0, marginTop: 12 }}>
           <aside className="journal-sidebar" style={{ paddingLeft: 0 }}>
