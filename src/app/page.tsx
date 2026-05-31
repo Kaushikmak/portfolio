@@ -41,21 +41,18 @@ export default function Home() {
 
         <div className="section">
           <h2>Quick Tech Bytes</h2>
-          <p className="subtitle" suppressHydrationWarning>
-            Short technical thoughts, snippets, and mini-guides.
-          </p>
           <div className="tech-blogs-grid" style={{ display: "flex", flexDirection: "column", gap: "1rem", marginTop: "1rem" }}>
             {latestTechBlog ? (
-              <Link href={`/tech-blogs/${latestTechBlog.slug}`} style={{ textDecoration: "none" }}>
-                <article className="journal-card compact" style={{ cursor: "pointer", transition: "transform 0.2s ease" }}>
-                  <div className="journal-content" style={{ padding: "1.2rem" }}>
-                    <p className="journal-meta">{latestTechBlog.date}</p>
-                    <h3 style={{ margin: "0.4rem 0", color: "var(--text)" }}>{latestTechBlog.title}</h3>
-                    {latestTechBlog.summary && <p style={{ color: "var(--text-muted)", margin: "0.4rem 0 0.8rem 0", fontSize: "0.9rem" }}>{latestTechBlog.summary}</p>}
-                    <span className="journal-link" style={{ marginTop: 0 }}>Read Snippet</span>
-                  </div>
-                </article>
-              </Link>
+              <article className="journal-card compact">
+                <div className="journal-content" style={{ padding: "1.2rem" }}>
+                  <p className="journal-meta">{latestTechBlog.date}</p>
+                  <h3 style={{ margin: "0.4rem 0", color: "var(--text)" }}>{latestTechBlog.title}</h3>
+                  {latestTechBlog.summary && <p style={{ color: "var(--text-muted)", margin: "0.4rem 0 0.8rem 0", fontSize: "0.9rem" }}>{latestTechBlog.summary}</p>}
+                  <Link href={`/tech-blogs/${latestTechBlog.slug}`} style={{ textDecoration: "none" }}>
+                    <span className="journal-link" style={{ marginTop: 0 }}>Read Blog</span>
+                  </Link>
+                </div>
+              </article>
             ) : (
               <p>No tech bytes yet.</p>
             )}
