@@ -37,9 +37,6 @@ export default function TechBlogsPage() {
         <div className="section journal-header">
           <div className="log-header">
             <h1 style={{ fontSize: "3rem", marginBottom: "0.5rem" }}>Tech Blogs</h1>
-            <p className="subtitle" style={{ fontSize: "1.1rem", color: "var(--subtle-text-color)" }}>
-              Detailed write-ups on backend architecture, distributed systems, and algorithms.
-            </p>
           </div>
         </div>
 
