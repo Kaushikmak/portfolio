@@ -36,12 +36,12 @@ export default function TechBlogsPage() {
         
         <div className="section journal-header">
           <div className="log-header">
-            <h1 style={{ fontSize: "3rem", marginBottom: "0.5rem" }}>Tech Blogs</h1>
+            <h1 className="tech-blogs-title">Tech Blogs</h1>
           </div>
         </div>
 
         <div className="journal-layout" style={{ marginTop: "3rem", alignItems: "start" }}>
-          <aside className="journal-sidebar" style={{ position: "sticky", top: "2rem" }}>
+          <aside className="journal-sidebar">
             <h3 style={{ marginBottom: "1rem" }}>Search</h3>
             <input 
               type="text" 
@@ -89,8 +89,8 @@ export default function TechBlogsPage() {
                   <article className="journal-card" style={{ cursor: "pointer", transition: "transform 0.2s ease, box-shadow 0.2s ease" }}>
                     <div className="journal-content" style={{ padding: "1.8rem" }}>
                       <p className="journal-meta" style={{ fontSize: "0.9rem" }}>{blog.date}</p>
-                      <h2 style={{ margin: "0.8rem 0", color: "var(--heading-color)", fontSize: "1.6rem" }}>{blog.title}</h2>
-                      {blog.summary && <p style={{ color: "var(--subtle-text-color)", margin: "0.5rem 0 1.2rem 0", fontSize: "1rem", lineHeight: 1.6 }}>{blog.summary}</p>}
+                      <h2 className="journal-card-title" style={{ margin: "0.8rem 0", color: "var(--heading-color)" }}>{blog.title}</h2>
+                      {blog.summary && <p className="journal-summary-text" style={{ color: "var(--subtle-text-color)", margin: "0.5rem 0 1.2rem 0", lineHeight: 1.6 }}>{blog.summary}</p>}
                       {blog.tags && blog.tags.length > 0 && (
                         <div style={{ display: "flex", gap: "0.6rem", flexWrap: "wrap", marginBottom: "1.2rem" }}>
                           {blog.tags.map(tag => (

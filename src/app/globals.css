@@ -511,9 +511,38 @@ body.dark-mode .theme-toggle-button .sun-icon {
     .journal-layout {
         grid-template-columns: 1fr;
     }
+    .journal-sidebar {
+        position: static !important;
+        padding: 0 1rem 1rem 1rem !important;
+    }
+    .tech-blogs-title {
+        font-size: 2rem !important;
+    }
+    .journal-card-title {
+        font-size: 1.3rem !important;
+    }
 }
 
-.journal-sidebar, .journal-main {
+.tech-blogs-title {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.journal-card-title {
+    font-size: 1.6rem;
+}
+
+.journal-summary-text {
+    font-size: 1rem;
+}
+
+.journal-sidebar {
+    padding: 1rem;
+    position: sticky;
+    top: 2rem;
+}
+
+.journal-main {
     padding: 1rem;
 }
 
