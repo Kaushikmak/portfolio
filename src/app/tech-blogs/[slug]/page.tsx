@@ -13,23 +13,23 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
-  
+
   const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
   const blog = await convex.query(api.queries.getTechBlogBySlug, { slug });
 
   if (!blog) {
     return {
-      title: "Blog Not Found | Techbyts",
+      title: "Blog Not Found | Techbits",
     };
   }
 
   // Create a plain text description from content
   const plainTextDescription = blog.content
     ? blog.content.replace(/<[^>]+>/g, '').substring(0, 160) + "..."
-    : "Read this tech blog on Techbyts.";
+    : "Read this tech blog on Techbits.";
 
   return {
-    title: `${blog.title} | Techbyts`,
+    title: `${blog.title} | Techbits`,
     description: plainTextDescription,
     openGraph: {
       title: blog.title,
