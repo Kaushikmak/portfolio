@@ -7,10 +7,9 @@ import ThemeToggle from "../../components/ThemeToggle";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
-export default function TechBlogDetail() {
-  const params = useParams();
-  const slug = params?.slug as string;
-  const blog = useQuery(api.queries.getTechBlogBySlug, slug ? { slug } : "skip");
+export default function TechBlogDetail({ slug, initialBlog }: { slug: string, initialBlog?: any }) {
+  const convexBlog = useQuery(api.queries.getTechBlogBySlug, slug ? { slug } : "skip");
+  const blog = convexBlog ?? initialBlog;
   const blogs = useQuery(api.queries.getTechBlogs) ?? [];
   const router = useRouter();
 
@@ -18,8 +17,7 @@ export default function TechBlogDetail() {
   const previousBlog = currentIndex !== -1 && currentIndex < blogs.length - 1 ? blogs[currentIndex + 1] : null;
   const nextBlog = currentIndex > 0 ? blogs[currentIndex - 1] : null;
 
-  if (blog === undefined) return <div className="card learning-journal-page"><p>Loading...</p></div>;
-  if (blog === null) return <div className="card learning-journal-page"><p>Blog not found.</p></div>;
+  if (!blog) return <div className="card learning-journal-page"><p>Blog not found.</p></div>;
 
   return (
     <>

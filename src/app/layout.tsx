@@ -4,11 +4,13 @@ import ConvexClientProvider from "./ConvexClientProvider";
 import { ThemeProvider } from "./ThemeProvider";
 
 export const metadata: Metadata = {
-  title: "TastyTaco",
+  metadataBase: new URL('https://www.kaushik-gupta.com'),
+  title: "Kaushik Gupta Portfolio",
   description: "Engineering student building systems, backend tools, and learning computer science through projects.",
   authors: [{ name: "Kaushik" }], // the username or generic
   icons: {
     icon: "/pf2.png",
+    apple: "/pf2.png",
   },
   openGraph: {
     title: "TastyTaco",
