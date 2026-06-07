@@ -46,7 +46,7 @@ export default function TechBlogDetail({ slug, initialBlog }: { slug: string, in
                 <h1 style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>{blog.title}</h1>
                 {blog.tags && blog.tags.length > 0 && (
                   <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginTop: "1rem" }}>
-                    {blog.tags.map(tag => (
+                    {blog.tags.map((tag: string) => (
                       <span key={tag} style={{ background: "var(--primary-light)", color: "var(--primary)", padding: "4px 10px", borderRadius: "12px", fontSize: "0.85rem", fontWeight: "bold" }}>
                         {tag}
                       </span>
