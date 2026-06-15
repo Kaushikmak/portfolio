@@ -20,6 +20,13 @@ export const listAllWeeklyLogs = query({
   },
 });
 
+export const deleteWeeklyLog = mutation({
+  args: { id: v.id("learningLogs") },
+  handler: async (ctx, args) => {
+    await ctx.db.delete(args.id);
+  },
+});
+
 export const upsertWeeklyLog = mutation({
   args: {
     existingId: v.optional(v.id("learningLogs")),

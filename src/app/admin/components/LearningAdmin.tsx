@@ -25,6 +25,7 @@ type WeeklyLog = {
 export default function LearningAdminPage() {
   const logs = useQuery(api.learningAdmin.listAllWeeklyLogs) ?? [];
   const upsert = useMutation(api.learningAdmin.upsertWeeklyLog);
+  const deleteLog = useMutation(api.learningAdmin.deleteWeeklyLog);
 
   const [selectedId, setSelectedId] = useState<Id<"learningLogs"> | null>(null);
 
@@ -115,6 +116,14 @@ export default function LearningAdminPage() {
     });
 
     setStatus("Saved successfully.");
+  };
+
+  const handleDelete = async () => {
+    if (!selectedId) return;
+    if (!confirm("Are you sure you want to delete this weekly log?")) return;
+    await deleteLog({ id: selectedId });
+    resetForNew();
+    setStatus("Log deleted successfully.");
   };
 
   const fileToDataUrl = (file: File) =>
@@ -214,6 +223,9 @@ export default function LearningAdminPage() {
               </label>
               <label>HTML Content<textarea rows={16} value={content} onChange={(e) => setContent(e.target.value)} /></label>
               <button className="view-more-button" onClick={save}>Save Week</button>
+              {selectedId && (
+                <button className="view-more-button" style={{ backgroundColor: "#ff4444", marginTop: "8px" }} onClick={handleDelete}>Delete Week</button>
+              )}
               {status && <p style={{ margin: 0 }}>{status}</p>}
             </div>
 
