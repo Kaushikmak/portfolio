@@ -41,6 +41,7 @@ export default function LearningAdminPage() {
   const [tags, setTags] = useState("");
   const [galleryJson, setGalleryJson] = useState("[]");
   const [status, setStatus] = useState<string | null>(null);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
   let previewGallery: { src: string; alt: string; caption?: string }[] = [];
   let previewGalleryError = "";
@@ -118,10 +119,15 @@ export default function LearningAdminPage() {
     setStatus("Saved successfully.");
   };
 
-  const handleDelete = async () => {
+  const handleDeleteClick = () => {
     if (!selectedId) return;
-    if (!confirm("Are you sure you want to delete this weekly log?")) return;
+    setShowDeleteConfirm(true);
+  };
+
+  const confirmDelete = async () => {
+    if (!selectedId) return;
     await deleteLog({ id: selectedId });
+    setShowDeleteConfirm(false);
     resetForNew();
     setStatus("Log deleted successfully.");
   };
@@ -224,7 +230,7 @@ export default function LearningAdminPage() {
               <label>HTML Content<textarea rows={16} value={content} onChange={(e) => setContent(e.target.value)} /></label>
               <button className="view-more-button" onClick={save}>Save Week</button>
               {selectedId && (
-                <button className="view-more-button" style={{ backgroundColor: "#ff4444", marginTop: "8px" }} onClick={handleDelete}>Delete Week</button>
+                <button className="view-more-button" style={{ backgroundColor: "#ff4444", marginTop: "8px", color: "white" }} onClick={handleDeleteClick}>Delete Week</button>
               )}
               {status && <p style={{ margin: 0 }}>{status}</p>}
             </div>
@@ -268,6 +274,26 @@ export default function LearningAdminPage() {
           </main>
         </div>
       </div>
+
+      {showDeleteConfirm && (
+        <div style={{
+          position: "fixed", top: 0, left: 0, right: 0, bottom: 0,
+          backgroundColor: "rgba(0,0,0,0.6)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 9999
+        }}>
+          <div style={{
+            background: "var(--bg-card, #111)", padding: "24px", borderRadius: "12px", border: "1px solid var(--border)",
+            maxWidth: "400px", width: "90%", textAlign: "center", boxShadow: "0 10px 30px rgba(0,0,0,0.5)"
+          }}>
+            <h3 style={{ marginTop: 0, fontSize: "1.5rem" }}>Delete Week?</h3>
+            <p style={{ color: "var(--text-secondary)", marginBottom: "24px" }}>Are you sure you want to delete this weekly log? This action cannot be undone.</p>
+            <div style={{ display: "flex", gap: "12px", justifyContent: "center" }}>
+              <button className="view-more-button" style={{ background: "transparent", flex: 1 }} onClick={() => setShowDeleteConfirm(false)}>Cancel</button>
+              <button className="view-more-button" style={{ background: "#ff4444", color: "white", borderColor: "#ff4444", flex: 1 }} onClick={confirmDelete}>Delete</button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
