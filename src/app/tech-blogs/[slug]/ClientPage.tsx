@@ -39,6 +39,7 @@ export default function TechBlogDetail({ slug, initialBlog }: { slug: string, in
             </div>
           </aside>
 
+
           <main className="journal-main">
             <article className="journal-detail tech-blog-content" style={{ marginTop: 0 }}>
               <div className="journal-header" style={{ marginBottom: "2rem", borderBottom: "1px solid var(--border)", paddingBottom: "2rem" }}>
