@@ -72,17 +72,27 @@ export default function TechBlogsAdmin() {
     setStatus("Saved successfully.");
   };
 
-  const handleDeleteClick = () => {
+  const handleDeleteClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (selectedId) setShowDeleteConfirm(true);
   };
 
-  const confirmDelete = async () => {
+  const confirmDelete = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (selectedId) {
       await deleteBlog({ id: selectedId });
       setShowDeleteConfirm(false);
       resetForNew();
       setStatus("Deleted successfully.");
     }
+  };
+
+  const cancelDelete = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowDeleteConfirm(false);
   };
 
   return (
@@ -116,8 +126,8 @@ export default function TechBlogsAdmin() {
           <label>HTML Content<textarea rows={16} value={content} onChange={(e) => setContent(e.target.value)} /></label>
           
           <div style={{ display: "flex", gap: "10px" }}>
-            <button className="view-more-button" onClick={save}>Save Blog</button>
-            {selectedId && <button className="view-more-button" style={{ background: "red", color: "white", borderColor: "red" }} onClick={handleDeleteClick}>Delete</button>}
+            <button type="button" className="view-more-button" onClick={(e) => { e.preventDefault(); save(); }}>Save Blog</button>
+            {selectedId && <button type="button" className="view-more-button" style={{ background: "red", color: "white", borderColor: "red" }} onClick={handleDeleteClick}>Delete</button>}
           </div>
           {status && <p style={{ margin: 0 }}>{status}</p>}
         </div>
@@ -138,15 +148,12 @@ export default function TechBlogsAdmin() {
           position: "fixed", top: 0, left: 0, right: 0, bottom: 0,
           backgroundColor: "rgba(0,0,0,0.6)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 9999
         }}>
-          <div style={{
-            background: "var(--bg-card, #111)", padding: "24px", borderRadius: "12px", border: "1px solid var(--border)",
-            maxWidth: "400px", width: "90%", textAlign: "center", boxShadow: "0 10px 30px rgba(0,0,0,0.5)"
-          }}>
+          <div className="card" style={{ maxWidth: "400px", width: "90%", textAlign: "center", margin: 0, padding: "24px", position: "relative" }}>
             <h3 style={{ marginTop: 0, fontSize: "1.5rem" }}>Delete Blog?</h3>
-            <p style={{ color: "var(--text-secondary)", marginBottom: "24px" }}>Are you sure you want to delete this blog? This action cannot be undone.</p>
+            <p style={{ color: "var(--subtle-text-color, #888)", marginBottom: "24px" }}>Are you sure you want to delete this blog? This action cannot be undone.</p>
             <div style={{ display: "flex", gap: "12px", justifyContent: "center" }}>
-              <button className="view-more-button" style={{ background: "transparent", flex: 1 }} onClick={() => setShowDeleteConfirm(false)}>Cancel</button>
-              <button className="view-more-button" style={{ background: "#ff4444", color: "white", borderColor: "#ff4444", flex: 1 }} onClick={confirmDelete}>Delete</button>
+              <button type="button" className="view-more-button" style={{ background: "transparent", color: "var(--text-color, white)", flex: 1 }} onClick={cancelDelete}>Cancel</button>
+              <button type="button" className="view-more-button" style={{ background: "#ff4444", color: "white", borderColor: "#ff4444", flex: 1 }} onClick={confirmDelete}>Delete</button>
             </div>
           </div>
         </div>

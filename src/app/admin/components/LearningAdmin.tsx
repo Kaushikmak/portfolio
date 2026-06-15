@@ -119,17 +119,27 @@ export default function LearningAdminPage() {
     setStatus("Saved successfully.");
   };
 
-  const handleDeleteClick = () => {
+  const handleDeleteClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (!selectedId) return;
     setShowDeleteConfirm(true);
   };
 
-  const confirmDelete = async () => {
+  const confirmDelete = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (!selectedId) return;
     await deleteLog({ id: selectedId });
     setShowDeleteConfirm(false);
     resetForNew();
     setStatus("Log deleted successfully.");
+  };
+
+  const cancelDelete = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowDeleteConfirm(false);
   };
 
   const fileToDataUrl = (file: File) =>
@@ -228,9 +238,9 @@ export default function LearningAdminPage() {
                 />
               </label>
               <label>HTML Content<textarea rows={16} value={content} onChange={(e) => setContent(e.target.value)} /></label>
-              <button className="view-more-button" onClick={save}>Save Week</button>
+              <button type="button" className="view-more-button" onClick={(e) => { e.preventDefault(); save(); }}>Save Week</button>
               {selectedId && (
-                <button className="view-more-button" style={{ backgroundColor: "#ff4444", marginTop: "8px", color: "white" }} onClick={handleDeleteClick}>Delete Week</button>
+                <button type="button" className="view-more-button" style={{ backgroundColor: "#ff4444", marginTop: "8px", color: "white" }} onClick={handleDeleteClick}>Delete Week</button>
               )}
               {status && <p style={{ margin: 0 }}>{status}</p>}
             </div>
@@ -280,15 +290,12 @@ export default function LearningAdminPage() {
           position: "fixed", top: 0, left: 0, right: 0, bottom: 0,
           backgroundColor: "rgba(0,0,0,0.6)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 9999
         }}>
-          <div style={{
-            background: "var(--bg-card, #111)", padding: "24px", borderRadius: "12px", border: "1px solid var(--border)",
-            maxWidth: "400px", width: "90%", textAlign: "center", boxShadow: "0 10px 30px rgba(0,0,0,0.5)"
-          }}>
+          <div className="card" style={{ maxWidth: "400px", width: "90%", textAlign: "center", margin: 0, padding: "24px", position: "relative" }}>
             <h3 style={{ marginTop: 0, fontSize: "1.5rem" }}>Delete Week?</h3>
-            <p style={{ color: "var(--text-secondary)", marginBottom: "24px" }}>Are you sure you want to delete this weekly log? This action cannot be undone.</p>
+            <p style={{ color: "var(--subtle-text-color, #888)", marginBottom: "24px" }}>Are you sure you want to delete this weekly log? This action cannot be undone.</p>
             <div style={{ display: "flex", gap: "12px", justifyContent: "center" }}>
-              <button className="view-more-button" style={{ background: "transparent", flex: 1 }} onClick={() => setShowDeleteConfirm(false)}>Cancel</button>
-              <button className="view-more-button" style={{ background: "#ff4444", color: "white", borderColor: "#ff4444", flex: 1 }} onClick={confirmDelete}>Delete</button>
+              <button type="button" className="view-more-button" style={{ background: "transparent", color: "var(--text-color, white)", flex: 1 }} onClick={cancelDelete}>Cancel</button>
+              <button type="button" className="view-more-button" style={{ background: "#ff4444", color: "white", borderColor: "#ff4444", flex: 1 }} onClick={confirmDelete}>Delete</button>
             </div>
           </div>
         </div>
