@@ -85,11 +85,18 @@ export default function Home() {
       </div>
 
       <footer className="get-in-touch">
-        <h2>Get in Touch</h2>
-        <p>
-          Want to chat? Just drop your message on{" "}
-          <a href="https://x.com/tstytaco" target="_blank" rel="noopener noreferrer">twitter</a>
-        </p>
+        <div className="footer-bg-container">
+          <img src="/footer2.png" alt="Footer decoration" className="footer-tree-img" />
+        </div>
+        <div className="get-in-touch-content">
+          <h2>Get in Touch</h2>
+          <p style={{ marginBottom: "1.5rem" }}>
+            Want to chat? Just drop your message on twitter.
+          </p>
+          <a href="https://x.com/tstytaco" target="_blank" rel="noopener noreferrer" className="view-more-button" style={{ display: "inline-block" }}>
+            Message on Twitter
+          </a>
+        </div>
       </footer>
 
       <ThemeToggle />

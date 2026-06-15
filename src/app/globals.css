@@ -271,26 +271,60 @@ h1 {
 }
 
 .get-in-touch {
-    width: 100%;
+    position: relative;
+    width: calc(100% + 2rem);
+    margin-left: -1rem;
+    margin-right: -1rem;
     text-align: center;
     margin-top: 4rem;
-    padding: 2rem 0;
+    padding: 2rem 0; /* Reduced padding since aspect-ratio will govern height */
+    aspect-ratio: 4 / 1;
+    min-height: 250px; /* Ensure content fits on mobile */
+    background-color: white; /* Enforced white background for image */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-bg-container {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.footer-tree-img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    object-position: left bottom;
+    display: block;
+}
+
+.get-in-touch-content {
+    position: relative;
+    z-index: 2;
 }
 
 .get-in-touch h2 {
     font-size: 1.8rem;
     font-weight: 700;
-    color: var(--heading-color);
+    color: #111; /* Enforced dark text on white bg */
     margin-bottom: 1rem;
 }
 
 .get-in-touch p {
-    color: var(--subtle-text-color);
+    color: #444; /* Enforced dark text on white bg */
     margin: 0;
 }
 
 .get-in-touch a {
-    color: var(--link-color); 
+    color: var(--primary); /* Keeps theme primary color, or explicitly blue if preferred */
     text-decoration: underline;
     font-weight: 700;
 }
