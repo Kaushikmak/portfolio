@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import { useMutation, useQuery } from "convex/react";
+import { useState, useRef } from "react";
+import { useMutation, useQuery, useConvex } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { Id } from "../../../../convex/_generated/dataModel";
+import Editor from "@monaco-editor/react";
 
 type TechBlog = {
   _id: Id<"techBlogs">;
@@ -20,6 +21,8 @@ export default function TechBlogsAdmin() {
   const blogs = useQuery(api.techBlogsAdmin.listAllTechBlogs) ?? [];
   const upsert = useMutation(api.techBlogsAdmin.upsertTechBlog);
   const deleteBlog = useMutation(api.techBlogsAdmin.deleteTechBlog);
+  const generateUploadUrl = useMutation(api.techBlogsAdmin.generateUploadUrl);
+  const convex = useConvex();
 
   const [selectedId, setSelectedId] = useState<Id<"techBlogs"> | null>(null);
 
@@ -32,6 +35,94 @@ export default function TechBlogsAdmin() {
   const [isPublished, setIsPublished] = useState(true);
   const [status, setStatus] = useState<string | null>(null);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+
+  const [showImageDialog, setShowImageDialog] = useState(false);
+  const [showVideoDialog, setShowVideoDialog] = useState(false);
+  const [showXDialog, setShowXDialog] = useState(false);
+  const [mediaUrl, setMediaUrl] = useState("");
+  const [isUploading, setIsUploading] = useState(false);
+  
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [editorRef, setEditorRef] = useState<any>(null);
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleEditorDidMount = (editor: any) => {
+    setEditorRef(editor);
+  };
+
+  const insertHtml = (htmlSnippet: string) => {
+    if (editorRef) {
+      const selection = editorRef.getSelection();
+      const id = { major: 1, minor: 1 };
+      const op = { identifier: id, range: selection, text: htmlSnippet, forceMoveMarkers: true };
+      editorRef.executeEdits("my-source", [op]);
+      setContent(editorRef.getValue());
+      editorRef.focus();
+    } else {
+      setContent((prev) => prev + "\n" + htmlSnippet);
+    }
+  };
+
+  const handleAddImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (!mediaUrl) return;
+    insertHtml(`<img src="${mediaUrl}" alt="Blog Image" style="max-width: 100%; border-radius: 8px; margin: 16px 0;" />`);
+    setShowImageDialog(false);
+    setMediaUrl("");
+  };
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    try {
+      setIsUploading(true);
+      const postUrl = await generateUploadUrl();
+      const result = await fetch(postUrl, {
+        method: "POST",
+        headers: { "Content-Type": file.type },
+        body: file,
+      });
+      
+      const { storageId } = await result.json();
+      
+      const url = await convex.query(api.techBlogsAdmin.getFileUrl, { storageId });
+      if (url) {
+        setMediaUrl(url);
+      }
+    } catch (error) {
+      console.error("Upload failed", error);
+      alert("Failed to upload image.");
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
+  const handleAddVideo = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (!mediaUrl) return;
+    insertHtml(`<video controls src="${mediaUrl}" style="max-width: 100%; border-radius: 8px; margin: 16px 0;"></video>`);
+    setShowVideoDialog(false);
+    setMediaUrl("");
+  };
+
+  const handleAddXPost = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (!mediaUrl) return;
+    insertHtml(`<blockquote class="twitter-tweet"><a href="${mediaUrl}"></a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`);
+    setShowXDialog(false);
+    setMediaUrl("");
+  };
+
+  const closeMediaDialog = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setShowImageDialog(false);
+    setShowVideoDialog(false);
+    setShowXDialog(false);
+    setMediaUrl("");
+  };
 
   const loadIntoForm = (blog: TechBlog) => {
     setSelectedId(blog._id);
@@ -119,11 +210,38 @@ export default function TechBlogsAdmin() {
             <label>Date<input type="date" value={date} onChange={(e) => setDate(e.target.value)} /></label>
             <label>Tags (comma separated)<input value={tags} onChange={(e) => setTags(e.target.value)} /></label>
           </div>
-          <label style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer" }}>
+          <label style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", marginBottom: 8 }}>
             <input type="checkbox" checked={isPublished} onChange={(e) => setIsPublished(e.target.checked)} style={{ width: "auto" }} />
             Published
           </label>
-          <label>HTML Content<textarea rows={16} value={content} onChange={(e) => setContent(e.target.value)} /></label>
+          
+          <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 16 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
+              <label style={{ margin: 0 }}>HTML Content</label>
+              <div style={{ display: "flex", gap: "8px" }}>
+                <button type="button" className="view-more-button" style={{ padding: "4px 8px", fontSize: "0.85rem", background: "transparent", color: "var(--text-color, white)" }} onClick={(e) => { e.preventDefault(); setShowImageDialog(true); }}>+ Image</button>
+                <button type="button" className="view-more-button" style={{ padding: "4px 8px", fontSize: "0.85rem", background: "transparent", color: "var(--text-color, white)" }} onClick={(e) => { e.preventDefault(); setShowVideoDialog(true); }}>+ Video</button>
+                <button type="button" className="view-more-button" style={{ padding: "4px 8px", fontSize: "0.85rem", background: "transparent", color: "var(--text-color, white)" }} onClick={(e) => { e.preventDefault(); setShowXDialog(true); }}>+ X Post</button>
+              </div>
+            </div>
+            <div style={{ height: "600px", border: "1px solid var(--border-color, #333)", borderRadius: "8px", overflow: "hidden" }}>
+              <Editor
+                height="100%"
+                defaultLanguage="html"
+                theme="vs-dark"
+                value={content}
+                onChange={(val) => setContent(val || "")}
+                onMount={handleEditorDidMount}
+                options={{
+                  wordWrap: "on",
+                  minimap: { enabled: false },
+                  formatOnPaste: true,
+                  tabSize: 2,
+                  padding: { top: 16, bottom: 16 }
+                }}
+              />
+            </div>
+          </div>
           
           <div style={{ display: "flex", gap: "10px" }}>
             <button type="button" className="view-more-button" onClick={(e) => { e.preventDefault(); save(); }}>Save Blog</button>
@@ -148,12 +266,67 @@ export default function TechBlogsAdmin() {
           position: "fixed", top: 0, left: 0, right: 0, bottom: 0,
           backgroundColor: "rgba(0,0,0,0.6)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 9999
         }}>
-          <div className="card" style={{ maxWidth: "400px", width: "90%", textAlign: "center", margin: 0, padding: "24px", position: "relative" }}>
+          <div className="card" style={{ maxWidth: "400px", width: "90%", textAlign: "center", margin: 0, padding: "24px", position: "relative", background: "var(--bg-color)", border: "1px solid var(--border-color)", borderRadius: "12px", boxShadow: "0 8px 30px rgba(0,0,0,0.3)" }}>
             <h3 style={{ marginTop: 0, fontSize: "1.5rem" }}>Delete Blog?</h3>
             <p style={{ color: "var(--subtle-text-color, #888)", marginBottom: "24px" }}>Are you sure you want to delete this blog? This action cannot be undone.</p>
             <div style={{ display: "flex", gap: "12px", justifyContent: "center" }}>
               <button type="button" className="view-more-button" style={{ background: "transparent", color: "var(--text-color, white)", flex: 1 }} onClick={cancelDelete}>Cancel</button>
               <button type="button" className="view-more-button" style={{ background: "#ff4444", color: "white", borderColor: "#ff4444", flex: 1 }} onClick={confirmDelete}>Delete</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {(showImageDialog || showVideoDialog || showXDialog) && (
+        <div style={{
+          position: "fixed", top: 0, left: 0, right: 0, bottom: 0,
+          backgroundColor: "rgba(0,0,0,0.6)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 9999
+        }}>
+          <div className="card" style={{ maxWidth: "400px", width: "90%", margin: 0, padding: "24px", position: "relative", background: "var(--bg-color)", border: "1px solid var(--border-color)", borderRadius: "12px", boxShadow: "0 8px 30px rgba(0,0,0,0.3)" }}>
+            <h3 style={{ marginTop: 0, fontSize: "1.2rem", marginBottom: "8px" }}>
+              {showImageDialog ? "Insert Image" : showVideoDialog ? "Insert Video" : "Insert X (Twitter) Post"}
+            </h3>
+            <p style={{ color: "var(--subtle-text-color, #888)", marginBottom: "16px", fontSize: "0.9rem" }}>
+              {showImageDialog 
+                ? "Paste an image URL below, or upload one from your device."
+                : showVideoDialog
+                ? "Paste a video URL below, or upload one from your device."
+                : "Paste the URL below. For X posts, paste the full link to the tweet."}
+            </p>
+            
+            <input 
+              type="text" 
+              placeholder="https://..." 
+              value={mediaUrl} 
+              onChange={(e) => setMediaUrl(e.target.value)} 
+              style={{ width: "100%", marginBottom: "16px", padding: "12px", background: "var(--bg-color)", color: "var(--text-color)", border: "1px solid var(--border-color)", borderRadius: "8px" }}
+              autoFocus
+            />
+
+            {(showImageDialog || showVideoDialog) && (
+              <div style={{ marginBottom: "24px", display: "flex", alignItems: "center", gap: "12px" }}>
+                <input 
+                  type="file" 
+                  accept={showImageDialog ? "image/*" : "video/*"}
+                  onChange={handleFileUpload}
+                  ref={fileInputRef}
+                  style={{ display: "none" }}
+                />
+                <button 
+                  type="button" 
+                  className="view-more-button" 
+                  onClick={() => fileInputRef.current?.click()}
+                  style={{ flex: 1, background: "var(--bg-color)", border: "1px dashed var(--border-color)", color: "var(--text-color)" }}
+                  disabled={isUploading}
+                >
+                  {isUploading ? "Uploading..." : "Upload from Device"}
+                </button>
+              </div>
+            )}
+            
+            <div style={{ display: "flex", gap: "12px", justifyContent: "flex-end", marginTop: (!showImageDialog && !showVideoDialog) ? "24px" : "0", width: "100%" }}>
+              <button type="button" className="view-more-button" style={{ background: "transparent", color: "var(--text-color)" }} onClick={closeMediaDialog}>Cancel</button>
+              <button type="button" className="view-more-button" onClick={showImageDialog ? handleAddImage : showVideoDialog ? handleAddVideo : handleAddXPost} disabled={!mediaUrl && !isUploading}>Insert</button>
             </div>
           </div>
         </div>
