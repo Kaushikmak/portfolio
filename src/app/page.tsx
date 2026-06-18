@@ -86,7 +86,7 @@ export default function Home() {
 
       <footer className="get-in-touch">
         <div className="footer-bg-container">
-          <img src="/footer2.png" alt="Footer decoration" className="footer-tree-img" />
+          <img src="/footer_transparent.png" alt="Footer decoration" className="footer-tree-img" />
         </div>
         <div className="get-in-touch-content">
           <h2>Get in Touch</h2>

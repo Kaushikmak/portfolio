@@ -280,7 +280,7 @@ h1 {
     padding: 2rem 0; /* Reduced padding since aspect-ratio will govern height */
     aspect-ratio: 4 / 1;
     min-height: 250px; /* Ensure content fits on mobile */
-    background-color: white; /* Enforced white background for image */
+    background-color: transparent; /* Use transparent background */
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -314,12 +314,12 @@ h1 {
 .get-in-touch h2 {
     font-size: 1.8rem;
     font-weight: 700;
-    color: #111; /* Enforced dark text on white bg */
+    color: var(--heading-color);
     margin-bottom: 1rem;
 }
 
 .get-in-touch p {
-    color: #444; /* Enforced dark text on white bg */
+    color: var(--text-color);
     margin: 0;
 }
 
