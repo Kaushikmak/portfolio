@@ -6,6 +6,9 @@ import { useParams, useRouter } from "next/navigation";
 import ThemeToggle from "../../components/ThemeToggle";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import "katex/dist/katex.min.css";
+// @ts-expect-error - No types available for auto-render
+import renderMathInElement from "katex/dist/contrib/auto-render";
 
 export default function TechBlogDetail({ slug, initialBlog }: { slug: string, initialBlog?: any }) {
   const convexBlog = useQuery(api.queries.getTechBlogBySlug, slug ? { slug } : "skip");
@@ -24,6 +27,15 @@ export default function TechBlogDetail({ slug, initialBlog }: { slug: string, in
     
     const container = document.querySelector('.journal-body');
     if (!container) return;
+
+    renderMathInElement(container as HTMLElement, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false},
+        {left: '\\(', right: '\\)', display: false},
+        {left: '\\[', right: '\\]', display: true}
+      ]
+    });
     
     const handleImageClick = (e: Event) => {
       const target = e.target as HTMLElement;

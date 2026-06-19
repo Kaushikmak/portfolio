@@ -1,11 +1,14 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useMutation, useQuery, useConvex } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { Id } from "../../../../convex/_generated/dataModel";
 import Editor from "@monaco-editor/react";
 import { useAdminToken } from "../AdminTokenProvider";
+import "katex/dist/katex.min.css";
+// @ts-expect-error - No types available for auto-render
+import renderMathInElement from "katex/dist/contrib/auto-render";
 
 type TechBlog = {
   _id: Id<"techBlogs">;
@@ -53,6 +56,20 @@ export default function TechBlogsAdmin() {
   const handleEditorDidMount = (editor: any) => {
     setEditorRef(editor);
   };
+
+  useEffect(() => {
+    const container = document.querySelector('.journal-live-preview .journal-body');
+    if (!container) return;
+    
+    renderMathInElement(container as HTMLElement, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false},
+        {left: '\\(', right: '\\)', display: false},
+        {left: '\\[', right: '\\]', display: true}
+      ]
+    });
+  }, [content, title, summary, date]);
 
   const insertHtml = (htmlSnippet: string) => {
     if (editorRef) {
