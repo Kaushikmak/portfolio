@@ -4,6 +4,7 @@ import { v } from "convex/values";
 // ----- Projects -----
 export const upsertProject = mutation({
   args: {
+    token: v.string(),
     id: v.optional(v.id("projects")),
     projectId: v.string(),
     title: v.string(),
@@ -17,6 +18,9 @@ export const upsertProject = mutation({
     order: v.number(),
   },
   handler: async (ctx, args) => {
+    if (args.token !== process.env.ADMIN_SESSION_SECRET) {
+      throw new Error("Unauthorized");
+    }
     const payload = {
       projectId: args.projectId,
       title: args.title,
@@ -38,8 +42,11 @@ export const upsertProject = mutation({
 });
 
 export const deleteProject = mutation({
-  args: { id: v.id("projects") },
+  args: { id: v.id("projects"), token: v.string() },
   handler: async (ctx, args) => {
+    if (args.token !== process.env.ADMIN_SESSION_SECRET) {
+      throw new Error("Unauthorized");
+    }
     await ctx.db.delete(args.id);
   },
 });
@@ -47,6 +54,7 @@ export const deleteProject = mutation({
 // ----- Cooking Logs -----
 export const upsertCookingLog = mutation({
   args: {
+    token: v.string(),
     id: v.optional(v.id("cookingLogs")),
     title: v.string(),
     description: v.string(),
@@ -54,6 +62,9 @@ export const upsertCookingLog = mutation({
     order: v.number(),
   },
   handler: async (ctx, args) => {
+    if (args.token !== process.env.ADMIN_SESSION_SECRET) {
+      throw new Error("Unauthorized");
+    }
     const payload = {
       title: args.title,
       description: args.description,
@@ -69,8 +80,11 @@ export const upsertCookingLog = mutation({
 });
 
 export const deleteCookingLog = mutation({
-  args: { id: v.id("cookingLogs") },
+  args: { id: v.id("cookingLogs"), token: v.string() },
   handler: async (ctx, args) => {
+    if (args.token !== process.env.ADMIN_SESSION_SECRET) {
+      throw new Error("Unauthorized");
+    }
     await ctx.db.delete(args.id);
   },
 });
@@ -78,11 +92,15 @@ export const deleteCookingLog = mutation({
 // ----- Gym Activity -----
 export const upsertGymActivity = mutation({
   args: {
+    token: v.string(),
     id: v.optional(v.id("gymActivity")),
     date: v.string(),
     count: v.number(),
   },
   handler: async (ctx, args) => {
+    if (args.token !== process.env.ADMIN_SESSION_SECRET) {
+      throw new Error("Unauthorized");
+    }
     const payload = {
       date: args.date,
       count: args.count,
@@ -96,8 +114,11 @@ export const upsertGymActivity = mutation({
 });
 
 export const deleteGymActivity = mutation({
-  args: { id: v.id("gymActivity") },
+  args: { id: v.id("gymActivity"), token: v.string() },
   handler: async (ctx, args) => {
+    if (args.token !== process.env.ADMIN_SESSION_SECRET) {
+      throw new Error("Unauthorized");
+    }
     await ctx.db.delete(args.id);
   },
 });
@@ -105,12 +126,16 @@ export const deleteGymActivity = mutation({
 // ----- Gym Routines -----
 export const upsertGymRoutine = mutation({
   args: {
+    token: v.string(),
     id: v.optional(v.id("gymRoutines")),
     day: v.string(),
     exercises: v.array(v.string()),
     order: v.number(),
   },
   handler: async (ctx, args) => {
+    if (args.token !== process.env.ADMIN_SESSION_SECRET) {
+      throw new Error("Unauthorized");
+    }
     const payload = {
       day: args.day,
       exercises: args.exercises,
@@ -125,8 +150,11 @@ export const upsertGymRoutine = mutation({
 });
 
 export const deleteGymRoutine = mutation({
-  args: { id: v.id("gymRoutines") },
+  args: { id: v.id("gymRoutines"), token: v.string() },
   handler: async (ctx, args) => {
+    if (args.token !== process.env.ADMIN_SESSION_SECRET) {
+      throw new Error("Unauthorized");
+    }
     await ctx.db.delete(args.id);
   },
 });

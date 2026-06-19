@@ -4,8 +4,10 @@ import { useState } from "react";
 import { useMutation, useQuery } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { Id } from "../../../../convex/_generated/dataModel";
+import { useAdminToken } from "../AdminTokenProvider";
 
 export default function CookingAdmin() {
+  const token = useAdminToken();
   const logs = useQuery(api.queries.getCookingLogs) ?? [];
   const upsert = useMutation(api.adminMutations.upsertCookingLog);
   const remove = useMutation(api.adminMutations.deleteCookingLog);
@@ -38,6 +40,7 @@ export default function CookingAdmin() {
   const save = async () => {
     setStatus(null);
     await upsert({
+      token,
       id: selectedId ?? undefined,
       title,
       description,
@@ -49,7 +52,7 @@ export default function CookingAdmin() {
 
   const handleDelete = async () => {
     if (selectedId && confirm("Are you sure you want to delete this recipe?")) {
-      await remove({ id: selectedId });
+      await remove({ id: selectedId, token });
       resetForNew();
       setStatus("Deleted successfully.");
     }

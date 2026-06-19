@@ -10,6 +10,7 @@ export const listAllTechBlogs = query({
 
 export const upsertTechBlog = mutation({
   args: {
+    token: v.string(),
     existingId: v.optional(v.id("techBlogs")),
     title: v.string(),
     summary: v.optional(v.string()),
@@ -20,7 +21,10 @@ export const upsertTechBlog = mutation({
     isPublished: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
-    const { existingId, ...data } = args;
+    if (args.token !== process.env.ADMIN_SESSION_SECRET) {
+      throw new Error("Unauthorized");
+    }
+    const { existingId, token, ...data } = args;
     if (existingId) {
       await ctx.db.patch(existingId, data);
       return existingId;
@@ -33,15 +37,22 @@ export const upsertTechBlog = mutation({
 export const deleteTechBlog = mutation({
   args: {
     id: v.id("techBlogs"),
+    token: v.string(),
   },
   handler: async (ctx, args) => {
+    if (args.token !== process.env.ADMIN_SESSION_SECRET) {
+      throw new Error("Unauthorized");
+    }
     await ctx.db.delete(args.id);
   },
 });
 
 export const generateUploadUrl = mutation({
-  args: {},
-  handler: async (ctx) => {
+  args: { token: v.string() },
+  handler: async (ctx, args) => {
+    if (args.token !== process.env.ADMIN_SESSION_SECRET) {
+      throw new Error("Unauthorized");
+    }
     return await ctx.storage.generateUploadUrl();
   },
 });

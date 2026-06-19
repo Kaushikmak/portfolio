@@ -5,6 +5,7 @@ import { useMutation, useQuery, useConvex } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { Id } from "../../../../convex/_generated/dataModel";
 import Editor from "@monaco-editor/react";
+import { useAdminToken } from "../AdminTokenProvider";
 
 type TechBlog = {
   _id: Id<"techBlogs">;
@@ -18,6 +19,7 @@ type TechBlog = {
 };
 
 export default function TechBlogsAdmin() {
+  const token = useAdminToken();
   const blogs = useQuery(api.techBlogsAdmin.listAllTechBlogs) ?? [];
   const upsert = useMutation(api.techBlogsAdmin.upsertTechBlog);
   const deleteBlog = useMutation(api.techBlogsAdmin.deleteTechBlog);
@@ -79,7 +81,7 @@ export default function TechBlogsAdmin() {
 
     try {
       setIsUploading(true);
-      const postUrl = await generateUploadUrl();
+      const postUrl = await generateUploadUrl({ token });
       const result = await fetch(postUrl, {
         method: "POST",
         headers: { "Content-Type": file.type },
@@ -151,6 +153,7 @@ export default function TechBlogsAdmin() {
   const save = async () => {
     setStatus(null);
     await upsert({
+      token,
       existingId: selectedId ?? undefined,
       title,
       summary: summary || undefined,
@@ -173,7 +176,7 @@ export default function TechBlogsAdmin() {
     e.preventDefault();
     e.stopPropagation();
     if (selectedId) {
-      await deleteBlog({ id: selectedId });
+      await deleteBlog({ id: selectedId, token });
       setShowDeleteConfirm(false);
       resetForNew();
       setStatus("Deleted successfully.");

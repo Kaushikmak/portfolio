@@ -6,6 +6,7 @@ import { api } from "../../../../convex/_generated/api";
 import { Id } from "../../../../convex/_generated/dataModel";
 import Link from "next/link";
 import Image from "next/image";
+import { useAdminToken } from "../AdminTokenProvider";
 
 type WeeklyLog = {
   _id: Id<"learningLogs">;
@@ -23,6 +24,7 @@ type WeeklyLog = {
 };
 
 export default function LearningAdminPage() {
+  const token = useAdminToken();
   const logs = useQuery(api.learningAdmin.listAllWeeklyLogs) ?? [];
   const upsert = useMutation(api.learningAdmin.upsertWeeklyLog);
   const deleteLog = useMutation(api.learningAdmin.deleteWeeklyLog);
@@ -100,6 +102,7 @@ export default function LearningAdminPage() {
     }
 
     await upsert({
+      token,
       existingId: selectedId ?? undefined,
       logId: `week-${weekNumber}-${year}`,
       title,
@@ -130,7 +133,7 @@ export default function LearningAdminPage() {
     e.preventDefault();
     e.stopPropagation();
     if (!selectedId) return;
-    await deleteLog({ id: selectedId });
+    await deleteLog({ id: selectedId, token });
     setShowDeleteConfirm(false);
     resetForNew();
     setStatus("Log deleted successfully.");

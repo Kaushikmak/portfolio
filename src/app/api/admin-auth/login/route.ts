@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import crypto from "crypto";
 
 const ADMIN_COOKIE = "portfolio_admin_session";
 
@@ -15,7 +16,19 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Admin auth env vars are not configured." }, { status: 500 });
   }
 
-  if (username !== expectedUser || password !== expectedPass) {
+  if (!username || !password) {
+    return NextResponse.json({ error: "Invalid credentials." }, { status: 401 });
+  }
+
+  const userBuf = Buffer.from(username);
+  const expectedUserBuf = Buffer.from(expectedUser);
+  const passBuf = Buffer.from(password);
+  const expectedPassBuf = Buffer.from(expectedPass);
+
+  const userMatch = userBuf.length === expectedUserBuf.length && crypto.timingSafeEqual(userBuf, expectedUserBuf);
+  const passMatch = passBuf.length === expectedPassBuf.length && crypto.timingSafeEqual(passBuf, expectedPassBuf);
+
+  if (!userMatch || !passMatch) {
     return NextResponse.json({ error: "Invalid credentials." }, { status: 401 });
   }
 

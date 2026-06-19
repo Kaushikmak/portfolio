@@ -6,12 +6,12 @@ const ADMIN_COOKIE = "portfolio_admin_session";
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  if (pathname.startsWith("/learning/admin")) {
+  if (pathname === "/admin" || pathname.startsWith("/admin/")) {
     const cookie = req.cookies.get(ADMIN_COOKIE)?.value;
     const expected = process.env.ADMIN_SESSION_SECRET;
 
     if (!cookie || !expected || cookie !== expected) {
-      const loginUrl = new URL("/learning/admin-login", req.url);
+      const loginUrl = new URL("/admin-login", req.url);
       return NextResponse.redirect(loginUrl);
     }
   }
@@ -20,5 +20,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/learning/admin/:path*"],
+  matcher: ["/admin", "/admin/:path*"],
 };

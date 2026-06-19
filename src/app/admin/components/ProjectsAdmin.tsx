@@ -6,8 +6,10 @@ import { useState } from "react";
 import { useMutation, useQuery } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { Id } from "../../../../convex/_generated/dataModel";
+import { useAdminToken } from "../AdminTokenProvider";
 
 export default function ProjectsAdmin() {
+  const token = useAdminToken();
   const projects = useQuery(api.queries.getProjects) ?? [];
   const upsert = useMutation(api.adminMutations.upsertProject);
   const remove = useMutation(api.adminMutations.deleteProject);
@@ -55,6 +57,7 @@ export default function ProjectsAdmin() {
   const save = async () => {
     setStatus(null);
     await upsert({
+      token,
       id: selectedId ?? undefined,
       projectId,
       title,
@@ -71,7 +74,7 @@ export default function ProjectsAdmin() {
 
   const handleDelete = async () => {
     if (selectedId && confirm("Are you sure you want to delete this project?")) {
-      await remove({ id: selectedId });
+      await remove({ id: selectedId, token });
       resetForNew();
       setStatus("Deleted successfully.");
     }

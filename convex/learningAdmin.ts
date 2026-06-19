@@ -21,14 +21,18 @@ export const listAllWeeklyLogs = query({
 });
 
 export const deleteWeeklyLog = mutation({
-  args: { id: v.id("learningLogs") },
+  args: { id: v.id("learningLogs"), token: v.string() },
   handler: async (ctx, args) => {
+    if (args.token !== process.env.ADMIN_SESSION_SECRET) {
+      throw new Error("Unauthorized");
+    }
     await ctx.db.delete(args.id);
   },
 });
 
 export const upsertWeeklyLog = mutation({
   args: {
+    token: v.string(),
     existingId: v.optional(v.id("learningLogs")),
     logId: v.optional(v.string()),
     title: v.string(),
@@ -45,6 +49,9 @@ export const upsertWeeklyLog = mutation({
     isPublished: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
+    if (args.token !== process.env.ADMIN_SESSION_SECRET) {
+      throw new Error("Unauthorized");
+    }
     const normalizedSlug = args.weekSlug.trim().toLowerCase();
 
     let targetId = args.existingId;

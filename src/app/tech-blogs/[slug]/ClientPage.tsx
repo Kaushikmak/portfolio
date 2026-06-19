@@ -5,7 +5,7 @@ import { api } from "../../../../convex/_generated/api";
 import { useParams, useRouter } from "next/navigation";
 import ThemeToggle from "../../components/ThemeToggle";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function TechBlogDetail({ slug, initialBlog }: { slug: string, initialBlog?: any }) {
   const convexBlog = useQuery(api.queries.getTechBlogBySlug, slug ? { slug } : "skip");
@@ -16,6 +16,31 @@ export default function TechBlogDetail({ slug, initialBlog }: { slug: string, in
   const currentIndex = blogs.findIndex(b => b.slug === slug);
   const previousBlog = currentIndex !== -1 && currentIndex < blogs.length - 1 ? blogs[currentIndex + 1] : null;
   const nextBlog = currentIndex > 0 ? blogs[currentIndex - 1] : null;
+
+  const [zoomedImg, setZoomedImg] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!blog) return;
+    
+    const container = document.querySelector('.journal-body');
+    if (!container) return;
+    
+    const handleImageClick = (e: Event) => {
+      const target = e.target as HTMLElement;
+      if (target.tagName === 'IMG') {
+        setZoomedImg((target as HTMLImageElement).src);
+      }
+    };
+    
+    container.addEventListener('click', handleImageClick);
+    
+    const images = container.querySelectorAll('img');
+    images.forEach(img => {
+      img.style.cursor = 'zoom-in';
+    });
+    
+    return () => container.removeEventListener('click', handleImageClick);
+  }, [blog]);
 
   if (!blog) return <div className="card learning-journal-page"><p>Blog not found.</p></div>;
 
@@ -74,6 +99,14 @@ export default function TechBlogDetail({ slug, initialBlog }: { slug: string, in
           </main>
         </div>
       </div>
+      {zoomedImg && (
+        <div 
+          className="image-lightbox-overlay" 
+          onClick={() => setZoomedImg(null)}
+        >
+          <img src={zoomedImg} alt="Zoomed" className="image-lightbox-img" />
+        </div>
+      )}
       <ThemeToggle />
     </>
   );

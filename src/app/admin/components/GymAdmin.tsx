@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useMutation, useQuery } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { Id } from "../../../../convex/_generated/dataModel";
+import { useAdminToken } from "../AdminTokenProvider";
 
 export default function GymAdmin() {
   const [activeSubTab, setActiveSubTab] = useState<"activity" | "routine">("activity");
@@ -20,6 +21,7 @@ export default function GymAdmin() {
 }
 
 function GymActivityAdmin() {
+  const token = useAdminToken();
   const activities = useQuery(api.queries.getGymActivity) ?? [];
   const upsert = useMutation(api.adminMutations.upsertGymActivity);
   const remove = useMutation(api.adminMutations.deleteGymActivity);
@@ -46,6 +48,7 @@ function GymActivityAdmin() {
   const save = async () => {
     setStatus(null);
     await upsert({
+      token,
       id: selectedId ?? undefined,
       date,
       count: Number(count),
@@ -55,7 +58,7 @@ function GymActivityAdmin() {
 
   const handleDelete = async () => {
     if (selectedId && confirm("Are you sure you want to delete this activity log?")) {
-      await remove({ id: selectedId });
+      await remove({ id: selectedId, token });
       resetForNew();
       setStatus("Deleted successfully.");
     }
@@ -91,6 +94,7 @@ function GymActivityAdmin() {
 }
 
 function GymRoutineAdmin() {
+  const token = useAdminToken();
   const routines = useQuery(api.queries.getGymRoutines) ?? [];
   const upsert = useMutation(api.adminMutations.upsertGymRoutine);
   const remove = useMutation(api.adminMutations.deleteGymRoutine);
@@ -120,6 +124,7 @@ function GymRoutineAdmin() {
   const save = async () => {
     setStatus(null);
     await upsert({
+      token,
       id: selectedId ?? undefined,
       day,
       exercises: exercisesText.split("\n").map(e => e.trim()).filter(Boolean),
@@ -130,7 +135,7 @@ function GymRoutineAdmin() {
 
   const handleDelete = async () => {
     if (selectedId && confirm("Are you sure you want to delete this routine?")) {
-      await remove({ id: selectedId });
+      await remove({ id: selectedId, token });
       resetForNew();
       setStatus("Deleted successfully.");
     }
