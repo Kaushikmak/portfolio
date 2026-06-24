@@ -24,11 +24,49 @@ export default function Home() {
 
         <div className="section">
           <h2>Projects</h2>
-          <div className="project-section">
-            <ProjectCarousel projects={projects} />
-          </div>
-          <div className="view-more-container">
-            <Link href="/projects" className="view-more-button">View All Projects</Link>
+          <div style={{ position: "relative" }}>
+            <div 
+              style={{
+                position: "absolute",
+                inset: "-1rem",
+                zIndex: 10,
+                backdropFilter: "blur(12px)",
+                WebkitBackdropFilter: "blur(12px)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                textAlign: "center",
+                padding: "2rem",
+                borderRadius: "12px",
+                background: "rgba(0, 0, 0, 0.05)"
+              }}
+            >
+              <div style={{
+                background: "var(--bg-color)",
+                padding: "2rem",
+                borderRadius: "12px",
+                boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
+                border: "1px solid var(--border-color)",
+                maxWidth: "500px"
+              }}>
+                <h3 style={{ fontSize: "1.5rem", marginBottom: "1rem", color: "var(--heading-color)" }}>
+                  Temporarily Unavailable :(
+                </h3>
+                <p style={{ fontSize: "1.1rem", lineHeight: "1.6", color: "var(--text-color)", margin: 0 }}>
+                  Recently Jeffry's AWS charged me $100  gonna migrate all my projects to different cloud provider<br /><br />
+                  <strong>Live links will be coming soon!</strong>
+                </p>
+              </div>
+            </div>
+
+            <div style={{ pointerEvents: "none", userSelect: "none" }}>
+              <div className="project-section">
+                <ProjectCarousel projects={projects} />
+              </div>
+              <div className="view-more-container">
+                <Link href="/projects" className="view-more-button" tabIndex={-1} aria-hidden="true">View All Projects</Link>
+              </div>
+            </div>
           </div>
         </div>
 
