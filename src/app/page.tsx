@@ -130,7 +130,7 @@ export default function Home() {
         <div className="get-in-touch-content">
           <h2>Get in Touch</h2>
           <p style={{ marginBottom: "1.5rem" }}>
-            ohh here there, what's up? how is life?
+            ohh hey there!! yes you, what's up? how is life?
             <br></br>
             wanna chat w/ me??? Just drop your message on x.
           </p>
