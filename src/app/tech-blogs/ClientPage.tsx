@@ -19,8 +19,8 @@ export default function TechBlogsPage() {
 
   const filteredBlogs = useMemo(() => {
     return blogs.filter(b => {
-      const matchesSearch = b.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                            (b.summary && b.summary.toLowerCase().includes(searchQuery.toLowerCase()));
+      const matchesSearch = b.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (b.summary && b.summary.toLowerCase().includes(searchQuery.toLowerCase()));
       const matchesTag = selectedTag ? b.tags?.includes(selectedTag) : true;
       return matchesSearch && matchesTag;
     });
@@ -29,32 +29,29 @@ export default function TechBlogsPage() {
   return (
     <>
       <div className="card learning-journal-page" style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        <Link href="/" className="back-link">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-          Back to Home
-        </Link>
-        
+        <Link href="/" className="cd-back-link">← cd ../home</Link>
+
         <div className="section journal-header">
           <div className="log-header">
-            <h1 className="tech-blogs-title">Tech Blogs</h1>
+            <h1 className="tech-blogs-title">Blogs and memes</h1>
           </div>
         </div>
 
         <div className="journal-layout" style={{ marginTop: "3rem", alignItems: "start" }}>
           <aside className="journal-sidebar">
             <h3 style={{ marginBottom: "1rem" }}>Search</h3>
-            <input 
-              type="text" 
-              placeholder="Search articles..." 
+            <input
+              type="text"
+              placeholder="Search articles..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              style={{ 
-                width: "100%", 
-                padding: "0.8rem", 
-                borderRadius: "8px", 
-                border: "1px solid var(--border-color)", 
-                background: "transparent", 
-                color: "var(--text-color)", 
+              style={{
+                width: "100%",
+                padding: "0.8rem",
+                borderRadius: "8px",
+                border: "1px solid var(--border-color)",
+                background: "transparent",
+                color: "var(--text-color)",
                 marginBottom: "2.5rem",
                 fontFamily: "inherit"
               }}
@@ -62,7 +59,7 @@ export default function TechBlogsPage() {
 
             <h3 style={{ marginBottom: "1rem" }}>Topics</h3>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem" }}>
-              <button 
+              <button
                 onClick={() => setSelectedTag(null)}
                 className={`year-tab ${!selectedTag ? 'active' : ''}`}
                 style={{ fontSize: "0.85rem", padding: "0.4rem 0.9rem" }}
@@ -70,7 +67,7 @@ export default function TechBlogsPage() {
                 All
               </button>
               {allTags.map(tag => (
-                <button 
+                <button
                   key={tag}
                   onClick={() => setSelectedTag(tag)}
                   className={`year-tab ${selectedTag === tag ? 'active' : ''}`}
@@ -108,7 +105,7 @@ export default function TechBlogsPage() {
               {filteredBlogs.length === 0 && (
                 <div style={{ padding: "3rem", textAlign: "center", border: "1px dashed var(--border-color)", borderRadius: "12px" }}>
                   <p style={{ color: "var(--subtle-text-color)", fontSize: "1.1rem" }}>No tech blogs found for your search.</p>
-                  <button onClick={() => {setSearchQuery(""); setSelectedTag(null);}} className="view-more-button" style={{ marginTop: "1rem" }}>Clear Filters</button>
+                  <button onClick={() => { setSearchQuery(""); setSelectedTag(null); }} className="view-more-button" style={{ marginTop: "1rem" }}>Clear Filters</button>
                 </div>
               )}
             </div>

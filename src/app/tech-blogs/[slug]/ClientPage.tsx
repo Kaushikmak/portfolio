@@ -24,33 +24,33 @@ export default function TechBlogDetail({ slug, initialBlog }: { slug: string, in
 
   useEffect(() => {
     if (!blog) return;
-    
+
     const container = document.querySelector('.journal-body');
     if (!container) return;
 
     renderMathInElement(container as HTMLElement, {
       delimiters: [
-        {left: '$$', right: '$$', display: true},
-        {left: '$', right: '$', display: false},
-        {left: '\\(', right: '\\)', display: false},
-        {left: '\\[', right: '\\]', display: true}
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false },
+        { left: '\\(', right: '\\)', display: false },
+        { left: '\\[', right: '\\]', display: true }
       ]
     });
-    
+
     const handleImageClick = (e: Event) => {
       const target = e.target as HTMLElement;
       if (target.tagName === 'IMG') {
         setZoomedImg((target as HTMLImageElement).src);
       }
     };
-    
+
     container.addEventListener('click', handleImageClick);
-    
+
     const images = container.querySelectorAll('img');
     images.forEach(img => {
       img.style.cursor = 'zoom-in';
     });
-    
+
     return () => container.removeEventListener('click', handleImageClick);
   }, [blog]);
 
@@ -59,10 +59,7 @@ export default function TechBlogDetail({ slug, initialBlog }: { slug: string, in
   return (
     <>
       <div className="card learning-journal-page">
-        <Link href="/tech-blogs" className="back-link">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-          Back to Tech Blogs
-        </Link>
+        <Link href="/tech-blogs" className="cd-back-link">← cd ../tech_blogs</Link>
         <div className="journal-layout" style={{ marginTop: "2rem" }}>
           <aside className="journal-sidebar">
             <h3>Recent Blogs</h3>
@@ -97,14 +94,14 @@ export default function TechBlogDetail({ slug, initialBlog }: { slug: string, in
 
             <div className="journal-nav" style={{ marginTop: "3rem" }}>
               {previousBlog ? (
-                <Link href={`/tech-blogs/${previousBlog.slug}`} className="journal-nav-btn">
-                  &larr; Previous Blog
+                <Link href={`/tech-blogs/${previousBlog.slug}`} className="cd-back-link" style={{ marginBottom: 0 }}>
+                  ← cd ../prev_blog
                 </Link>
               ) : <span />}
 
               {nextBlog ? (
-                <Link href={`/tech-blogs/${nextBlog.slug}`} className="journal-nav-btn">
-                  Next Blog &rarr;
+                <Link href={`/tech-blogs/${nextBlog.slug}`} className="cd-back-link" style={{ marginBottom: 0 }}>
+                  → cd ../next_blog
                 </Link>
               ) : null}
             </div>
@@ -112,8 +109,8 @@ export default function TechBlogDetail({ slug, initialBlog }: { slug: string, in
         </div>
       </div>
       {zoomedImg && (
-        <div 
-          className="image-lightbox-overlay" 
+        <div
+          className="image-lightbox-overlay"
           onClick={() => setZoomedImg(null)}
         >
           <img src={zoomedImg} alt="Zoomed" className="image-lightbox-img" />

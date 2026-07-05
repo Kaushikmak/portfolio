@@ -10,7 +10,7 @@ import "./gym.css";
 export default function GymPage() {
   const gymActivity = useQuery(api.queries.getGymActivity);
   const gymRoutines = useQuery(api.queries.getGymRoutines);
-  
+
   const gymData = gymActivity ?? [];
   const routines = gymRoutines ?? [];
 
@@ -18,7 +18,7 @@ export default function GymPage() {
     <>
       <div className="card gym-page">
         <header className="page-header">
-          <Link href="/hobbies" className="back-link">&larr; Back to Offline Mode</Link>
+          <Link href="/hobbies" className="cd-back-link">← cd ../hobbies</Link>
           <h1>Gym Logs</h1>
           <p className="subtitle">Pushing for a 50kg Bench Press.</p>
         </header>

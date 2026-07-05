@@ -13,7 +13,7 @@ export default function CookingPage() {
     <>
       <div className="card cooking-page">
         <header className="page-header cooking-hero">
-          <Link href="/hobbies" className="back-link">&larr; Back to Offline Mode</Link>
+          <Link href="/hobbies" className="cd-back-link">← cd ../hobbies</Link>
           <h1>Cooking Logs</h1>
           <p className="subtitle">Experimenting in the kitchen, meal-prepping, and collecting recipes I actually repeat.</p>
           <div className="hero-chips">

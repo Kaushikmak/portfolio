@@ -19,13 +19,14 @@ export default function Home() {
     <>
       <div className="card">
         <ProfileCard />
-        <Skills />
         <Experience />
+        <Skills />
+
 
         <div className="section">
           <h2>Projects</h2>
           <div style={{ position: "relative" }}>
-            <div 
+            <div
               style={{
                 position: "absolute",
                 inset: "-1rem",
@@ -64,21 +65,21 @@ export default function Home() {
                 <ProjectCarousel projects={projects} />
               </div>
               <div className="view-more-container">
-                <Link href="/projects" className="view-more-button" tabIndex={-1} aria-hidden="true">View All Projects</Link>
+                <Link href="/projects" className="retro-btn" tabIndex={-1} aria-hidden="true">View All Projects</Link>
               </div>
             </div>
           </div>
         </div>
 
         <div className="section">
-          <h2>GitHub Activity</h2>
+          <h2></h2>
           <div className="github-heatmap">
             <img src="https://ghchart.rshah.org/26a641/Kaushikmak" alt="GitHub Contributions" />
           </div>
         </div>
 
         <div className="section">
-          <h2>Quick Tech Bytes</h2>
+          <h2>tech bytes</h2>
           <div className="tech-blogs-grid" style={{ display: "flex", flexDirection: "column", gap: "1rem", marginTop: "1rem" }}>
             {latestTechBlog ? (
               <article className="journal-card compact">
@@ -96,28 +97,28 @@ export default function Home() {
             )}
           </div>
           <div className="view-more-container">
-            <Link href="/tech-blogs" className="view-more-button">View All Tech Bytes</Link>
+            <Link href="/tech-blogs" className="retro-btn">View All Tech Bytes</Link>
           </div>
         </div>
 
         <div className="section">
-          <h2>Life Log</h2>
+          <h2>Weekly snapshots</h2>
           <div id="latest-learning-log" className="learning-log">
             {latestLearningLog && <WeeklyLogPreview entry={latestLearningLog} />}
           </div>
           <div className="view-more-container">
-            <Link href="/learning" className="view-more-button">View Weekly Logs</Link>
-          </div>
+            <Link href="/learning" className="retro-btn">View Weekly Logs</Link>
+          </div>          <h4>my weekly snapshots</h4>
         </div>
 
         <div className="section">
           <h2>Hobbies</h2>
           <p className="subtitle" suppressHydrationWarning>
-            What I do when I am not staring at a terminal. Games, movies, and other distractions.
+            What I do when I am not staring at a terminal. Games, movies, and other distractions :)
           </p>
           <div className="view-more-container">
             {/* The hobbies index is now migrated to a Next.js page */}
-            <Link href="/hobbies" className="view-more-button">Visit Offline Mode</Link>
+            <Link href="/hobbies" className="retro-btn">Visit Offline Mode</Link>
           </div>
         </div>
       </div>
@@ -129,10 +130,13 @@ export default function Home() {
         <div className="get-in-touch-content">
           <h2>Get in Touch</h2>
           <p style={{ marginBottom: "1.5rem" }}>
-            Want to chat? Just drop your message on twitter.
+            ohh here there, what's up? how is life?
+            <br></br>
+            wanna chat w/ me??? Just drop your message on x.
           </p>
-          <a href="https://x.com/tstytaco" target="_blank" rel="noopener noreferrer" className="view-more-button" style={{ display: "inline-block" }}>
-            Message on Twitter
+
+          <a href="https://x.com/tstytaco" target="_blank" rel="noopener noreferrer" className="retro-btn" style={{ display: "inline-block" }}>
+            Message on X
           </a>
         </div>
       </footer>

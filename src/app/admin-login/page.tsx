@@ -36,7 +36,7 @@ export default function AdminLoginPage() {
 
   return (
     <div className="card learning-journal-page">
-      <Link href="/" className="back-link">&larr; Back to Home</Link>
+      <Link href="/" className="cd-back-link">← cd ../home</Link>
       <div className="section" style={{ maxWidth: 520, width: "100%" }}>
         <h2>Admin Sign In</h2>
         <p className="subtitle">Private area for managing portfolio content.</p>

@@ -33,7 +33,7 @@ export default function HobbiesPage() {
   const renderTierRow = (tier: string, data: any[]) => {
     const items = data.filter(i => i.tier === tier);
     if (items.length === 0) return null;
-    
+
     return (
       <div key={tier} className="tier-row">
         <div className={`tier-label tier-${tier.toLowerCase()}`}>{tier}</div>
@@ -43,7 +43,7 @@ export default function HobbiesPage() {
               {item.image ? (
                 <img src={item.image} alt={item.title} className="media-poster" loading="lazy" />
               ) : (
-                <div className="media-poster-fallback" style={{width: '100%', height: '100%', background: '#222', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '5px', textAlign: 'center', fontSize: '0.7rem'}}>
+                <div className="media-poster-fallback" style={{ width: '100%', height: '100%', background: '#222', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '5px', textAlign: 'center', fontSize: '0.7rem' }}>
                   {item.title}
                 </div>
               )}
@@ -64,7 +64,7 @@ export default function HobbiesPage() {
     <>
       <div className="card">
         <header className="page-header">
-          <Link href="/" className="back-link">&larr; Back to Portfolio</Link>
+          <Link href="/" className="cd-back-link">← cd ../portfolio</Link>
           <h1>Offline Mode</h1>
           <p className="subtitle">When I'm not coding, I'm usually here.</p>
         </header>
@@ -96,7 +96,7 @@ export default function HobbiesPage() {
               <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" alt="Steam" className="steam-logo" />
               <div className="steam-text">
                 <span className="steam-label">Steam ID</span>
-                <span className="steam-id">76561199226610478</span> 
+                <span className="steam-id">76561199226610478</span>
               </div>
             </div>
             <a href="https://steamcommunity.com/profiles/76561199226610478" target="_blank" rel="noopener noreferrer" className="steam-link-btn">View Profile</a>
@@ -120,7 +120,7 @@ export default function HobbiesPage() {
         <div className="section">
           <h2>The Backlog</h2>
           <p style={{ color: "var(--subtle-text-color)", marginBottom: "1.5rem" }}>The never-ending list of "I'll get to it eventually."</p>
-          
+
           <div className="backlog-wrapper">
             <div className="backlog-column">
               <div className="backlog-header">

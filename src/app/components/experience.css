@@ -10,7 +10,8 @@
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 7px; /* Center of the 1rem (16px) dot */
+    left: 7px;
+    /* Center of the 1rem (16px) dot */
     width: 2px;
     background-color: var(--border-color);
 }
@@ -23,6 +24,20 @@
 
 .timeline-item:last-child {
     margin-bottom: 0;
+}
+
+.timeline-link {
+    color: var(--heading-color, #2d2d2a);
+    text-decoration: underline;
+    text-decoration-color: rgba(45, 45, 42, 0.35);
+    text-underline-offset: 2px;
+    transition: text-decoration-color 0.15s ease, color 0.15s ease;
+}
+
+.timeline-link:hover,
+.timeline-link:focus-visible {
+    color: var(--accent-color, #b5502c);
+    text-decoration-color: currentColor;
 }
 
 .timeline-dot {

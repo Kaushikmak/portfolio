@@ -29,7 +29,7 @@ export default function WeeklyJournalDetailPage() {
   if (!entry) {
     return (
       <div className="card learning-journal-page">
-        <Link href="/learning" className="back-link">&larr; Back to Life Log</Link>
+        <Link href="/learning" className="cd-back-link">← cd ../life_log</Link>
         <p>Entry not found.</p>
       </div>
     );
@@ -43,7 +43,7 @@ export default function WeeklyJournalDetailPage() {
   return (
     <>
       <div className="card learning-journal-page">
-        <Link href="/learning" className="back-link">&larr; Back to Life Log</Link>
+        <Link href="/learning" className="cd-back-link">← cd ../life_log</Link>
 
         <article className="journal-detail">
           {entry.coverImage && (
@@ -72,14 +72,14 @@ export default function WeeklyJournalDetailPage() {
 
         <div className="journal-nav">
           {adjacent?.previousWeek ? (
-            <Link href={`/learning/${adjacent.previousWeek.year}/${adjacent.previousWeek.weekSlug}`} className="journal-nav-btn">
-              &larr; Previous Week
+            <Link href={`/learning/${adjacent.previousWeek.year}/${adjacent.previousWeek.weekSlug}`} className="cd-back-link" style={{ marginBottom: 0 }}>
+              ← cd ../prev_week
             </Link>
           ) : <span />}
 
           {adjacent?.nextWeek ? (
-            <Link href={`/learning/${adjacent.nextWeek.year}/${adjacent.nextWeek.weekSlug}`} className="journal-nav-btn">
-              Next Week &rarr;
+            <Link href={`/learning/${adjacent.nextWeek.year}/${adjacent.nextWeek.weekSlug}`} className="cd-back-link" style={{ marginBottom: 0 }}>
+              → cd ../next_week
             </Link>
           ) : null}
         </div>
