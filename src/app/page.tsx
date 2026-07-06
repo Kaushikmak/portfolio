@@ -108,7 +108,7 @@ export default function Home() {
           </div>
           <div className="view-more-container">
             <Link href="/learning" className="retro-btn">View Weekly Logs</Link>
-          </div>          <h4>my weekly snapshots</h4>
+          </div>
         </div>
 
         <div className="section">
