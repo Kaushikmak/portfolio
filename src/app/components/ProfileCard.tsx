@@ -83,7 +83,7 @@ export default function ProfileCard() {
             <p>my cat ran away :( let me know if you find her</p>
             <div className="location">
               <svg suppressHydrationWarning width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-              <span>Chennai, <em>I also don't know how I got here</em></span>
+              <span>Nagpur, <em>I also don't know how I got here</em></span>
             </div>
             <div className="social-links">
               <div className="mail-wrapper">

@@ -26,7 +26,7 @@ export default function Experience() {
             </h4>
             <h4>IIT Madras</h4>
 
-            <span className="timeline-date">May 2026 – Present</span>
+            <span className="timeline-date">May 2026 – July 2026</span>
 
             <p>
               Contributing to <strong>Sethu</strong>, a decentralized trust layer for secure and verifiable digital interactions using decentralized identities (DIDs) and verifiable credentials. Developing full-stack web applications and implementing distributed systems components in Rust, with a focus on BFT consensus, DAG-based architectures, and verifiable data structures. Exploring zero-knowledge proofs (ZKPs) and their applications in privacy-preserving identity and verification systems.

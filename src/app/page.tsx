@@ -8,6 +8,7 @@ import Experience from "./components/Experience";
 import ProjectCarousel from "./components/ProjectCarousel";
 import WeeklyLogPreview from "./components/WeeklyLogPreview";
 import ThemeToggle from "./components/ThemeToggle";
+import CursorCat from "./components/CursorCat";
 import Link from "next/link";
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
 
   return (
     <>
+      <CursorCat />
       <div className="card">
         <ProfileCard />
         <Experience />

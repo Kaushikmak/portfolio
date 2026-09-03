@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import ConvexClientProvider from "./ConvexClientProvider";
 import { ThemeProvider } from "./ThemeProvider";
-import CursorCat from "./components/CursorCat";
+
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.kaushik-gupta.com'),
@@ -44,7 +44,6 @@ export default function RootLayout({
       <body>
         <ThemeProvider>
           <ConvexClientProvider>
-            <CursorCat />
             {children}
           </ConvexClientProvider>
         </ThemeProvider>
