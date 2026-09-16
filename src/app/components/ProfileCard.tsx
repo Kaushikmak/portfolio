@@ -78,7 +78,9 @@ export default function ProfileCard() {
           <p className="subtitle">also known as kaushik</p>
           <div className="bio">
             <p className="bio-text">
-              Grown up kid trying to build an operating system, but for now, just trying to operate my own life. I love my relationship with semicolons and arduino. And ofcourse I got a growing collection of half-finished side projects in OS, databases, and more.
+              Grown up kid trying to build an operating system, but for now, just trying to operate my own life. I love my relationship with semicolons (until you use python) and arduino. And ofcourse I got a growing collection of half-finished side projects.
+              <br />
+              started with python turtle graphic got curious love building things, except my sleep schedule lol
             </p>
             <p>my cat ran away :( let me know if you find her</p>
             <div className="location">
