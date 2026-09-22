@@ -11,7 +11,7 @@ export default function Experience() {
           <div className="timeline-dot"></div>
 
           <div className="timeline-content">
-            <h3>Research Intern</h3>
+            <h3>Intern</h3>
             <h4>CyStar (Centre for Cybersecurity, Trust and Reliability)</h4>
             <h4>
               Under{" "}

@@ -19,6 +19,7 @@ type TechBlog = {
   slug: string;
   tags?: string[];
   isPublished?: boolean;
+  headerImage?: string;
 };
 
 export default function TechBlogsAdmin() {
@@ -38,8 +39,10 @@ export default function TechBlogsAdmin() {
   const [slug, setSlug] = useState("");
   const [tags, setTags] = useState("");
   const [isPublished, setIsPublished] = useState(true);
+  const [headerImage, setHeaderImage] = useState("");
   const [status, setStatus] = useState<string | null>(null);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [isUploadingHeader, setIsUploadingHeader] = useState(false);
 
   const [showImageDialog, setShowImageDialog] = useState(false);
   const [showVideoDialog, setShowVideoDialog] = useState(false);
@@ -119,6 +122,33 @@ export default function TechBlogsAdmin() {
     }
   };
 
+  const handleHeaderUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    try {
+      setIsUploadingHeader(true);
+      const postUrl = await generateUploadUrl({ token });
+      const result = await fetch(postUrl, {
+        method: "POST",
+        headers: { "Content-Type": file.type },
+        body: file,
+      });
+      
+      const { storageId } = await result.json();
+      
+      const url = await convex.query(api.techBlogsAdmin.getFileUrl, { storageId });
+      if (url) {
+        setHeaderImage(url);
+      }
+    } catch (error) {
+      console.error("Upload failed", error);
+      alert("Failed to upload header image.");
+    } finally {
+      setIsUploadingHeader(false);
+    }
+  };
+
   const handleAddVideo = (e: React.MouseEvent) => {
     e.preventDefault();
     if (!mediaUrl) return;
@@ -152,6 +182,7 @@ export default function TechBlogsAdmin() {
     setSlug(blog.slug || "");
     setTags((blog.tags ?? []).join(", "));
     setIsPublished(blog.isPublished ?? true);
+    setHeaderImage(blog.headerImage || "");
     setStatus(null);
   };
 
@@ -164,6 +195,7 @@ export default function TechBlogsAdmin() {
     setSlug("");
     setTags("");
     setIsPublished(true);
+    setHeaderImage("");
     setStatus(null);
   };
 
@@ -179,6 +211,7 @@ export default function TechBlogsAdmin() {
       slug: slug || title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""),
       tags: tags ? tags.split(",").map((t) => t.trim()).filter(Boolean) : undefined,
       isPublished,
+      headerImage: headerImage || undefined,
     });
     setStatus("Saved successfully.");
   };
@@ -226,6 +259,28 @@ export default function TechBlogsAdmin() {
           <label>Title<input value={title} onChange={(e) => setTitle(e.target.value)} /></label>
           <label>Slug<input value={slug} onChange={(e) => setSlug(e.target.value)} placeholder="auto-generated-if-empty" /></label>
           <label>Summary<input value={summary} onChange={(e) => setSummary(e.target.value)} /></label>
+          <label>Header Image URL<input value={headerImage} onChange={(e) => setHeaderImage(e.target.value)} placeholder="https://..." /></label>
+          <div style={{ marginBottom: "16px", display: "flex", alignItems: "center", gap: "12px" }}>
+            <input 
+              type="file" 
+              accept="image/*"
+              onChange={handleHeaderUpload}
+              style={{ display: "none" }}
+              id="header-upload"
+            />
+            <button 
+              type="button" 
+              className="view-more-button" 
+              onClick={() => document.getElementById('header-upload')?.click()}
+              style={{ background: "transparent", border: "1px dashed var(--border-color, #333)", color: "var(--text-color, white)", padding: "4px 8px", fontSize: "0.85rem" }}
+              disabled={isUploadingHeader}
+            >
+              {isUploadingHeader ? "Uploading..." : "Upload Header Image"}
+            </button>
+            {headerImage && (
+              <img src={headerImage} alt="Header Preview" style={{ height: "30px", borderRadius: "4px" }} />
+            )}
+          </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(2,minmax(0,1fr))", gap: 8 }}>
             <label>Date<input type="date" value={date} onChange={(e) => setDate(e.target.value)} /></label>
             <label>Tags (comma separated)<input value={tags} onChange={(e) => setTags(e.target.value)} /></label>

@@ -77,6 +77,13 @@ export default function TechBlogDetail({ slug, initialBlog }: { slug: string, in
           <main className="journal-main">
             <article className="journal-detail tech-blog-content" style={{ marginTop: 0 }}>
               <div className="journal-header" style={{ marginBottom: "2rem", borderBottom: "1px solid var(--border)", paddingBottom: "2rem" }}>
+                {blog.headerImage ? (
+                  <img src={blog.headerImage} alt={blog.title} style={{ width: "100%", height: "400px", objectFit: "cover", borderRadius: "12px", marginBottom: "2rem" }} />
+                ) : (
+                  <div style={{ width: "100%", height: "400px", background: "var(--hover-bg-color)", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "12px", marginBottom: "2rem", border: "1px solid var(--border-color)" }}>
+                    <span style={{ color: "var(--subtle-text-color)", fontSize: "2.5rem", fontWeight: "bold", padding: "0 2rem", textAlign: "center" }}>{blog.title}</span>
+                  </div>
+                )}
                 <p className="journal-meta">{blog.date}</p>
                 <h1 style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>{blog.title}</h1>
                 {blog.tags && blog.tags.length > 0 && (

@@ -83,7 +83,14 @@ export default function TechBlogsPage() {
             <div className="tech-blogs-grid" style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
               {filteredBlogs.map((blog) => (
                 <Link key={blog._id} href={`/tech-blogs/${blog.slug}`} style={{ textDecoration: "none" }}>
-                  <article className="journal-card" style={{ cursor: "pointer", transition: "transform 0.2s ease, box-shadow 0.2s ease" }}>
+                  <article className="journal-card" style={{ cursor: "pointer", transition: "transform 0.2s ease, box-shadow 0.2s ease", overflow: "hidden" }}>
+                    {blog.headerImage ? (
+                      <img src={blog.headerImage} alt={blog.title} style={{ width: "100%", height: "200px", objectFit: "cover" }} />
+                    ) : (
+                      <div style={{ width: "100%", height: "200px", background: "var(--hover-bg-color)", display: "flex", alignItems: "center", justifyContent: "center", borderBottom: "1px solid var(--border-color)" }}>
+                        <span style={{ color: "var(--subtle-text-color)", fontSize: "1.25rem", fontWeight: "bold", padding: "0 1.5rem", textAlign: "center" }}>{blog.title}</span>
+                      </div>
+                    )}
                     <div className="journal-content" style={{ padding: "1.8rem" }}>
                       <p className="journal-meta" style={{ fontSize: "0.9rem" }}>{blog.date}</p>
                       <h2 className="journal-card-title" style={{ margin: "0.8rem 0", color: "var(--heading-color)" }}>{blog.title}</h2>
