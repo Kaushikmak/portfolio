@@ -17,6 +17,30 @@ export default async function Image({ params }: { params: Promise<{ slug: string
 
   const title = blog?.title ?? "Techbits Blog";
 
+  if (blog?.headerImage) {
+    return new ImageResponse(
+      (
+        <div
+          style={{
+            display: 'flex',
+            width: '100%',
+            height: '100%',
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={blog.headerImage}
+            alt={title}
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        </div>
+      ),
+      {
+        ...size,
+      }
+    );
+  }
+
   return new ImageResponse(
     (
       <div
