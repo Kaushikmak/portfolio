@@ -199,21 +199,35 @@ export default function TechBlogsAdmin() {
     setStatus(null);
   };
 
+  const [toastMessage, setToastMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
+
+  const showToast = (type: "success" | "error", text: string) => {
+    setToastMessage({ type, text });
+    setTimeout(() => setToastMessage(null), 3000);
+  };
+
   const save = async () => {
-    setStatus(null);
-    await upsert({
-      token,
-      existingId: selectedId ?? undefined,
-      title,
-      summary: summary || undefined,
-      content,
-      date,
-      slug: slug || title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""),
-      tags: tags ? tags.split(",").map((t) => t.trim()).filter(Boolean) : undefined,
-      isPublished,
-      headerImage: headerImage || undefined,
-    });
-    setStatus("Saved successfully.");
+    setStatus("Saving...");
+    try {
+      await upsert({
+        token,
+        existingId: selectedId ?? undefined,
+        title,
+        summary: summary || undefined,
+        content,
+        date,
+        slug: slug || title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""),
+        tags: tags ? tags.split(",").map((t) => t.trim()).filter(Boolean) : undefined,
+        isPublished,
+        headerImage: headerImage || undefined,
+      });
+      setStatus(null);
+      showToast("success", "Blog saved successfully!");
+    } catch (err: any) {
+      console.error(err);
+      setStatus(null);
+      showToast("error", err.message || "Failed to save blog.");
+    }
   };
 
   const handleDeleteClick = (e: React.MouseEvent) => {
@@ -240,7 +254,24 @@ export default function TechBlogsAdmin() {
   };
 
   return (
-    <div className="journal-layout" style={{ padding: 0, marginTop: 12 }}>
+    <div className="journal-layout" style={{ padding: 0, marginTop: 12, position: "relative" }}>
+      {toastMessage && (
+        <div style={{
+          position: "fixed",
+          top: "20px",
+          right: "20px",
+          zIndex: 10000,
+          background: toastMessage.type === "success" ? "#4CAF50" : "#F44336",
+          color: "white",
+          padding: "12px 24px",
+          borderRadius: "8px",
+          boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+          fontWeight: "bold",
+          transition: "opacity 0.3s ease-in-out"
+        }}>
+          {toastMessage.text}
+        </div>
+      )}
       <aside className="journal-sidebar" style={{ paddingLeft: 0 }}>
         <button className="view-more-button" style={{ marginBottom: 12 }} onClick={resetForNew}>+ New Tech Blog</button>
         <div className="journal-sidebar-list">
