@@ -67,6 +67,7 @@ export default defineSchema({
     slug: v.string(),
     tags: v.optional(v.array(v.string())),
     isPublished: v.optional(v.boolean()),
+    headerImage: v.optional(v.string()),
   })
     .index("by_date", ["date"])
     .index("by_slug", ["slug"]),

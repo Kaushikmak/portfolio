@@ -19,6 +19,7 @@ export const upsertTechBlog = mutation({
     slug: v.string(),
     tags: v.optional(v.array(v.string())),
     isPublished: v.optional(v.boolean()),
+    headerImage: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     if (args.token !== process.env.ADMIN_SESSION_SECRET) {
