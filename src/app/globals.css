@@ -6,7 +6,7 @@
     --heading-color: #111111;
     --subtle-text-color: #6E6D69;
     --border-color: #D3D0C9;
-    --link-color: #0055CC;
+    --link-color: #FFA500;
     --hover-bg-color: #EFECE6;
     --skill-bg-color: #2D2D2A;
     --skill-text-color: #FAF8F5;
@@ -29,7 +29,7 @@ body.dark-mode {
     --heading-color: #F8F6EE;
     --subtle-text-color: #9E9C94;
     --border-color: #3A3935;
-    --link-color: #38BDF8;
+    --link-color: #FFA500;
     --hover-bg-color: #242422;
     --skill-bg-color: #2E2E2A;
     --skill-text-color: #F8F6EE;
@@ -344,8 +344,7 @@ h1 {
 }
 
 .get-in-touch a {
-    color: var(--primary);
-    /* Keeps theme primary color, or explicitly blue if preferred */
+    color: var(--link-color);
     text-decoration: underline;
     font-weight: 700;
 }
@@ -718,6 +717,15 @@ body.dark-mode .theme-toggle-button .sun-icon {
 .journal-body {
     margin-top: 1rem;
     line-height: 1.7;
+}
+
+.journal-body a {
+    color: var(--link-color);
+    text-decoration: underline;
+}
+
+.journal-body a:hover {
+    text-decoration: none;
 }
 
 .journal-gallery {

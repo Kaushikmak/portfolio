@@ -279,7 +279,7 @@ export default function TechBlogsAdmin() {
             <button key={blog._id} className="week-chip" style={{ textAlign: "left", background: "transparent" }} onClick={() => loadIntoForm(blog as TechBlog)}>
               <span>{blog.date}</span>
               <strong>{blog.title}</strong>
-              {!blog.isPublished && <span style={{ fontSize: "0.8em", color: "var(--primary)" }}> (Draft)</span>}
+              {!blog.isPublished && <span style={{ fontSize: "0.8em", color: "var(--link-color)" }}> (Draft)</span>}
             </button>
           ))}
         </div>
@@ -372,7 +372,7 @@ export default function TechBlogsAdmin() {
               {tags && (
                 <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginTop: "1rem" }}>
                   {tags.split(",").map((t) => t.trim()).filter(Boolean).map(tag => (
-                    <span key={tag} style={{ background: "var(--primary-light, #1e1e1e)", color: "var(--primary, #007acc)", padding: "4px 10px", borderRadius: "12px", fontSize: "0.85rem", fontWeight: "bold" }}>
+                    <span key={tag} style={{ background: "var(--hover-bg-color, #1e1e1e)", color: "var(--link-color, #FFA500)", padding: "4px 10px", borderRadius: "12px", fontSize: "0.85rem", fontWeight: "bold", border: "1px solid var(--link-color, #FFA500)" }}>
                       {tag}
                     </span>
                   ))}
