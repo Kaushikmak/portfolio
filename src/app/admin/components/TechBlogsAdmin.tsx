@@ -328,8 +328,26 @@ export default function TechBlogsAdmin() {
         <section className="journal-live-preview">
           <h3>Live Preview</h3>
           <article className="journal-detail tech-blog-content">
-            <p className="journal-meta">{date}</p>
-            <h1>{title || "Untitled Blog"}</h1>
+            <div className="journal-header" style={{ marginBottom: "2rem", borderBottom: "1px solid var(--border-color)", paddingBottom: "2rem" }}>
+              {headerImage ? (
+                <img src={headerImage} alt={title} style={{ width: "100%", height: "400px", objectFit: "cover", borderRadius: "12px", marginBottom: "2rem" }} />
+              ) : (
+                <div style={{ width: "100%", height: "400px", background: "var(--hover-bg-color)", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "12px", marginBottom: "2rem", border: "1px solid var(--border-color)" }}>
+                  <span style={{ color: "var(--subtle-text-color)", fontSize: "2.5rem", fontWeight: "bold", padding: "0 2rem", textAlign: "center" }}>{title || "Untitled Blog"}</span>
+                </div>
+              )}
+              <p className="journal-meta">{date}</p>
+              <h1 style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>{title || "Untitled Blog"}</h1>
+              {tags && (
+                <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginTop: "1rem" }}>
+                  {tags.split(",").map((t) => t.trim()).filter(Boolean).map(tag => (
+                    <span key={tag} style={{ background: "var(--primary-light, #1e1e1e)", color: "var(--primary, #007acc)", padding: "4px 10px", borderRadius: "12px", fontSize: "0.85rem", fontWeight: "bold" }}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
             {summary && <p className="journal-summary">{summary}</p>}
             <section className="journal-body" dangerouslySetInnerHTML={{ __html: content || "<p></p>" }} />
           </article>
